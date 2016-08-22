@@ -1,0 +1,55 @@
+\documentclass[oneside, 12pt, a4paper]{book}
+\usepackage[italian]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{latexsym}
+\PassOptionsToPackage{hyphens}{url}\usepackage{hyperref}
+\usepackage[backend=bibtex]{biblatex}
+\addbibresource{./references/references.bib}
+
+\author{Jacopo Francesco Zemella}
+\title{Parallelismo e Haskell}
+
+\begin{document}
+
+\maketitle
+
+\frontmatter
+\pagestyle{plain}
+
+\include{prefazione}
+% Qui cominicia il Primo capitolo
+
+
+\mainmatter
+\pagestyle{plain}
+
+\tableofcontents
+\part{Calcolo Sequenziale}
+\include{chapter1}
+
+
+% Qui finisce il Primo capitolo
+
+% Qui cominicia il Secondo capitolo
+
+\part{Dal Sequenziale al Parallelo}
+\include{chapter2}
+
+% Qui finisce il Secondo capitolo
+
+% Qui cominicia il Terzo capitolo
+
+\part{Programmazione Parallela}
+\include{chapter3}
+
+% Qui finisce il Terzo capitolo
+
+% Qui cominicia il Quarto capitolo
+
+\part{Implementazione in Haskell}
+\include{chapter4}
+
+\printbibliography[title=Bibliografia]
+
+\end{document}

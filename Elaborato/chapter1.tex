@@ -1,0 +1,56 @@
+\chapter{Algoritmi sequenziali}
+Prima di avviarci nella teoria del calcolo parallelo è doverosa un'introduzione nel concetto del calcolo algoritmico sequenziale.\\
+Molti dei concetti riguardanti la parallelizzazione del codice è un'estensione della sua controparte sequenziale e figlia delle sue ovvie limitazioni nell'ambito dell'esecuzione.\cite{Placeholder}\\
+Solitamente quando pensiamo ad un algoritmo generico il nostro primo pensiero è quello di un programma atto ad essere eseguito su una macchina di Von Neuman, il più semplice e minimale modello di calcolatore, dotato di una singola CPU e che esegue una serie (finita) di istruzioni eseguite una dopo l'altra. Sequenzialità, dunque, significa prendere un problema e "spacchettarlo" in una sequenza di operazioni da eseguire da un singolo processore.\\
+Poiché la nostra analisi è orientata principalmente allo studio della complessità algoritmica, ci concentreremo su un comodo modello di calcolo, specializzato in questo campo: la macchina di Turing. Esso ci permetterà di studiare gli algoritmi sequenziali e di ottenere risultati che ci torneranno utili qu
+\chapter{Macchina di Turing Deterministica}
+La macchina di Turing (MdT) è un modello ideale di calcolatore dalle meccaniche intuitive e semplici, solitamente usato più per l'analisi computazionale che per l'implementazione di calcolatori reali. Vista la sua semplicità, rappresenta uno dei modelli più utilizzati per identificare e studiare il calcolo sequenziale.\\
+Una MdT è composta essenzialmente da:
+\begin{itemize}
+\item{un'unità di controllo a stati finiti (deterministica, da cui il nome del titolo);}
+\item{un nastro diviso in celle di dimensione arbitraria contenente i dati di input/output;}
+\item{una testina capace di leggere, scrivere o cancellare dati sul suddetto nastro (inizialmente posizionata sulla cella più a sinistra del nastro).}
+\end{itemize}
+Analogamente l'esecuzione di una MdT è suddivisa nelle seguenti fasi:
+\begin{itemize}
+\item{inizialmente, trattandosi di un'automa a stati finiti, l'unità di controllo si trova in uno stato iniziale;}
+\item{viene scritta su nastro la "stringa" di input;}
+\item{a seconda dello stato corrente dell'unità di controllo e del carattere letto mediante la testina, la macchina si posiziona sullo stato successivo; da ciò dipende il comportamento della testina sulle operazioni su nastro (lettura, scrittura o nessuna operazione), comprese azioni di scorrimento sullo stesso;}
+\item{l'esecuzione termina se viene letta un'operazione non riconosciuta o se l'unità di controllo ha raggiunto uno stato finale.}
+\end{itemize}
+La MdT ha avuto un ruolo fondamentale nell'informatica teorica: poiché è matematicamente dimostrato che per qualsiasi modello di calcolo esiste una macchina di Turing associata (tesi di Church-Turing), questo ha reso possibile definire uno standard nell'analisi computazionale degli algoritmi.
+\section{Complessità sequenziale}
+Quando analizziamo un algoritmo dobbiamo tenere in considerazione due caratteristiche: il fatto che risolva correttamente il problema che gli viene chiesto di risolvere (correttezza) e quante risorse impiega per essere eseguito (complessità).\\
+La complessità di un algoritmo si basa essenzialmente su due misure esprimibili come $\mathrm{T}_{A}(x)$ e $\mathrm{M}_{A}(x)$, rispettivamente il tempo di calcolo e lo spazio utilizzati dall'algoritmo A su input \textit{x}. In ambito informatico l'efficienza di un algoritmo è basato essenzialmente sull'utilizzo che un algoritmo fa delle risorse della macchina: il tempo è correlato alla CPU e lo spazio dalla memoria.\\
+Algoritmi aventi la stessa finalità possono non avere il medesimo utilizzo di tempo e memoria. Per questo motivo di parla di efficienza, per distinguere al meglio la qualità di un algoritmo rispetto ad un altro.\\
+Misurare le caratteristiche di un algoritmo non è un concetto immediato come può sembrare. L'esecuzione di un programma su un calcolatore dipende sempre da numerosi fattori: la macchina usata, il linguaggio, il compilatore, ecc. Dunque è bene definire una stima \textbf{assoluta} di quella che è la complessità di un algoritmo.\\
+Qui entra in gioco la macchina di Turing: dal momento che ogni algoritmo può essere tradotto in modo da poter essere eseguito su una MdT possiamo sfruttarla per ottenere stime temporali come funzioni.
+\subsubsection{Tempo}
+In termini di tempo diciamo che un algoritmo A che opera su un generico input \textit{x} restituisce un risultato dopo un tempo $\mathrm{T}_{A}(x) = f(n)$, con \textit{n} pari alla lunghezza dell'input \textit{x} e \textit{f(n)} pari al numero totale di operazioni da eseguire (funzione dipendente dalle dimensioni dell'input).\\
+In genere quando si tratta di efficienza di un algoritmo il tempo di esecuzione assume un ruolo primario rispetto alla memoria.
+\subsubsection{Memoria}
+In termini di spazio di memoria diciamo che un algoritmo A che opera su un generico input \textit{x} necessita di un numero di "celle" di memoria pari a $\mathrm{M}_{A}(x) = f(n)$, con \textit{n} pari alla lunghezza dell'input \textit{x}.
+\subsection{Lato pratico}
+Abbiamo appena derivato un metodo corretto per calcolare la complessità di un algoritmo. Sfortunatamente, in ambito reale, derivare correttamente la funzione che descriva l'utilizzo delle risorse di un algoritmo può rivelarsi un compito arduo. Oltretutto il fine ultimo del calcolo della complessità algoritmica è il confronto tra i vari algoritmi per capirne l'efficienza, dunque non è richiesta una stima esatta delle risorse utilizzate.\\
+Per questo motivo si ricorre ad un metodo di misurazione più blando, ma comunque efficace, sfruttando la teoria del calcolo asintotico. Più precisamente ci affidiamo alla notazione $\mathcal{O}(n \log {}n)$ ("O grande") e a successioni di immediata comprensione per dare un'idea dell'efficienza dell'algoritmo rispetto a casi particolari di esecuzione. In particolare per ogni algoritmo riconosciamo le relative prestazioni nei seguenti casi:
+\begin{itemize}
+\item{caso ottimo: caso di esecuzione che richiede all'algoritmo meno operazioni per ottenere una soluzione;}
+\item{caso peggiore: caso di esecuzione che richiede all'algoritmo il maggior numero possibile di operazioni per ottenere una soluzione;}
+\item{caso medio: caso definito statisticamente; rappresenta un valore medio di operazioni che esegue l'algoritmo rispetto ad un numero sufficientemente grande di esecuzioni.}
+\end{itemize}
+Tra tutti i casi, ovviamente quello medio è l'elemento più utile ai fini del calcolo della complessità computazionale, poiché solitamente ci aspettiamo di eseguire un algoritmo su problemi generici.
+Di seguito facciamo degli esempi classici e che verranno implementati alla fine dell'elaborato.
+\chapter{Esempi}
+Di seguito verranno presentati alcuni esempi di algoritmi sequenziali, molti dei quali verranno implementati a livello di codice alla fine dell'elaborato.
+\section{Ordinamento}
+Quello dell'ordinamento di un insieme di oggetti confrontabili è uno degli problemi tipici del calcolo algoritmico. Ne esistono di diversi tipi, il che lo rende un esempio perfetto per confrontare le varie alternative.\\
+Prendiamo ad esempio due algoritmi piuttosto comuni in questo campo: quicksort\footnote{In linguaggio naturale: preso un elemento \textit{x} in una lista, se ne creano due: quella degli elementi minori di \textit{x} e quella degli elementi maggiori. Si richiama poi l'algoritmo sulle nuove liste, dopodiché si uniscono i risultati aggiungendo \textit{x} in mezzo agli stessi.} e bubblesort\footnote{In linguaggio naturale: si scorre la lista confrontando ogni elemento con il successivo; se il successore è minore, i due vengono scambiati di posizione. L'algoritmo viene ripetuto finché non ci sono più scambi da effettuare.}. In questo caso, ad esempio i vari casi di esecuzione cambiano:
+\begin{itemize}
+\item{caso migliore:  $\mathcal {O}(n \log {}n)$ per quicksort e  $\mathcal {O}(n)$ per bubblesort;}
+\item{caso peggiore:  $\mathcal {O}(n^2)$ per quicksort e  $\mathcal {O}(n^2)$ per bubblesort;}
+\item{caso medio:  $\mathcal {O}(n \log {}n)$ per quicksort e  $\mathcal {O}(n^2)$ per bubblesort;}
+\end{itemize}
+Concentrandoci sul caso medio appare evidente come quicksort sia generalmente più efficiente di bubblesort.
+\section{Algebra Lineare}
+
+\section{Grafi}
