@@ -20,6 +20,7 @@ identity2 n m
 	| n == m = []
 	| otherwise = [((replicate m 0) ++ [1] ++ (replicate (n-m-1) 0))] ++ (identity2 n (m+1))  
 
+--operazioni sequenziali tra matrici
 
 sumVector :: Num a => [a] -> [a] -> [a]
 sumVector v1 v2 = [a + b | a <- v1, b <- v2]
@@ -45,7 +46,10 @@ powMatrix :: Num a => [[a]] -> Int -> [[a]]
 powMatrix m 0 = (identity dim) where dim = length m
 powMatrix m 1 = m
 powMatrix m n = prodMatrix m (powMatrix m (n-1))
-
+	
+	
+--operazioni parallele tra matrici
+	
 sumMatPar :: (NFData a, Num a) => [[a]] -> [[a]] -> [[a]]
 sumMatPar a b = (sumMatrix a b) `using` parList rdeepseq
 
@@ -54,6 +58,8 @@ subMatPar a b = (subMatrix a b) `using` parList rdeepseq
 	  
 prodMatPar :: (NFData a, Num a) => [[a]] -> [[a]] -> [[a]]
 prodMatPar a b = (prodMatrix a b) `using` parList rdeepseq
+
+
 				  
 powMatPar :: (NFData a, Num a) => [[a]] -> Int -> [[a]]
 powMatPar m 0 = (identity dim) where dim = length m
@@ -63,3 +69,27 @@ powMatPar m n = prodMatPar m ris
 					ris = powMatPar m (n-1)
 
 				  
+--determinante
+
+deleteColumn :: [[a]] -> Int -> [[a]]
+deleteColumn [] _ = error "Error input Matrix"
+deleteColumn m col = a ++ b where (a, _:b) = splitAt col m
+	
+deleteElement :: [a] -> Int -> [a]
+deleteElement x index = left ++ right where (left, _:right) = splitAt index x
+
+deleteRow :: [[a]] -> Int -> [[a]]
+deleteRow [] _ = error "Error input Matrix"
+deleteRow m row = [deleteElement x row | x <- m]
+						
+
+minor :: Num a => [[a]] -> Int -> Int -> [[a]]
+minor [] _ _ = error "Error input Matrix"
+minor m row col = deleteRow m1 row where m1 = (deleteColumn m col)
+
+det :: Num a => [[a]] -> a
+det [] = error "Error input Matrix"
+det [[a]] = a
+det m = sum [a*s*(det m1) | i <- [0..dim-1], let a = (head m !! i), let m1 = (minor m i 0), let s = (-1)^i] 
+	where
+		dim = length m
