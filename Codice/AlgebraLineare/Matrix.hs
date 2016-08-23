@@ -83,13 +83,25 @@ deleteRow [] _ = error "Error input Matrix"
 deleteRow m row = [deleteElement x row | x <- m]
 						
 
-minor :: Num a => [[a]] -> Int -> Int -> [[a]]
+minor :: (Num a, Fractional a) => [[a]] -> Int -> Int -> [[a]]
 minor [] _ _ = error "Error input Matrix"
 minor m row col = deleteRow m1 row where m1 = (deleteColumn m col)
 
-det :: Num a => [[a]] -> a
+det :: (Num a, Fractional a) => [[a]] -> a
 det [] = error "Error input Matrix"
 det [[a]] = a
 det m = sum [a*s*(det m1) | i <- [0..dim-1], let a = (head m !! i), let m1 = (minor m i 0), let s = (-1)^i] 
 	where
 		dim = length m
+		
+		
+--matrice inversa
+
+invert :: (Num a, Fractional a) => [[a]] -> [[a]]
+invert [[]] = [[]]
+invert m = transpose [[s*(det m1)/d | i <- [0..dim-1], let m1 = (minor m i j), let s = (-1)^(i+j)] | j <- [0..dim-1]]
+		where
+			dim = length m
+			d = det m
+		
+		
