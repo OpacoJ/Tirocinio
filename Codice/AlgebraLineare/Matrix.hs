@@ -9,6 +9,7 @@ import Control.Parallel.Strategies
 makeMat :: Int -> [[Double]]
 makeMat n = replicate n [1.0..t] where t = fromIntegral n
 
+zeroes n = replicate n (replicate n 0.0)
 
 identity :: Int -> [[Double]]
 identity n = identity2 n 0
@@ -91,7 +92,20 @@ det [[x]] = x
 det m = sum [a*s*(det m1) | i <- [0..dim-1], let a = (head m !! i), let m1 = (minor m i 0), let s = (-1)^i] 
 	where
 		dim = length m
+		
+--determinante parallelo
 
+		
+detList :: [[Double]] -> [Double]
+detList [] = error "Error input Matrix"
+detList [[x]] = [x]
+detList m = [a*s*(det m1) | i <- [0..dim-1], let a = (head m !! i), let m1 = (minor m i 0), let s = (-1)^i] 
+	where
+		dim = length m
+		
+pardet :: [[Double]] -> Double
+pardet m = sum ((detList m) `using` parList rpar)
+		
 --matrice inversa
 
 invert :: [[Double]] -> [[Double]]
