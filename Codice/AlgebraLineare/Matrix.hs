@@ -114,5 +114,6 @@ invert m = transpose [[s*(det m1)/d | i <- [0..dim-1], let m1 = (minor m i j), l
 		where
 			dim = length m
 			d = det m
-		
-		
+
+parinvert :: [[Double]] -> [[Double]]			
+parinvert m = (invert m) `using` parList rdeepseq
