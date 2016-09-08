@@ -20,7 +20,7 @@ fibpar n = (n1 `par` n2) `pseq` (n1 + n2)
 -- Mapping
 
 parMapList :: (a -> b) -> [a] -> [b]
-parMapList f ls = map f s `using` parList rseq
+parMapList f ls = map f ls `using` parList rseq
 
 -- Sorting
 
@@ -37,3 +37,41 @@ parquicksort (x:xs) = (left `par` right) `pseq` (left ++ [x] ++ right)
 						where
 							left = parquicksort [a | a <- xs, a <= x]
 							right = parquicksort [a | a <- xs, a > x]
+	
+
+
+merge :: Ord a => [a] -> [a] -> [a]
+merge xs [] = xs
+merge [] ys = ys
+merge (x:xs) (y:ys)
+	| x <= y = x:(merge xs (y:ys))
+	| otherwise = y:(merge (x:xs) ys)
+	
+forceList :: [a] -> ()
+forceList [] = ()
+forceList (x:xs) = x `pseq` (forceList xs)
+
+mergesort :: Ord a => [a] -> [a]
+mergesort [] = []
+mergesort [x] = [x]
+mergesort xs = merge (mergesort left) (mergesort right)
+				where
+					(left, right) = splitAt l xs
+					l = div (length xs) 2
+
+
+
+parmergesort :: Ord a => [a] -> [a]
+parmergesort [] = []
+parmergesort [x] = [x]
+parmergesort xs = ((forceList left) `par` (forceList right)) `pseq` (merge left right)
+				where
+					(left1, right1) = splitAt l xs
+					l = div (length xs) 2
+					left = parmergesort left1
+					right = parmergesort right1
+	
+
+	
+	
+	

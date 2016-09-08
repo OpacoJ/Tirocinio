@@ -3,6 +3,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{latexsym}
+\usepackage{graphicx}
 \PassOptionsToPackage{hyphens}{url}\usepackage{hyperref}
 \usepackage[backend=bibtex]{biblatex}
 \addbibresource{./references/references.bib}
@@ -11,10 +12,49 @@
 \title{Parallelismo e Haskell}
 
 \begin{document}
+\thispagestyle{empty}
+\begin{center}
+	{\LARGE \uppercase{Universit\`a degli Studi di Milano}}\\
+	\uppercase{Facolt\`a di Scienze e Tecnologie}\\
+	\vskip 0.6 cm
+	\centerline{\includegraphics[height=20mm]{logo}}
+	\vskip 0.4 cm
+	\uppercase{Corso di Laurea triennale in Informatica}
+\end{center}
 
-\maketitle
+\vfill
+\vskip 1.5 cm
+\begin{center}
+	{\Large\uppercase\expandafter{Parallelismo e Haskell}}
+\end{center}
 
-\frontmatter
+\vfill
+\vskip 3 cm
+
+\begin{tabular}{ll}
+	{\large Relatore:} & Prof. Carlo Mereghetti\\
+	{\large Correlatore:} & Prof. Beatrice Palano\\
+	{\large Correlatore:} & Prof. Alberto Momigliano\\
+\end{tabular}
+
+\vfill
+\vskip 0.5 cm
+
+\begin{tabular}{l}
+	\hspace{9cm}{\large Tesi di Laurea di:}\\
+	\hspace{9cm}{\large Jacopo Francesco Zemella}\\
+	\hspace{9cm}{\large Matr. Nr. 813518}\\
+\end{tabular}
+
+\vfill
+\vskip 2 cm
+
+\begin{center}
+	%inserire l'anno accademico
+	\sc anno accademico 2015-2016
+\end{center}\vskip.5in
+\newpage
+
 \pagestyle{plain}
 
 \include{prefazione}
@@ -33,7 +73,7 @@
 
 % Qui cominicia il Secondo capitolo
 
-\part{Dal Sequenziale al Parallelo}
+\part{Calcolo Parallelo}
 \include{chapter2}
 
 % Qui finisce il Secondo capitolo

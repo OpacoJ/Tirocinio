@@ -35,8 +35,8 @@ Ci sono svariati motivi legati all'utilizzo di Haskell per programmare in parall
 \item{il paradigma sfruttato da Haskell facilita la creazione di codice pulito e conciso;}
 \item{possiede una semantica relativamente semplice da acquisire;}
 \item{il codice conciso permette di evitare errori di programmazione o di rilevarne più facilmente;}
-\item{programmi molto più facili da testare}
-\item{consente un livello di astrazione molto alto}
+\item{programmi molto più facili da testare;}
+\item{consente un livello di astrazione molto alto;}
 \item{le librerie disponibili consentono già una programmazione parallela implicita ad alto livello.}
 \end{itemize}
 Va fatto notare che la maggior parte delle caratteristiche che sono state enunciate sono rappresentate dal semplice fatto che Haskell è un linguaggio funzionale. In generale i linguaggi funzionali hanno sempre dimostrato un ottimo utilizzo nella progettazione del software, poiché, consentono una maggiore fruibilità di altre fasi di lavorazione, quali stesura delle specifiche (test funzionali) e manutenzione del software (software inspection facilitato dal codice conciso).\\
@@ -211,12 +211,13 @@ parMapList f ls = map f s `using` parList rseq
 Osserviamo nel dettaglio le componenti della funzione:
 \begin{itemize}
 \item{\texttt{map f s} è l'algoritmo a cui applicare la strategia}
-\item{\texttt{parList rseq} è la strategia da sfruttare; rseq l'abbiamo già menzionata, parList, invece, è una strategia già implementata in Control.Parallel.Strategies, che presa una strategia su valori a ne restituisce un'altra sulle liste di elementi di tipo a; in questo caso prende la strategia rseq e ne restituisce una che applica la suddetta ad ogni elemento di un lista}
+\item{\texttt{parList rseq} è la strategia da sfruttare; \texttt{rseq} l'abbiamo già menzionata, parList, invece, è una strategia già implementata in Control.Parallel.Strategies, che presa una strategia su valori \texttt{'a'} ne restituisce un'altra sulle liste di elementi di tipo \texttt{'a'}; in questo caso prende la strategia \texttt{rseq} e ne restituisce una che applica la suddetta ad ogni elemento di un lista}
 \end{itemize}
 Osserviamo alcuni elementi fondamentali: prima di tutto non abbiamo creato nessuna funzione ex novo, abbiamo solo assemblato algoritmi preesistenti e vi abbiamo applicato un meccanismo di calcolo; in secondo luogo abbiamo messo in rilievo che è possibile creare strategie di livello superiore senza particolari assunzioni su tipi e strutture. 
 \section{Limiti di Haskell}
 Come è stato affermato in questo capitolo, non esiste il linguaggio perfetto, e anche Haskell non è immune a questa regola. Pur essendo comodo e di facile utilizzo manca di una gestione diretta della memoria, almeno a livello virtuale, come invece consente l'utilizzo di C, grazie ai suoi puntatori. Anche per questo motivo è bene dosare bene i linguaggi da utilizzare: non è difficile immaginare che programmi relativamente semplici, che si poggiano su algoritmi minimali, trovino una migliore applicazione in un linguaggio imperativo come C piuttosto che in Haskell.\\
 Analogamente un programma in Parallel Haskell eseguito su un problema di piccole dimensioni potrebbe creare colli di bottiglia tra overhead e comunicazione tra processori di gran lunga superiori all'effettiva esecuzione del problema rispetto alla sua controparte sequenziale (si ricordi il concetto di granularità).\\
+Inoltre se l'efficienza degli algoritmi è l'obiettivo principale del programmatore, Haskell potrebbe non rivelarsi la scelta migliore quanto a gestione delle risorse della macchina (si pensi alle strategie, in cui la parallelizzazione avviene a livelli di astrazione troppo elevati per pensare di ottenere una efficienza ottimale in tutti i casi in cui viene utilizzata).\\
 Tuttavia, tolti i problemi legati ad una cattiva progettazione, dare priorità all'ottimalità dell'esecuzione non sempre è la scelta migliore. Da questo punto di vista il linguaggio macchina sarebbe la scelta migliore per programmare, eppure è paradossale pensare che si programmi anche solo una semplice sommatoria in un linguaggio così a basso livello.\\
-Come per molte cose, quindi, un buon compromesso è sempre la scelta migliore. Haskell non è stato scelto per essere il più ottimale dei linguaggi, ma perché consente al programmatore una gamma vastissima di scelte progettuali sposate a una buona implementazione della parallelizzazione esplicita.
-
+Come per molte cose, quindi, un buon compromesso è sempre la scelta migliore. Haskell non è stato scelto per essere il più ottimale dei linguaggi, ma perché consente al programmatore una gamma vastissima di scelte progettuali sposate a una buona implementazione della parallelizzazione esplicita.\\
+Se la priorità del programmatore è una buona progettazione del software, un linguaggio funzionale come questo è quasi sempre la scelta migliore.

@@ -8,84 +8,96 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {1}Algoritmi sequenziali}{4}{chapter.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {2}Macchina di Turing Deterministica}{5}{chapter.2}
+\contentsline {section}{\numberline {1.1}Macchina di Turing Deterministica}{4}{section.1.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.1}Complessit\IeC {\`a} sequenziale}{6}{section.2.1}
+\contentsline {subsection}{\numberline {1.1.1}Complessit\IeC {\`a} sequenziale}{5}{subsection.1.1.1}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{Tempo}{6}{section*.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Memoria}{7}{section*.4}
+\contentsline {subsubsection}{Memoria}{6}{section*.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.1.1}Lato pratico}{7}{subsection.2.1.1}
+\contentsline {subsection}{\numberline {1.1.2}Lato pratico}{6}{subsection.1.1.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {3}Esempi}{8}{chapter.3}
+\contentsline {chapter}{\numberline {2}Esempi}{8}{chapter.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.1}Ordinamento}{8}{section.3.1}
+\contentsline {section}{\numberline {2.1}Ordinamento}{8}{section.2.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.2}Algebra Lineare}{9}{section.3.2}
+\contentsline {subsubsection}{Pseudocodice}{8}{section*.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.3}Grafi}{9}{section.3.3}
+\contentsline {section}{\numberline {2.2}Algebra Lineare}{9}{section.2.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {part}{II\hspace {1em}Dal Sequenziale al Parallelo}{10}{part.2}
+\contentsline {subsubsection}{Pseudocodice}{10}{section*.6}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {4}Modelli Paralleli}{11}{chapter.4}
+\contentsline {section}{\numberline {2.3}Grafi}{10}{section.2.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.1}Perch\IeC {\`e} parallelizzare problemi sequenziali}{11}{section.4.1}
+\contentsline {part}{II\hspace {1em}Calcolo Parallelo}{11}{part.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.2}Problemi nella parallelizzazione}{11}{section.4.2}
+\contentsline {chapter}{\numberline {3}Gli Algoritmi Paralleli}{12}{chapter.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {5}Efficienza negli Algoritmi Paralleli}{12}{chapter.5}
+\contentsline {section}{\numberline {3.1}Modelli Paralleli}{12}{section.3.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {6}Esempi}{13}{chapter.6}
+\contentsline {subsection}{\numberline {3.1.1}La macchina PRAM}{12}{subsection.3.1.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.1}Somme Prefisse}{13}{section.6.1}
+\contentsline {subsubsection}{Parallelizzare un problema}{13}{section*.7}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.2}Ordinamento}{13}{section.6.2}
+\contentsline {section}{\numberline {3.2}Esecuzione negli Algoritmi Paralleli}{14}{section.3.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {part}{III\hspace {1em}Programmazione Parallela}{14}{part.3}
+\contentsline {subsection}{\numberline {3.2.1}La legge di Amdahl}{14}{subsection.3.2.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {7}Il Parallelismo oggi}{15}{chapter.7}
+\contentsline {subsection}{\numberline {3.2.2}Tempo di calcolo}{14}{subsection.3.2.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {8}Haskell}{17}{chapter.8}
+\contentsline {part}{III\hspace {1em}Programmazione Parallela}{16}{part.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {8.1}Introduzione al linguaggio Haskell}{17}{section.8.1}
+\contentsline {chapter}{\numberline {4}Il Parallelismo oggi}{17}{chapter.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {8.1.1}Installazione}{18}{subsection.8.1.1}
+\contentsline {chapter}{\numberline {5}Haskell}{19}{chapter.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {8.2}Perch\IeC {\`e} Haskell?}{18}{section.8.2}
+\contentsline {section}{\numberline {5.1}Introduzione al linguaggio Haskell}{19}{section.5.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {8.2.1}Linguaggio funzionale: un linguaggio matematicamente puro}{19}{subsection.8.2.1}
+\contentsline {subsection}{\numberline {5.1.1}Installazione}{20}{subsection.5.1.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Funzioni di ordine superiore}{20}{section*.5}
+\contentsline {section}{\numberline {5.2}Perch\IeC {\`e} Haskell?}{20}{section.5.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Monade}{21}{section*.6}
+\contentsline {subsection}{\numberline {5.2.1}Linguaggio funzionale: un linguaggio matematicamente puro}{21}{subsection.5.2.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {8.2.2}Astrazione}{21}{subsection.8.2.2}
+\contentsline {subsubsection}{Funzioni di ordine superiore}{22}{section*.8}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {8.2.3}Parallelismo in Haskell}{22}{subsection.8.2.3}
+\contentsline {subsubsection}{Monade}{23}{section*.9}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {9}Parallel Haskell}{23}{chapter.9}
+\contentsline {subsection}{\numberline {5.2.2}Astrazione}{23}{subsection.5.2.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {9.1}Parallelismo puro: Control.Parallel}{24}{section.9.1}
+\contentsline {subsection}{\numberline {5.2.3}Parallelismo in Haskell}{24}{subsection.5.2.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{La funzione par}{24}{section*.7}
+\contentsline {chapter}{\numberline {6}Parallel Haskell}{25}{chapter.6}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{La funzione pseq}{24}{section*.8}
+\contentsline {section}{\numberline {6.1}Parallelismo puro: Control.Parallel}{26}{section.6.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {9.1.1}Esempio: la serie di Fibonacci}{25}{subsection.9.1.1}
+\contentsline {subsubsection}{La funzione par}{26}{section*.10}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {9.2}Le strategie di calcolo}{26}{section.9.2}
+\contentsline {subsubsection}{La funzione pseq}{26}{section*.11}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {9.2.1}La monade Eval}{26}{subsection.9.2.1}
+\contentsline {subsection}{\numberline {6.1.1}Esempio: la serie di Fibonacci}{27}{subsection.6.1.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {9.2.2}Usare le strategie}{26}{subsection.9.2.2}
+\contentsline {section}{\numberline {6.2}Le strategie di calcolo}{28}{section.6.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {9.2.3}Esempio: la funzione map in parallelo}{27}{subsection.9.2.3}
+\contentsline {subsection}{\numberline {6.2.1}La monade Eval}{28}{subsection.6.2.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {9.3}Limiti di Haskell}{28}{section.9.3}
+\contentsline {subsection}{\numberline {6.2.2}Usare le strategie}{28}{subsection.6.2.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {part}{IV\hspace {1em}Implementazione in Haskell}{29}{part.4}
+\contentsline {subsection}{\numberline {6.2.3}Esempio: la funzione map in parallelo}{29}{subsection.6.2.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {10}Problemi noti}{30}{chapter.10}
+\contentsline {section}{\numberline {6.3}Limiti di Haskell}{30}{section.6.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {11}Altri esempi implementati}{31}{chapter.11}
+\contentsline {part}{IV\hspace {1em}Implementazione in Haskell}{31}{part.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {7}Problemi implementati}{32}{chapter.7}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7.1}Ordinamento}{32}{section.7.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {7.1.1}QuickSort}{32}{subsection.7.1.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {7.1.2}Mergesort}{33}{subsection.7.1.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7.2}Algebra Lineare}{34}{section.7.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7.3}Grafi}{38}{section.7.3}
