@@ -1,44 +1,106 @@
 \chapter{Algoritmi sequenziali}
-Prima di avviarci nella teoria del calcolo parallelo è doverosa un'introduzione nel concetto del calcolo algoritmico sequenziale.\\
-Molti dei concetti riguardanti la parallelizzazione del codice è un'estensione della sua controparte sequenziale e figlia delle sue ovvie limitazioni nell'ambito dell'esecuzione.\cite{Placeholder}\\
-Solitamente quando pensiamo ad un algoritmo generico il nostro primo pensiero è quello di un programma atto ad essere eseguito su una macchina di Von Neuman, il più semplice e minimale modello di calcolatore, dotato di una singola CPU e che esegue una serie (finita) di istruzioni eseguite una dopo l'altra. Sequenzialità, dunque, significa prendere un problema e "spacchettarlo" in una sequenza di operazioni da eseguire da un singolo processore.\\
-Poiché la nostra analisi è orientata principalmente allo studio della complessità algoritmica, ci concentreremo su un comodo modello di calcolo, specializzato in questo campo: la macchina di Turing.
+Prima di avviarci nella teoria del calcolo parallelo è doverosa un'introduzione al calcolo sequenziale e, nello specifico, al concetto di algoritmo.\\
+La definizione informale di un algoritmo è un concetto generalmente noto: un algoritmo è una sequenza finita di operazioni elementari (univoche e non ambigue) che, date in esecuzione a un agente, manipola diversi valori in input per per ottenerne degli altri in output. In altre parole un algoritmo definisce implicitamente una funzione da un dominio di definizione (input) a un codominio specifico (output) e tale che per ogni input appartenente al dominio esista sempre un output corrispondente. Detto ciò, se definiamo un algoritmo A, chiameremo $\mathrm{f}_{A}(x)$ la funzione che associa ad ogni \textit{x} del dominio la corrispondente uscita $\mathrm{f}_{A}(x)$. In questa definizione è racchiuso implicitamente il problema risolto dall'algoritmo.\\
+Formalmente, dato un problema $\mathrm{f}: I \rightarrow S$, in cui \textit{I} rappresenta l'insieme delle varie istanze e \textit{S} l'insieme delle soluzioni, possiamo affermare che un algoritmo \textit{A} risolve tale problema se $\mathrm{f}_{A}(x) = \mathrm{f}(x)$ per ogni istanza \textit{x}.\\
+È bene precisare che per ogni problema f possono esistere numerosi algoritmi che lo risolvono in maniera differente, e poiché l'utilizzo di un algoritmo comporta sempre l'utilizzo di un certo quantitativo di risorse (tempo di esecuzione, memoria, ecc.), il saper scegliere o costruire un algoritmo che le sappia gestire in maniera adeguata non è un particolare di poco conto. Un cattivo utilizzo delle risorse, nel peggiore dei casi, può rappresentare un vero e proprio ostacolo a livello di esecuzione, e per questo motivo è importante trovare un modo per valutare la bontà di un algoritmo. Un metodo largamente utilizzato per ottenere questa valutazione è quello di adottare un modello di calcolo preciso e di tradurre l'algoritmo in modo da poter essere interpretato dallo stesso.\\
+Poiché la nostra analisi è orientata principalmente allo studio della complessità sequenziale, ci concentreremo su un comodo modello di calcolo, specializzato in questo campo: la macchina di Turing.
 \section{Macchina di Turing Deterministica}
 La macchina di Turing (MdT) è un modello ideale di calcolatore dalle meccaniche intuitive e semplici, solitamente usato più per l'analisi computazionale che per l'implementazione di calcolatori reali. Vista la sua semplicità, rappresenta uno dei modelli più utilizzati per identificare e studiare il calcolo sequenziale.\\
-Una MdT è composta essenzialmente da:
+Informalmente una MdT è composta da un insieme di stati interni, in cui si può trovare la macchina (si definisce anche uno "stato iniziale", in cui si trova all'inizio dell'esecuzione, e un insieme di stati finali), un nastro di lunghezza infinita suddiviso in celle e una testina posizionata su una di esse, capace di leggere, scrivere o cancellare caratteri sul nastro. La macchina analizza il nastro una cella alla volta e in base al carattere letto e allo stato interno corrente esegue una "mossa", così composta:
 \begin{itemize}
-\item{un'unità di controllo a stati finiti (deterministica, da cui il nome del titolo);}
-\item{un nastro diviso in celle di dimensione arbitraria contenente i dati di input/output;}
-\item{una testina capace di leggere, scrivere o cancellare dati sul suddetto nastro (inizialmente posizionata sulla cella più a sinistra del nastro).}
+\item{la macchina cambia il proprio stato interno;}
+\item{la macchina esegue un'operazione di scrittura o muove la testina di una cella a destra o sinistra.}
 \end{itemize}
-Analogamente l'esecuzione di una MdT è suddivisa nelle seguenti fasi:
+Se la sequenza di mosse eseguite è finita diciamo che la macchina si arresta sull'input considerato e diciamo che tale input è accettato se lo stato raggiunto nell'ultima configurazione è finale.\\
+Formalmente, invece, possiamo vedere la MdT come una sestupla:
+\begin{center}
+{M = < Q, $\sum$, $\mathrm{q}_{0}$, B, $\delta$, F >\\}
+\end{center}
+In particolare:
 \begin{itemize}
-\item{inizialmente, trattandosi di un'automa a stati finiti, l'unità di controllo si trova in uno stato iniziale;}
-\item{viene scritta su nastro la "stringa" di input;}
-\item{a seconda dello stato corrente dell'unità di controllo e del carattere letto mediante la testina, la macchina si posiziona sullo stato successivo; da ciò dipende il comportamento della testina sulle operazioni su nastro (lettura, scrittura o nessuna operazione), comprese azioni di scorrimento sullo stesso;}
-\item{l'esecuzione termina se viene letta un'operazione non riconosciuta o se l'unità di controllo ha raggiunto uno stato finale.}
+\item{Q è l'insieme degli stati interni;}
+\item{$\sum$ è l'alfabeto con cui vengono espressi i dati sul nastro;}
+\item{$\mathrm{q}_{0} \in Q$ è lo stato iniziale;}
+\item{$B \in \sum$ è un simbolo particolare, detto simbolo vuoto o blank;}
+\item{$\delta$ è la funzione di transizione definita come $\delta$: $Q \times \sum \rightarrow  Q \times \sum \times$ \{-1,1\};}
+\item{$F \subseteq Q$ è  l'insieme di stati finali.}
 \end{itemize}
-La MdT ha avuto un ruolo fondamentale nell'informatica teorica: poiché è matematicamente dimostrato che per qualsiasi modello di calcolo esiste una macchina di Turing associata (tesi di Church-Turing), questo ha reso possibile definire uno standard nell'analisi computazionale degli algoritmi.
-\subsection{Complessità sequenziale}
-Quando analizziamo un algoritmo dobbiamo tenere in considerazione due caratteristiche: il fatto che risolva correttamente il problema che gli viene chiesto di risolvere (correttezza) e quante risorse impiega per essere eseguito (complessità).\\
-La complessità di un algoritmo si basa essenzialmente su due misure esprimibili come $\mathrm{T}_{A}(x)$ e $\mathrm{M}_{A}(x)$, rispettivamente il tempo di calcolo e lo spazio utilizzati dall'algoritmo A su input \textit{x}. In ambito informatico l'efficienza di un algoritmo è basato essenzialmente sull'utilizzo che un algoritmo fa delle risorse della macchina: il tempo è correlato alla CPU e lo spazio dalla memoria.\\
-Algoritmi aventi la stessa finalità possono non avere il medesimo utilizzo di tempo e memoria. Per questo motivo di parla di efficienza, per distinguere al meglio la qualità di un algoritmo rispetto ad un altro.\\
-Misurare le caratteristiche di un algoritmo non è un concetto immediato come può sembrare. L'esecuzione di un programma su un calcolatore dipende sempre da numerosi fattori: la macchina usata, il linguaggio, il compilatore, ecc. Dunque è bene definire una stima \textbf{assoluta} di quella che è la complessità di un algoritmo.\\
-Qui entra in gioco la macchina di Turing: dal momento che ogni algoritmo può essere tradotto in modo da poter essere eseguito su una MdT possiamo sfruttarla per ottenere stime temporali sotto forma di funzioni.
-\subsubsection{Tempo}
-In termini di tempo diciamo che un algoritmo A che opera su un generico input \textit{x} restituisce un risultato dopo un tempo $\mathrm{T}_{A}(x) = f(n)$, con \textit{n} pari alla lunghezza dell'input \textit{x} e \textit{f(n)} pari al numero totale di operazioni da eseguire (funzione dipendente dalle dimensioni dell'input).\\
-In genere quando si tratta di efficienza di un algoritmo il tempo di esecuzione assume un ruolo primario rispetto alla memoria.
-\subsubsection{Memoria}
-In termini di spazio di memoria diciamo che un algoritmo A che opera su un generico input \textit{x} necessita di un numero di "celle" di memoria pari a $\mathrm{M}_{A}(x) = f(n)$, con \textit{n} pari alla lunghezza dell'input \textit{x}.
-\subsection{Lato pratico}
-Abbiamo appena derivato un metodo corretto per calcolare la complessità di un algoritmo. Sfortunatamente, in ambito reale, derivare correttamente la funzione che descrive l'utilizzo delle risorse di un algoritmo può rivelarsi un compito arduo. Oltretutto il fine ultimo del calcolo della complessità algoritmica è il confronto tra i vari algoritmi per capirne l'efficienza, dunque non è richiesta una stima esatta delle risorse utilizzate.\\
-Per questo motivo si ricorre ad un metodo di misurazione più blando, ma comunque efficace, sfruttando la teoria del calcolo asintotico. Più precisamente ci affidiamo alla notazione $\mathcal{O}(n \log {}n)$ ("O grande") e a successioni di immediata comprensione per dare un'idea dell'efficienza dell'algoritmo rispetto a casi particolari di esecuzione. In particolare per ogni algoritmo riconosciamo le relative prestazioni nei seguenti casi:
+Per ogni $q \in Q$ e ogni $a \in \sum$, la funzione $\delta(q, a)$ definisce una tripla (p, b, l), dove p rappresenta il nuovo stato, b il carattere scritto nella cella corrente e l il movimento che esegue la testina, rispettivamente a destra se l = -1, a sinistra se l = +1.\\
+Una configurazione particolare della macchina M è composta dallo stato della macchina, dal contenuto del nastro e dalla posizione della testina. Il tutto è esprimibile come una stringa: $\alpha$q$\beta$, con $\alpha \in \sum^*$, $q \in Q$, $\beta \in \sum^+$. In questo caso $\alpha$ rappresenta la stringa a sinistra della testina, q lo stato corrente di M, mentre $\beta$ una stringa collocata a destra della testina, seguita da infiniti caratteri blank. Notiamo che allo stato iniziale la configurazione diventa la stringa $\mathrm{q}_{0} \beta$. In questo contesto definiamo un'altra operazione binaria sull'insieme delle configurazioni C, l'operazione $\vdash_{M}$, tale che per ogni $C1, C2 \in C$, vale che $C1 \vdash_{M} C2$ se e solo se C1 raggiunge C2 in una mossa. Più precisamente, data la configurazione $\alpha$q$\beta \in C$ allo scatto di una transizione $\delta(q, b) = (p, b, l)$ (supponiamo che $\beta = b\beta', \beta' \in \sum^*, b \in \sum$ ) distinguiamo due casi:\\
 \begin{itemize}
-\item{caso ottimo: caso di esecuzione che richiede all'algoritmo meno operazioni per ottenere una soluzione;}
-\item{caso peggiore: caso di esecuzione che richiede all'algoritmo il maggior numero possibile di operazioni per ottenere una soluzione;}
-\item{caso medio: caso definito statisticamente; rappresenta un valore medio di operazioni che esegue l'algoritmo rispetto ad un numero sufficientemente grande di esecuzioni.}
+\item{se l = +1 allora:}
+\[\alpha qb \beta \vdash_{M} \left\{
+  \begin{array}{lr}
+    \alpha cp \beta' & : \beta' \neq \epsilon\\
+    \alpha cpB & : \beta' = \epsilon
+  \end{array}
+\right.
+\]
+\item{se l = -1 e $\alpha \neq \epsilon$ allora, posto $\alpha = \alpha' a $, $\alpha' \in \sum^*, a \in \sum$:}
+\[\alpha qb \beta \vdash_{M} \left\{
+  \begin{array}{lr}
+    \alpha' pa & : c = B, \beta' = \epsilon\\
+    \alpha pac\beta' & : altrimenti
+  \end{array}
+\right.
+\]
 \end{itemize}
-Tra tutti i casi, ovviamente quello medio è l'elemento più utile ai fini del calcolo della complessità computazionale, poiché solitamente ci aspettiamo di eseguire un algoritmo su problemi generici.
+Osserviamo che se $\delta(q,b)$ non è definito , oppure $l = -1$ e $\alpha = \epsilon$, allora non esiste una configurazione $C2 \in C$ tale che $\alpha q \beta \vdash_{M} C$. In questo caso diciamo che q e una configurazione di arresto per M. Senza perdita di generalità possiamo supporre che ogni configurazione accettante sia una configurazione di arresto.\\
+Un insieme finito ${C}_{i}$ con \textit{i = {1,..,m}}, di configurazioni di M è una computazione di M su input $w \in \sum$, se ${C}_{0} = {C}_{0}(w)$, ${C}_{i-1} \vdash_{M} {C}_{i} \forall i = 1,2,..,m$ e ${C}_{m}$ è di arresto. Se ${C}_{m}$ è anche accettante, diciamo che M accetta l'input w. Viceversa, se M non termina, possiamo dire che l'input w genera una computazione definita da infinite configurazioni.\\
+Inoltre, se M si arresta su ogni input $x \in \sum^*$, diciamo che M risolve il problema di decisione $<\sum^*, q>$ dove, $\forall x \in \sum^*$:
+\[q(x) =\left\{
+  \begin{array}{lr}
+    1 & \ se \ M  \ accetta \ x \\
+    0 & altrimenti
+  \end{array}
+\right.
+\]\\
+La MdT ha avuto un ruolo fondamentale nell'informatica teorica: poiché è matematicamente dimostrato che per qualsiasi modello di calcolo ragionevole esiste una macchina di Turing associata (tesi di Church-Turing), questo ha reso possibile definire uno standard nell'analisi computazionale degli algoritmi e una loro classificazione dal punto di vista risolutivo.
+\section{Complessità sequenziale}
+Quando analizziamo un algoritmo dobbiamo tenere in considerazione due caratteristiche: il fatto che risolva correttamente il problema che gli viene chiesto di risolvere (correttezza) e quante risorse impiega per essere eseguito (complessità). Le risorse utilizzate da un algoritmo sono essenzialmente il tempo di calcolo e la memoria utilizzata, che possiamo esprimere come funzioni a valori interi positivi. Nello specifico un algoritmo A su input \textit{x} viene rappresentata da una funzione ${T}_{A}(x)$ per il tempo e da ${M}_{A}(x)$ per lo spazio.\\
+Cercare di dare una definizione formale di queste misure può risultare problematico, soprattutto perché la variabile \textit{x} può assumere tutti i valori in input. Per questo motivo si cerca di raggruppare le varie istanze del problema a seconda della loro dimensione, definendo una funzione che associa a ogni ingresso un numero naturale che rappresenta la quantità di informazione contenuta. Per fare un esempio, la dimensione di un numero naturale \textit{n} è $\lfloor \log(n) \rfloor +1$, ovvero la sua lunghezza in codice binario, mentre un array di $n$ elementi ha dimensione $n$.\\
+Tuttavia classificare le varie istanze mediante la loro dimensione non è sufficiente: è possibile che a input diversi \textit{x $\neq$ y}, ma aventi la stessa dimensione ($|x| = |y|$), si possa ottenere 
+${T}_{A}(x) \neq {T}_{A}(x')$. Questo fatto è ancora più evidente nel caso pratico: l'esecuzione di un programma su un calcolatore dipende sempre da numerosi fattori come la macchina usata, il linguaggio, il compilatore, ecc.\\
+Per ovviare a questo problema si definiscono le funzioni in modo da ottenere una stima \textbf{assoluta} di quella che è la complessità di un algoritmo. Ad esempio tra le varie stime ottenibili per il tempo ${T}_{A}(x)$ vengono solitamente considerati i seguenti casi:
+\begin{itemize}
+\item{caso peggiore: ${T}_{A}^w: \mathbb{N} \rightarrow \mathbb{N}$, ${T}_{A}^w(n) = \max({T}_{A}(x)\ t.c.\ |x| = n)$};
+\item{caso migliore: ${T}_{A}^b: \mathbb{N} \rightarrow \mathbb{N}$, ${T}_{A}^b(n) = \min({T}_{A}(x)\ t.c.\ |x| = n)$};
+\item{caso medio: ${T}_{A}^a: \mathbb{N} \rightarrow \mathbb{R}$ con $I_n = $ numero di istanze $x \in I$ di dimensione n, ${T}_{A}^a(n) = \frac{\sum \nolimits_{|x| = n} {T}_{A}(x)}{I_n}$};
+\end{itemize}
+Prediligere una stima piuttosto che un'altra è una decisione puramente legata all'utilizzo dell'algoritmo. Dal punto di vista analitico, però, si tende a prediligere l'andamento nel caso peggiore, ovvero nel caso in cui l'input richiede il maggior numero di iterazioni per terminare, o nel caso medio, che analizza la computazione da un punto di vista statistico.\\
+Presentiamo un esempio classico per capire come ottenere il tempo di calcolo: l'ordinamento di un array. Vogliamo ordinare un vettore $[x_1,..,x_n]$ di $n$ numeri in ordine crescente nel seguente modo:\\
+\\
+\textit{Per i = 1,..,n esegui iterativamente le seguenti operazioni\\
+    - seleziona il minimo tra i valori $[x_i,..,x_n]$\\
+    - scambialo con $x_i$}\\
+\\
+In questo caso l'algoritmo esegue $n + (n-1) + .. + 1 = \frac{n(n-1)}{2}$ passi per ottenere un vettore ordinato.\\
+Nel modello della MdT, data una macchina M = <Q,$\sum$,$\mathrm{q}_{0}$,B,$\delta$,F> e un input definito da una stringa $w \in \sum^*$, definiamo con $T_M(w)$ come il massimo numero di mosse da effettuare per terminare l'esecuzione.\\ Ovviamente $T_M(w) = +\infty \leftrightarrow$ M non termina su $ w $.\\
+Quindi possiamo definire una funzione $T_M(n)$ di stima del tempo di calcolo nel seguente modo:
+\begin{center}
+{$T_M(n) = \max(T_M(w) \ t.c.\ w \in \sum^* , |w| = n)$}
+\end{center}
+Inoltre, data $ f $ una funzione a valori reali positivi, diciamo che M esegue una computazione in tempo $f(n)$ se $T_M(n) \leq f(n) \ \forall n \in \mathbb{N}$.
+\subsection{Analisi Asintotica della Complessità}
+Abbiamo illustrato come avviene lo studio dei vari casi di computazione di un algoritmo. Tuttavia, per confrontare tra di loro algoritmi che risolvono lo stesso problema, così da scegliere il migliore disponibile, si ricorre a criteri di valutazione più specifici. Quello più utilizzato è il calcolo computazionale asintotico (solitamente riferito al caso medio o peggiore di un algoritmo).\\
+Sostanzialmente si tratta di valutare la complessità di un algoritmo su input avente un entrata di dimensioni molto grandi, ovvero ponendo $n \rightarrow +\infty$. Ovviamente questo meccanismo vacilla se utilizziamo l'algoritmo per problemi relativamente piccoli, ma rilevare anche una piccola differenza nell’ordine di grandezza della complessità di due procedure può determinare enormi differenze in termini di prestazioni.\\
+Proviamo, per esempio, a confrontare diversi algoritmi che risolvono lo stesso problema aventi complessità asintoticamente pari a: $n, \ n\log(n), \ n^2, \ 2^n$. Supponendo che ogni operazione venga eseguita in $1\mu s$ l'esecuzione richiederà un tempo di esecuzione pari a\footnote{Nella tabella s= secondi, h = ore, c = secoli.}
+\\
+\\
+\label{my-label}
+\begin{tabular}{|l|l|l|l|l|l|}
+\hline
+			& $n=10$     & $n=100$       	& $n=1000$      & $n=10000$  & $n=100000$  \\   \hline
+$n$   		& $10\mu s$  & $0.1 ms$      	&  $1ms$      	& $10s$  	 & $0.1s$      \\	\hline
+$n\log(n)$  & $23\mu s$  & $460.5 \mu s$    &  $6.9 ms$     & $92.1 ms$  & $1.15 s$    \\	\hline
+$n^2$ 		& $0.1ms$    & $10ms$        	&  $1s$         & $100s$     & $2.7h$      \\	\hline
+$2^n$		& $1ms$      & $ 10^{14} c$     &  $\infty$     & $\infty$   & $\infty$    \\   \hline
+\end{tabular}
+Notiamo che per problemi avente complessità lineare ($n \ o \ n\log(n)$) la computazione avvenga in tempo relativamente buono per problemi anche di grandi dimensioni. Al contrario algoritmi aventi complessità $n^k \ con \ k \geq 2 $ risultano convenienti solo per problemi contenuti, mentre andando su complessità esponenziali il problema esplode anche sulle piccole dimensioni. 
+\subsection{Efficienza degli Algoritmi}
+Mediante valutazioni precedenti si possono classificare la gran parte degli algoritmi realizzabili, distinguendoli mediante la loro complessità asintotica. Introduciamo così il concetto di \textbf{efficienza}: un algoritmo si dice efficiente quando la sua complessità è di \textbf{ordine polinomiale}, ovvero che vale $\mathcal{O}(n^k)$ con $k \geq 1$; un algoritmo si dice invece inefficiente quando la sua complessità è di \textbf{ordine superpolinomiale} (per esempio, $\mathcal{O}(n!)$ o $\mathcal{O}(k^n)$ con $k \geq 2$).\\
+Va puntualizzato che non sempre è possibile creare un algoritmo efficiente (soprattutto nella MdT che abbiamo descritto). L'insieme dei problemi che è possibile risolvere a complessità polinomiale è detta classe P, nelle MdT deterministiche, e NP, nelle MdT non deterministiche. Non tratteremo nel dettaglio questi concetti, soprattutto perché sono ancora oggetto di dibattito\footnote{Il problema P = NP? legato ai problemi NP-completi è uno dei problemi irrisolti più famosi della matematica odierna.}, ma è bene specificare che esistono strumenti per stabilire se un problema è risolvibile o no in modo efficiente.\\
+Un ultimo concetto da tener presente nella complessità algoritmi è il principio di \textbf{ottimalità}: dato un problema risolto con complessità peri a $f(n)$, diciamo che l'algoritmo che lo risolve è \textbf{ottimo} se qualunque altro algoritmo che lo risolve ha complessità $\mathcal{O}(f(n))$.
 \chapter{Esempi}
 Di seguito verranno presentati alcuni esempi di algoritmi sequenziali, molti dei quali verranno implementati a livello di codice alla fine dell'elaborato.
 \section{Ordinamento}
