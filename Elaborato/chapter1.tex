@@ -29,7 +29,7 @@ Per ogni $q \in Q$ e ogni $a \in \sum$, la funzione $\delta(q, a)$ definisce una
 Una configurazione particolare della macchina M è composta dallo stato della macchina, dal contenuto del nastro e dalla posizione della testina. Il tutto è esprimibile come una stringa: $\alpha$q$\beta$, con $\alpha \in \sum^*$, $q \in Q$, $\beta \in \sum^+$. In questo caso $\alpha$ rappresenta la stringa a sinistra della testina, q lo stato corrente di M, mentre $\beta$ una stringa collocata a destra della testina, seguita da infiniti caratteri blank. Notiamo che allo stato iniziale la configurazione diventa la stringa $\mathrm{q}_{0} \beta$. In questo contesto definiamo un'altra operazione binaria sull'insieme delle configurazioni C, l'operazione $\vdash_{M}$, tale che per ogni $C1, C2 \in C$, vale che $C1 \vdash_{M} C2$ se e solo se C1 raggiunge C2 in una mossa. Più precisamente, data la configurazione $\alpha$q$\beta \in C$ allo scatto di una transizione $\delta(q, b) = (p, b, l)$ (supponiamo che $\beta = b\beta', \beta' \in \sum^*, b \in \sum$ ) distinguiamo due casi:\\
 \begin{itemize}
 \item{se l = +1 allora:}
-\[\alpha qb \beta \vdash_{M} \left\{
+\[\alpha qb \beta' \vdash_{M} \left\{
   \begin{array}{lr}
     \alpha cp \beta' & : \beta' \neq \epsilon\\
     \alpha cpB & : \beta' = \epsilon
@@ -37,7 +37,7 @@ Una configurazione particolare della macchina M è composta dallo stato della ma
 \right.
 \]
 \item{se l = -1 e $\alpha \neq \epsilon$ allora, posto $\alpha = \alpha' a $, $\alpha' \in \sum^*, a \in \sum$:}
-\[\alpha qb \beta \vdash_{M} \left\{
+\[\alpha qb \beta' \vdash_{M} \left\{
   \begin{array}{lr}
     \alpha' pa & : c = B, \beta' = \epsilon\\
     \alpha pac\beta' & : altrimenti
@@ -84,7 +84,7 @@ Inoltre, data $ f $ una funzione a valori reali positivi, diciamo che M esegue u
 \subsection{Analisi Asintotica della Complessità}
 Abbiamo illustrato come avviene lo studio dei vari casi di computazione di un algoritmo. Tuttavia, per confrontare tra di loro algoritmi che risolvono lo stesso problema, così da scegliere il migliore disponibile, si ricorre a criteri di valutazione più specifici. Quello più utilizzato è il calcolo computazionale asintotico (solitamente riferito al caso medio o peggiore di un algoritmo).\\
 Sostanzialmente si tratta di valutare la complessità di un algoritmo su input avente un entrata di dimensioni molto grandi, ovvero ponendo $n \rightarrow +\infty$. Ovviamente questo meccanismo vacilla se utilizziamo l'algoritmo per problemi relativamente piccoli, ma rilevare anche una piccola differenza nell’ordine di grandezza della complessità di due procedure può determinare enormi differenze in termini di prestazioni.\\
-Proviamo, per esempio, a confrontare diversi algoritmi che risolvono lo stesso problema aventi complessità asintoticamente pari a: $n, \ n\log(n), \ n^2, \ 2^n$. Supponendo che ogni operazione venga eseguita in $1\mu s$ l'esecuzione richiederà un tempo di esecuzione pari a\footnote{Nella tabella s= secondi, h = ore, c = secoli.}
+Proviamo, per esempio, a confrontare diversi algoritmi che risolvono lo stesso problema aventi complessità asintoticamente pari a: $n, \ n\log(n), \ n^2, \ 2^n$. Supponendo che ogni operazione venga eseguita in $1\mu s$ l'esecuzione richiederà un tempo di esecuzione pari a\footnote{Nella tabella s= secondi, h = ore, c = secoli.}:
 \\
 \\
 \label{my-label}
@@ -96,16 +96,19 @@ $n\log(n)$  & $23\mu s$  & $460.5 \mu s$    &  $6.9 ms$     & $92.1 ms$  & $1.15
 $n^2$ 		& $0.1ms$    & $10ms$        	&  $1s$         & $100s$     & $2.7h$      \\	\hline
 $2^n$		& $1ms$      & $ 10^{14} c$     &  $\infty$     & $\infty$   & $\infty$    \\   \hline
 \end{tabular}
+\\ 
+\\ 
+\\ 
 Notiamo che per problemi avente complessità lineare ($n \ o \ n\log(n)$) la computazione avvenga in tempo relativamente buono per problemi anche di grandi dimensioni. Al contrario algoritmi aventi complessità $n^k \ con \ k \geq 2 $ risultano convenienti solo per problemi contenuti, mentre andando su complessità esponenziali il problema esplode anche sulle piccole dimensioni. 
 \subsection{Efficienza degli Algoritmi}
 Mediante valutazioni precedenti si possono classificare la gran parte degli algoritmi realizzabili, distinguendoli mediante la loro complessità asintotica. Introduciamo così il concetto di \textbf{efficienza}: un algoritmo si dice efficiente quando la sua complessità è di \textbf{ordine polinomiale}, ovvero che vale $\mathcal{O}(n^k)$ con $k \geq 1$; un algoritmo si dice invece inefficiente quando la sua complessità è di \textbf{ordine superpolinomiale} (per esempio, $\mathcal{O}(n!)$ o $\mathcal{O}(k^n)$ con $k \geq 2$).\\
 Va puntualizzato che non sempre è possibile creare un algoritmo efficiente (soprattutto nella MdT che abbiamo descritto). L'insieme dei problemi che è possibile risolvere a complessità polinomiale è detta classe P, nelle MdT deterministiche, e NP, nelle MdT non deterministiche. Non tratteremo nel dettaglio questi concetti, soprattutto perché sono ancora oggetto di dibattito\footnote{Il problema P = NP? legato ai problemi NP-completi è uno dei problemi irrisolti più famosi della matematica odierna.}, ma è bene specificare che esistono strumenti per stabilire se un problema è risolvibile o no in modo efficiente.\\
-Un ultimo concetto da tener presente nella complessità algoritmi è il principio di \textbf{ottimalità}: dato un problema risolto con complessità peri a $f(n)$, diciamo che l'algoritmo che lo risolve è \textbf{ottimo} se qualunque altro algoritmo che lo risolve ha complessità $\mathcal{O}(f(n))$.
-\chapter{Esempi}
+Un ultimo concetto da tener presente nella complessità algoritmi è il principio di \textbf{ottimalità}: dato un problema risolto con complessità pari a $f(n)$, diciamo che l'algoritmo che lo risolve è \textbf{ottimo} se qualunque altro algoritmo che lo risolve ha complessità $\mathcal{O}(f(n))$.
+\chapter{Esempi di Problemi Risolti}
 Di seguito verranno presentati alcuni esempi di algoritmi sequenziali, molti dei quali verranno implementati a livello di codice alla fine dell'elaborato.
 \section{Ordinamento}
-Quello dell'ordinamento di un insieme di oggetti confrontabili è uno degli problemi tipici del calcolo algoritmico. Ne esistono di diversi tipi, il che lo rende un esempio perfetto per confrontare le varie alternative.\\
-Prendiamo ad esempio due algoritmi piuttosto comuni in questo campo: quicksort\footnote{In linguaggio naturale: preso un elemento \textit{x} in una lista, se ne creano due: quella degli elementi minori di \textit{x} e quella degli elementi maggiori. Si richiama poi l'algoritmo sulle nuove liste, dopodiché si uniscono i risultati aggiungendo \textit{x} in mezzo agli stessi.} e mergesort\footnote{In linguaggio naturale: è il tipico algoritmo divide-et-impera; una lista avente uno o nessun elemento è ordinata, altrimenti si divide la lista in input in due e si esegue mergesort su entrambe; alla fine si estrae dalle due liste (ordinate) il minore tra i valori in testa, fino ad esaurire tutti gli elementi presenti.}. In questo caso, ad esempio i vari casi di esecuzione cambiano:
+L'ordinamento di un insieme di oggetti confrontabili è uno degli problemi tipici del calcolo. Ne esistono di diversi tipi, il che lo rende un esempio perfetto per confrontare le varie alternative.\\
+Prendiamo ad esempio due algoritmi piuttosto comuni in questo campo: quicksort e mergesort. In questo caso, ad esempio i vari casi di esecuzione cambiano:
 \begin{itemize}
 \item{caso migliore:  $\mathcal {O}(n \log {}n)$ per quicksort e  $\mathcal {O}(n \log {}n)$ per mergesort;}
 \item{caso peggiore:  $\mathcal {O}(n^2)$ per quicksort e  $\mathcal {O}(n \log {}n)$ per mergesort;}
@@ -148,24 +151,58 @@ merge(left, right)
             return [h2] : merge(left, t)
 \end{verbatim}
 \section{Algebra Lineare}
-Facciamo degli esempi riguardanti le operazioni tra matrici:
+Facciamo degli esempi riguardanti le operazioni con matrici:
 \begin{itemize}
-\item{prodotto tra matrici}
-\item{calcolo del determinante}
+\item{prodotto tra matrici;}
+\item{calcolo del determinante;}
+\item{inversione di una matrice.}
 \end{itemize}
-Nel primo caso il prodotto di matrici è un operazione direttamente proporzionale alle dimensioni degli operandi. In caso di prodotto di una matrice MxN con una MxP sarà necessario un algoritmo di complessità asintotica  $\mathcal {O}(N*M*P)$.
-\subsubsection{Pseudocodice}
-\begin{verbatim}
-Prodotto(A = matrice MxN, B = matrice NxP)
-	C = matrice MxP di zeri
-    for (i from 1 to M)
-        for (j from 1 to P)
-            for (k from 1 to N)
-                c_ij = c_ij + (a_ik * b_kj)
-            end for
-        end for
-    end for
-    return C
-\end{verbatim}
+In caso di prodotto di una matrice $mxn$ con una $nxp$ sarà necessario un algoritmo di complessità asintotica  $\mathcal {O}(n*m*p)$; nel caso peggiore questo si traduce in una complessità $\mathcal {O}(n^3)$.
 
+Nel caso del calcolo del determinante di una matrice quadrata $A$ di dimensione $n$, solitamente viene sfruttato il metodo di Laplace, mediante il seguente algoritmo ricorsivo:
+\begin{center}
+{$det(A_k) \ = \ \sum\limits_{i=1}^n (-1)^{i+k} a_{i,k} det(A_{i,k})$}
+\end{center}
+in cui $a_{i,k}$ è l'elemento $(i,k)$ della matrice $A$ e $A_{i,k}$ è il minore ottenuto eliminando da $A$ la \textit{i-esima} riga e la \textit{k-esima} colonna.\\
+In questo caso la complessità è evidentemente inefficiente: si tratta di calcolare ricorsivamente per ogni determinante di ordine $n$ altri $n$ determinanti di ordine $n-1$. In altre parole possiede una complessità di $\mathcal {O}(n!)$. Si tratta ovviamente di un algoritmo altamente sconveniente da utilizzare, anche per problemi di piccole dimensioni. In questi casi è consigliabile cambiare strategia: una possibile alternativa è rappresentata dal \textit{metodo di eliminazione di Gauss}. In sostanza si converte una matrice quadrata in una matrice triangolare (cioè formata da zeri al di sotto/sopra della sua diagonale) e calcolarne il determinante (operazione che si riduce a moltiplicare gli elementi sulla diagonale). La procedura consiste in tre passaggi:
+\begin{enumerate}
+\item{\textit{Se la prima riga ha il primo elemento nullo, essa viene scambiata con una riga che ha il primo elemento non nullo. Se tutte le righe hanno il primo elemento nullo, vai al punto 3.\\}}
+\item{\textit{Per ogni riga $A_{i}$ con primo elemento non nullo, eccetto la prima, moltiplica la prima riga per un coefficiente scelto in maniera tale che la somma tra la prima riga e $A_{i}$ abbia il primo elemento nullo (quindi coefficiente = $-\frac{a_{i1}}{a_{11}}$. Sostituisci $A_{i}$ con la somma appena ricavata.\\}}
+\item{\textit{Ripeti il punto 1 sulla sottomatrice ottenuta cancellando la prima riga e la prima colonna.}}
+\\
+\end{enumerate}
+In questo caso cambiare algoritmo offre un guadagno considerevole: da una complessità fattoriale si passa ad una polinomiale, pari a $\mathcal{O}(n^2)$.\\
+L'ultimo esempio dell'algebra lineare che affronteremo è quello della matrice inversa. Il metodo più semplice è quel calcolo dei cofattori, in cui data una matrice A invertibile ($det(A) \neq 0$) allora:
+\begin{center}
+{$A^{-1} = \frac{1}{det(A)}(cof(A))^T$\\}
+\end{center}
+In questo caso $cof(A)$ è la matrice dei cofattori o dei complementi algebrici di A, $a_{11}, ..., a_{nn}$, ottenuti nel seguente modo:
+\begin{center}
+{$a_{ij} = (-1)^{i+j} det(A_{ij})$ \\}
+\end{center}
+Con $i,j\rightarrow[1..n]$, $A_{ij}$ = A priva della $i-esima$ riga e della $j-esima$ colonna.\\
+In questo caso la complessità dipende esclusivamente dall'algoritmo usato per ottenere il determinante: poiché in questo caso è un'operazione eseguita $n^2$ volte, l'efficienza/inefficienza si conserva.
 \section{Grafi}
+Un grafo è una struttura matematica composta da un insieme di elementi detti nodi che si possono collegare tra loro mediante oggetti archi. Formalmente un grafo $G$ è una coppia di elementi $<N, E>$ in cui $N$ è l'insieme dei nodi, ed $E$ l'insieme degli archi; ogni arco è definito come $e \ = \ (n1,n2,c)$ in cui $n1,n2 \in N$ sono i nodi collegati e $c \in \mathbb{N}$ è il "costo" o "peso" del collegamento. Definiamo inoltre "cammino" da un nodo $n_1$ a un nodo $n_m$ una sequenza di archi $(n_1,n_2),(n_2,n_3),..,(n_{m-1}, n_m)$.\\
+Esistono numerose proprietà e operazioni sui grafi, ma ci concentreremo su alcuni classici problemi riguardanti i grafi:
+\begin{itemize}
+\item{grafo connesso;}
+\item{cammino minimo;}
+\item{raggiungibilità.}
+\end{itemize}
+Molti di questi problemi sfrutteranno le leggi dell'algebra lineare, ovvero costruendo una matrice di adiacenza così definita: si crea una matrice quadrata di dimensione pari alla cardinalità dell'insieme dei nodi in cui ogni elemento $m_{ij}$ della matrice rappresenta un possibile collegamento tra i nodi $n_i$ e $n_j$; se l'arco $(n_i,n_j,c)$ o $(n_j,n_i,c)$ appartengono all'insieme degli archi del grafo, allora $m_{ij} = 1$, altrimenti $m_{ij} = 0$. Poiché semplicità studieremo i grafi non orientati (ovvero i grafi tali che ogni arco $i-j$ rappresenta anche un arco $j-i$).\\
+Analizziamo ora i vari problemi nel dettaglio. Nel primo caso diremo che un grafo $G = <N, E>$ è connesso se e solo se per ogni coppia di nodi $n_i, n_j \in N$ esiste un cammino che li unisce. Il metodo più semplice per verificare questa proprietà è quello sfruttare la matrice di adiacenza $M$ relativa $G$. 
+\newpage
+L'algoritmo è il seguente:
+\begin{verbatim}
+    n = numero di nodi
+    M = matrice di adiacenza
+    for k = 1,..,n do
+        for j = 1,..,n do
+            for i = 1,..,n do
+                if Mij = 0 then Mij = Mik && Ckj
+            done
+        done
+    done
+\end{verbatim}
+Si tratta di tre cicli innestati, proporzionali alla dimensione del grafo, dunque la complessità di calcolo equivale a $\mathcal{O}(n^3)$.
