@@ -129,6 +129,7 @@ Quicksort(L = [a1,...,an])
 
 
 Mergesort(L = [a1,..,an])
+    begin
     if(n <= 1) then
         return L
     else
@@ -136,8 +137,10 @@ Mergesort(L = [a1,..,an])
         left = Mergesort(left)
         right = Mergesort(right)
         return merge(left, right)
+    end
         
 merge(left, right)
+    begin
     if(left = []) return right
     else if(right = []) return left
     else
@@ -149,6 +152,7 @@ merge(left, right)
         else
             t = tail(right)
             return [h2] : merge(left, t)
+    end
 \end{verbatim}
 \section{Algebra Lineare}
 Facciamo degli esempi riguardanti le operazioni con matrici:
@@ -183,14 +187,13 @@ In questo caso $cof(A)$ è la matrice dei cofattori o dei complementi algebrici 
 Con $i,j\rightarrow[1..n]$, $A_{ij}$ = A priva della $i-esima$ riga e della $j-esima$ colonna.\\
 In questo caso la complessità dipende esclusivamente dall'algoritmo usato per ottenere il determinante: poiché in questo caso è un'operazione eseguita $n^2$ volte, l'efficienza/inefficienza si conserva.
 \section{Grafi}
-Un grafo è una struttura matematica composta da un insieme di elementi detti nodi che si possono collegare tra loro mediante oggetti archi. Formalmente un grafo $G$ è una coppia di elementi $<N, E>$ in cui $N$ è l'insieme dei nodi, ed $E$ l'insieme degli archi; ogni arco è definito come $e \ = \ (n1,n2,c)$ in cui $n1,n2 \in N$ sono i nodi collegati e $c \in \mathbb{N}$ è il "costo" o "peso" del collegamento. Definiamo inoltre "cammino" da un nodo $n_1$ a un nodo $n_m$ una sequenza di archi $(n_1,n_2),(n_2,n_3),..,(n_{m-1}, n_m)$.\\
+Un grafo è una struttura matematica composta da un insieme di elementi detti nodi che si possono collegare tra loro mediante oggetti archi. Formalmente un grafo $G$ è una coppia di elementi $<N, E>$ in cui $N$ è l'insieme dei nodi, ed $E$ l'insieme degli archi; ogni arco è definito come $e \ = \ (n1,n2)$ in cui $n1,n2 \in N$ sono i nodi collegati. Definiamo inoltre "cammino" da un nodo $n_1$ a un nodo $n_m$ una sequenza di archi $(n_1,n_2),(n_2,n_3),..,(n_{m-1}, n_m)$.\\
 Esistono numerose proprietà e operazioni sui grafi, ma ci concentreremo su alcuni classici problemi riguardanti i grafi:
 \begin{itemize}
 \item{grafo connesso;}
-\item{cammino minimo;}
-\item{raggiungibilità.}
+\item{cammino minimo.}
 \end{itemize}
-Molti di questi problemi sfrutteranno le leggi dell'algebra lineare, ovvero costruendo una matrice di adiacenza così definita: si crea una matrice quadrata di dimensione pari alla cardinalità dell'insieme dei nodi in cui ogni elemento $m_{ij}$ della matrice rappresenta un possibile collegamento tra i nodi $n_i$ e $n_j$; se l'arco $(n_i,n_j,c)$ o $(n_j,n_i,c)$ appartengono all'insieme degli archi del grafo, allora $m_{ij} = 1$, altrimenti $m_{ij} = 0$. Poiché semplicità studieremo i grafi non orientati (ovvero i grafi tali che ogni arco $i-j$ rappresenta anche un arco $j-i$).\\
+Molti di questi problemi sfrutteranno le leggi dell'algebra lineare, ovvero costruendo una matrice di adiacenza così definita: si crea una matrice quadrata di dimensione pari alla cardinalità dell'insieme dei nodi in cui ogni elemento $m_{ij}$ della matrice rappresenta un possibile collegamento tra i nodi $n_i$ e $n_j$; se l'arco $(n_i,n_j)$ o $(n_j,n_i)$ appartengono all'insieme degli archi del grafo, allora $m_{ij} = 1$, altrimenti $m_{ij} = 0$. Poiché semplicità studieremo i grafi non orientati (ovvero i grafi tali che ogni arco $i-j$ rappresenta anche un arco $j-i$).\\
 Analizziamo ora i vari problemi nel dettaglio. Nel primo caso diremo che un grafo $G = <N, E>$ è connesso se e solo se per ogni coppia di nodi $n_i, n_j \in N$ esiste un cammino che li unisce. Il metodo più semplice per verificare questa proprietà è quello sfruttare la matrice di adiacenza $M$ relativa $G$. 
 \newpage
 L'algoritmo è il seguente:
@@ -205,4 +208,36 @@ L'algoritmo è il seguente:
         done
     done
 \end{verbatim}
-Si tratta di tre cicli innestati, proporzionali alla dimensione del grafo, dunque la complessità di calcolo equivale a $\mathcal{O}(n^3)$.
+Se al termine dell'algoritmo la matrice contiene degli zeri il grafo non è connesso.\\
+Si tratta di tre cicli innestati, proporzionali alla dimensione del grafo, dunque la complessità di calcolo equivale a $\mathcal{O}(n^3)$.\\
+Il secondo caso che affronteremo è la ricerca di un cammino di costo minimo tra due nodi raggiungibili. Esistono molti algoritmi che risolvono questo problema, ma ci concentreremo su quello più utilizzato e conosciuto: l'algoritmo di Dijkstra. Si tratta di un algoritmo appartenete alla categoria degli \textit{algoritmi greedy}, ovvero quelli che, partendo da una soluzione parziale, la estendono fino a che non è più possibile. A ogni iterazione l'algoritmo sceglie l'estensione giudicata più conveniente e ripete l'esecuzione.\\
+L'istanza del problema è data da un grafo $G = <N,E>$, una sorgente $s \in N$ e una funzione $w: E \rightarrow \mathbb{Q}$ che definisce un costo (o "peso")\footnote{Si considererà $w(e) \geq 0 \ \forall e \in E$} di ogni arco presente nel grafo. Definiamo inoltre $L(n)$ la lista dei nodi raggiungibili da $n$ con un arco $e \in E$. Dati questi elementi l'algoritmo calcolerà i cammini di costo minimo che collegano $s$ con ogni nodo $n \in N$.\\
+Prima di eseguire l'algoritmo si definiscono tre insiemi: l'insieme S dei nodi per cui la soluzione è già stata calcolata, l'insieme D dei nodi non presenti in S e raggiungibili mediante un arco dai nodi presenti in S, e un insieme contenente tutti gli altri nodi rimanenti. A ogni nodo $n$ appartenente a D sono inoltre associate due procedure $C(n)$ e $P(n)$: il primo indica il costo del cammino minimo da $s$ a $n$ trovato finora, il secondo indica l'ultimo nodo prima di $n$ in tale cammino.
+\newpage
+La procedura è la seguente:
+\begin{verbatim}
+    Dijkstra(N, E, w, s)
+        begin
+            D = {s}
+            for n in N do
+                C(n) = infinity
+                P(n) = NULL
+            done
+            C(s) = 0
+            while D \= {} do
+                begin
+                    seleziona il nodo v in D avente C(v) minore
+                    cancella n da D
+                    for u in L(u) do
+                    if C(v) + w(v,u) < C(u) then
+                        if C(v) = infinity then
+                            aggiungi u a D
+                        end if
+                        C(u) = C(v) + w(v,u)
+                        P(u) = v
+                    end if
+                done
+                end
+            return C, P
+        end
+\end{verbatim}

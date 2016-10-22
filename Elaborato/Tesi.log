@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.7.4)  21 OCT 2016 18:47
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.7.4)  22 OCT 2016 15:58
 entering extended mode
 **./Tesi.tex
 (Tesi.tex
@@ -877,7 +877,7 @@ Overfull \hbox (51.11009pt too wide) in paragraph at lines 44--49
 ge.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.63 ...e {5.2.2}Astrazione}{27}{subsection.5.2.2}
+l.63 ...e {5.2.2}Astrazione}{28}{subsection.5.2.2}
                                                    [1
 
 
@@ -947,27 +947,27 @@ File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 ) [10
 
 ]
-Overfull \hbox (23.624pt too wide) in paragraph at lines 152--152
+Overfull \hbox (23.624pt too wide) in paragraph at lines 156--156
 []        \T1/cmtt/m/n/12 dividi la lista L a metà, creando le liste "left" e "
 right"[] 
  []
 
 [11]
-Underfull \hbox (badness 10000) in paragraph at lines 169--170
+Underfull \hbox (badness 10000) in paragraph at lines 173--174
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 170--171
+Underfull \hbox (badness 10000) in paragraph at lines 174--175
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 171--173
+Underfull \hbox (badness 10000) in paragraph at lines 175--177
 
  []
 
-[12] [13]) [14] [15
+[12] [13] [14]) [15] [16
 
 
 ]
@@ -980,7 +980,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 3--7
 
  []
 
-[16
+[17
 
 
 ]
@@ -998,7 +998,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 28--33
 
  []
 
-[17] [18]) [19] [20
+[18] [19]) [20] [21
 
 
 ]
@@ -1026,10 +1026,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 2--8
 
  []
 
-[21
+[22
 
 
-] [22]
+] [23]
 Capitolo 5.
 
 Overfull \hbox (12.53079pt too wide) in paragraph at lines 28--32
@@ -1037,23 +1037,23 @@ Overfull \hbox (12.53079pt too wide) in paragraph at lines 28--32
 -ral-lel ([]$\T1/cmtt/m/n/12 https : / / hackage .
  []
 
-[23
+[24
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 42--43
 
  []
 
-[24]
+[25]
 Underfull \hbox (badness 10000) in paragraph at lines 53--55
 
  []
 
-[25] [26] [27] [28]
+[26] [27] [28] [29]
 Capitolo 6.
-[29
+[30
 
-] [30] [31]
+] [31] [32]
 Overfull \hbox (18.17392pt too wide) in paragraph at lines 171--172
 \T1/cmr/m/n/12 La mo-na-de Eval è una strut-tu-ra con-te-nu-ta nel pac-ka-ge Co
 n-tol.Parallel.Strategies.
@@ -1064,12 +1064,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 181--183
 
  []
 
-[32]
+[33]
 Underfull \hbox (badness 10000) in paragraph at lines 203--204
 
  []
 
-[33]) [34] [35
+[34]) [35] [36
 
 
 ]
@@ -1083,16 +1083,16 @@ Overfull \hbox (42.14447pt too wide) in paragraph at lines 21--21
 ++ right)[] 
  []
 
-[36
+[37
 
 
-] [37]
+] [38]
 Overfull \hbox (29.79749pt too wide) in paragraph at lines 127--127
 []                   \T1/cmtt/m/n/12 ++ (replicate (n-m-1) 0))] ++ (identity2 n
  (m+1))[] 
  []
 
-[38] [39]
+[39] [40]
 Overfull \hbox (17.4505pt too wide) in paragraph at lines 163--163
 []\T1/cmtt/m/n/12 minor m row col = deleteRow m1 row where m1 = (deleteColumn m
  col)[] 
@@ -1104,7 +1104,7 @@ Overfull \hbox (66.83844pt too wide) in paragraph at lines 163--163
 t s = (-1)^i][] 
  []
 
-[40]
+[41]
 Overfull \hbox (66.83844pt too wide) in paragraph at lines 194--194
 []            \T1/cmtt/m/n/12 let a = (head m !! i), let m1 = (minor m i 0), le
 t s = (-1)^i][] 
@@ -1116,15 +1116,15 @@ Overfull \hbox (85.35892pt too wide) in paragraph at lines 194--194
 j <- [0..dim-1]][] 
  []
 
-[41]
+[42]
 Overfull \hbox (29.79749pt too wide) in paragraph at lines 223--223
 []\T1/cmtt/m/n/12 setEdge (x, y) v m = replacePosition x y v (replacePosition y
  x v m)[] 
  []
 
-[42]) [43]
+[43]) [44]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 96.
- [44
+ [45
 
 
 ]
@@ -1140,8 +1140,8 @@ Package logreq Info: Writing requests to 'Tesi.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 12589 strings out of 493335
- 199624 string characters out of 3139258
+ 12591 strings out of 493335
+ 199642 string characters out of 3139258
  435896 words of memory out of 3000000
  15802 multiletter control sequences out of 15000+200000
  21846 words of font info for 62 fonts, out of 3000000 for 9000
@@ -1150,31 +1150,33 @@ Here is how much of TeX's memory you used:
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/cm-super/cm-super-t1.enc}<C:/Pro
 gram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Fil
 es/MiKTeX 2.9/fonts/type1/public/amsfonts/cmextra/cmex8.pfb><C:/Program Files/M
-iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Program Files/MiKTeX 2.
-9/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Program Files/MiKTeX 2.9/fonts/t
-ype1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publ
-ic/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfon
-ts/cm/cmr6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8
-.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:
-/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Program 
-Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files/MiK
-TeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Program Files/MiKTeX
- 2.9/fonts/type1/public/cm-super/sfbx1200.pfb><C:/Program Files/MiKTeX 2.9/font
-s/type1/public/cm-super/sfbx1440.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/p
-ublic/cm-super/sfbx1728.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/cm-
-super/sfbx2488.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/cm-super/sfc
-c1200.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/cm-super/sfrm0700.pfb
-><C:/Program Files/MiKTeX 2.9/fonts/type1/public/cm-super/sfrm0800.pfb><C:/Prog
-ram Files/MiKTeX 2.9/fonts/type1/public/cm-super/sfrm1000.pfb><C:/Program Files
-/MiKTeX 2.9/fonts/type1/public/cm-super/sfrm1200.pfb><C:/Program Files/MiKTeX 2
-.9/fonts/type1/public/cm-super/sfrm1440.pfb><C:/Program Files/MiKTeX 2.9/fonts/
-type1/public/cm-super/sfrm1728.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pub
-lic/cm-super/sfrm2074.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/cm-su
-per/sfti1200.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/cm-super/sftt1
-000.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on Tesi.pdf (46 pages, 1075316 bytes).
+iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.
+9/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Program Files/MiKTeX 2.9/fonts/
+type1/public/amsfonts/cm/cmmi6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pub
+lic/amsfonts/cm/cmmi8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfo
+nts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cm
+r12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C
+:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program 
+Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/Mi
+KTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Program Files/MiKTeX 2.9/
+fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/typ
+e1/public/amsfonts/symbols/msbm10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/
+public/cm-super/sfbx1200.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/cm
+-super/sfbx1440.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/cm-super/sf
+bx1728.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/cm-super/sfbx2488.pf
+b><C:/Program Files/MiKTeX 2.9/fonts/type1/public/cm-super/sfcc1200.pfb><C:/Pro
+gram Files/MiKTeX 2.9/fonts/type1/public/cm-super/sfrm0700.pfb><C:/Program File
+s/MiKTeX 2.9/fonts/type1/public/cm-super/sfrm0800.pfb><C:/Program Files/MiKTeX 
+2.9/fonts/type1/public/cm-super/sfrm1000.pfb><C:/Program Files/MiKTeX 2.9/fonts
+/type1/public/cm-super/sfrm1200.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pu
+blic/cm-super/sfrm1440.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/cm-s
+uper/sfrm1728.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/cm-super/sfrm
+2074.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/cm-super/sfti1200.pfb>
+<C:/Program Files/MiKTeX 2.9/fonts/type1/public/cm-super/sftt1000.pfb><C:/Progr
+am Files/MiKTeX 2.9/fonts/type1/public/cm-super/sftt1200.pfb>
+Output written on Tesi.pdf (47 pages, 1094700 bytes).
 PDF statistics:
- 584 PDF objects out of 1000 (max. 8388607)
- 113 named destinations out of 1000 (max. 500000)
+ 599 PDF objects out of 1000 (max. 8388607)
+ 115 named destinations out of 1000 (max. 500000)
  334 words of extra memory for PDF output out of 10000 (max. 10000000)
 
