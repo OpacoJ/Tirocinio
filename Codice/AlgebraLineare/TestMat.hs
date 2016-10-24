@@ -1,8 +1,9 @@
 import Matrix
 import Utility
 
-bigMat = makeMat 300
+bigMat = makeMat 20
 smallMat = makeMat 8
+iden = identity 20
 
 f1 = prodMatrix bigMat bigMat
 f2 = prodMatPar bigMat bigMat
@@ -13,10 +14,13 @@ f4 = powMatPar bigMat 2
 f5 = sumMatrix bigMat bigMat
 f6 = sumMatPar bigMat bigMat
 
-f7 = det (identity 9)
-f8 = pardet (identity 9)
+f7 = det iden
+f8 = pardet iden
 
-f9 = invert smallMat
+f9 = det2 iden
+f10 = pardet2 iden
+
+f11 = invert smallMat
 
 main = do
 		t1 <- evalTimed f1
@@ -32,6 +36,9 @@ main = do
 		t8 <- evalTimed f8
 		
 		t9 <- evalTimed f9
+		t10 <- evalTimed f10
+		
+		t11 <- evalTimed f11
 		
 		putStrLn ("Prod seq time = " ++ show t1)
 		putStrLn ("Prod par time = " ++ show t2)
@@ -42,9 +49,12 @@ main = do
 		putStrLn ("Sum seq time = " ++ show t5)
 		putStrLn ("Sum par time = " ++ show t6)
 		
-		putStrLn ("Det seq time = " ++ show t7)
-		putStrLn ("Det par time = " ++ show t8)
+		putStrLn ("Inefficient Det seq time = " ++ show t7)
+		putStrLn ("Inefficient Det par time = " ++ show t8)
 		
-		putStrLn ("Invert seq time = " ++ show t9)
+		putStrLn ("Efficient Det seq time = " ++ show t9)
+		putStrLn ("Efficient Det par time = " ++ show t10)
+		
+		putStrLn ("Invert seq time = " ++ show t11)
 		
 		

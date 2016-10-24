@@ -1,52 +1,57 @@
 module Graph where
 
-import Matrix
+import Data.List
 
-type Graph = ([Node], [Edge])
-type Node = Int
-type Edge = (Node, Node)
+type Graph = (Int, [Edge])
+type Edge = ((Int, Int), Int)
+type AdjMat = [[Bool]]
 
+--matrice di adiacenza vuota
 
-adjMat :: Graph -> Matrix
-adjMat (nodes, []) = zeroes dim
-						where
-								dim = length nodes
-adjMat (nodes, e:edges) = setEdge e 1.0 (adjMat (nodes, edges))
+emptyAdjMat :: Int -> AdjMat
+emptyAdjMat dim = emptyAdjMat' dim 0
 
-setEdge :: Edge -> Double -> Matrix -> Matrix
-setEdge _ _ [] = error "Error out of bound"
+emptyAdjMat' :: Int -> Int -> AdjMat
+emptyAdjMat' n m
+			| m >= n = []
+			|otherwise = [i == m | i <- [0..n-1]]:(emptyAdjMat' n (m+1))
+
+			
+--matrice di adiacenza di un grafo			
+
+makeAdjMat :: Graph -> AdjMat
+makeAdjMat (nodes, []) = emptyAdjMat nodes
+makeAdjMat (nodes, ((x, y), _):edges) = setEdge (x, y) True (makeAdjMat (nodes, edges))
+
+setEdge :: (Int, Int) -> Bool -> AdjMat -> AdjMat
+setEdge _ _ [] = error "Error in setEdge"
 setEdge (x, y) v m = replacePosition x y v (replacePosition y x v m)
 
-replacePosition :: Int -> Int -> Double -> Matrix -> Matrix							
+replacePosition :: Int -> Int -> a -> [[a]] -> [[a]]							
 replacePosition x y v m = left ++ [new] ++ right
 							where
 								(left, old:right) = splitAt x m
 								(left2, _:right2) = splitAt y old
 								new = left2 ++ [v] ++ right2
 
-normalize :: Matrix -> Matrix				
-normalize m = [[reduce x | x <- y] | y <- m]
-					where reduce a 
-							| a==0 = 0
-							| otherwise = 1
-							
-fullyConnected :: Matrix -> Bool
-fullyConnected [] = True
-fullyConnected (x:xs) = (all (/= 0.0) x) && fullyConnected xs
+--"prodotto" di matrici di adiacenza
+						
+prodAdjMat :: AdjMat -> AdjMat -> AdjMat
+prodAdjMat m1 m2 = [[orVect a b | b <- column] | a <- m1]
+						where column = transpose m2
+						
+								
+orVect :: [Bool] -> [Bool] -> Bool
+orVect a b = foldOr (zipWith (&&) a b)
 
-isConnected :: Matrix -> Bool
-isConnected m = checkConnection m1 m1 where m1 = normalize m
+foldOr :: [Bool] -> Bool
+foldOr [x] = x
+foldOr (x:xs) = x || (foldOr xs)
 
-
-
-checkConnection :: Matrix -> Matrix -> Bool
-checkConnection m1 m2
-		| fullyConnected m1 = True
-		| m3 == m1 = False
-		| otherwise = checkConnection m3 m2
-			where m3 = normalize (prodMatrix m1 m2)
 				
-
-								
-								
-								
+--sviluppo n-esimo delle matrici di adiacenza (n scatti)
+						
+powAdjMat :: AdjMat -> Int -> AdjMat
+powAdjMat m 0 = emptyAdjMat dim where dim = length m
+powAdjMat m 1 = m
+powAdjMat m n = prodAdjMat m (powAdjMat m (n-1))
