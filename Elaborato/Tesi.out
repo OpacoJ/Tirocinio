@@ -1,41 +1,41 @@
-\BOOKMARK [-1][-]{part.1}{I Calcolo Sequenziale}{}% 1
-\BOOKMARK [0][-]{chapter.1}{Algoritmi sequenziali}{part.1}% 2
-\BOOKMARK [1][-]{section.1.1}{Macchina di Turing Deterministica}{chapter.1}% 3
-\BOOKMARK [1][-]{section.1.2}{Complessit\340 sequenziale}{chapter.1}% 4
-\BOOKMARK [2][-]{subsection.1.2.1}{Analisi Asintotica della Complessit\340}{section.1.2}% 5
-\BOOKMARK [2][-]{subsection.1.2.2}{Efficienza degli Algoritmi}{section.1.2}% 6
-\BOOKMARK [0][-]{chapter.2}{Esempi di Problemi Risolti}{part.1}% 7
+\BOOKMARK [-1][-]{part.1}{I\040Calcolo\040Sequenziale}{}% 1
+\BOOKMARK [0][-]{chapter.1}{Algoritmi\040sequenziali}{part.1}% 2
+\BOOKMARK [1][-]{section.1.1}{Macchina\040di\040Turing\040Deterministica}{chapter.1}% 3
+\BOOKMARK [1][-]{section.1.2}{Complessit\340\040sequenziale}{chapter.1}% 4
+\BOOKMARK [2][-]{subsection.1.2.1}{Analisi\040Asintotica\040della\040Complessit\340}{section.1.2}% 5
+\BOOKMARK [2][-]{subsection.1.2.2}{Efficienza\040degli\040Algoritmi}{section.1.2}% 6
+\BOOKMARK [0][-]{chapter.2}{Esempi\040di\040Problemi\040Risolti}{part.1}% 7
 \BOOKMARK [1][-]{section.2.1}{Ordinamento}{chapter.2}% 8
-\BOOKMARK [1][-]{section.2.2}{Algebra Lineare}{chapter.2}% 9
+\BOOKMARK [1][-]{section.2.2}{Algebra\040Lineare}{chapter.2}% 9
 \BOOKMARK [1][-]{section.2.3}{Grafi}{chapter.2}% 10
-\BOOKMARK [-1][-]{part.2}{II Calcolo Parallelo}{}% 11
-\BOOKMARK [0][-]{chapter.3}{Gli Algoritmi Paralleli}{part.2}% 12
-\BOOKMARK [1][-]{section.3.1}{Modelli Paralleli}{chapter.3}% 13
-\BOOKMARK [2][-]{subsection.3.1.1}{La macchina PRAM}{section.3.1}% 14
-\BOOKMARK [1][-]{section.3.2}{Esecuzione negli Algoritmi Paralleli}{chapter.3}% 15
-\BOOKMARK [2][-]{subsection.3.2.1}{La legge di Amdahl}{section.3.2}% 16
-\BOOKMARK [2][-]{subsection.3.2.2}{Tempo di calcolo}{section.3.2}% 17
-\BOOKMARK [-1][-]{part.3}{III Programmazione Parallela}{}% 18
-\BOOKMARK [0][-]{chapter.4}{Il Parallelismo oggi}{part.3}% 19
+\BOOKMARK [-1][-]{part.2}{II\040Calcolo\040Parallelo}{}% 11
+\BOOKMARK [0][-]{chapter.3}{Gli\040Algoritmi\040Paralleli}{part.2}% 12
+\BOOKMARK [1][-]{section.3.1}{Modelli\040Paralleli}{chapter.3}% 13
+\BOOKMARK [2][-]{subsection.3.1.1}{La\040macchina\040PRAM}{section.3.1}% 14
+\BOOKMARK [1][-]{section.3.2}{Esecuzione\040negli\040Algoritmi\040Paralleli}{chapter.3}% 15
+\BOOKMARK [2][-]{subsection.3.2.1}{La\040legge\040di\040Amdahl}{section.3.2}% 16
+\BOOKMARK [2][-]{subsection.3.2.2}{Tempo\040di\040calcolo}{section.3.2}% 17
+\BOOKMARK [-1][-]{part.3}{III\040Programmazione\040Parallela}{}% 18
+\BOOKMARK [0][-]{chapter.4}{Il\040Parallelismo\040oggi}{part.3}% 19
 \BOOKMARK [0][-]{chapter.5}{Haskell}{part.3}% 20
-\BOOKMARK [1][-]{section.5.1}{Introduzione al linguaggio Haskell}{chapter.5}% 21
+\BOOKMARK [1][-]{section.5.1}{Introduzione\040al\040linguaggio\040Haskell}{chapter.5}% 21
 \BOOKMARK [2][-]{subsection.5.1.1}{Installazione}{section.5.1}% 22
-\BOOKMARK [1][-]{section.5.2}{Perch\350 Haskell?}{chapter.5}% 23
-\BOOKMARK [2][-]{subsection.5.2.1}{Linguaggio funzionale: un linguaggio matematicamente puro}{section.5.2}% 24
+\BOOKMARK [1][-]{section.5.2}{Perch\350\040Haskell?}{chapter.5}% 23
+\BOOKMARK [2][-]{subsection.5.2.1}{Linguaggio\040funzionale:\040un\040linguaggio\040matematicamente\040puro}{section.5.2}% 24
 \BOOKMARK [2][-]{subsection.5.2.2}{Astrazione}{section.5.2}% 25
-\BOOKMARK [2][-]{subsection.5.2.3}{Parallelismo in Haskell}{section.5.2}% 26
-\BOOKMARK [0][-]{chapter.6}{Parallel Haskell}{part.3}% 27
-\BOOKMARK [1][-]{section.6.1}{Parallelismo puro: Control.Parallel}{chapter.6}% 28
-\BOOKMARK [2][-]{subsection.6.1.1}{Esempio: la serie di Fibonacci}{section.6.1}% 29
-\BOOKMARK [1][-]{section.6.2}{Le strategie di calcolo}{chapter.6}% 30
-\BOOKMARK [2][-]{subsection.6.2.1}{La monade Eval}{section.6.2}% 31
-\BOOKMARK [2][-]{subsection.6.2.2}{Usare le strategie}{section.6.2}% 32
-\BOOKMARK [2][-]{subsection.6.2.3}{Esempio: la funzione map in parallelo}{section.6.2}% 33
-\BOOKMARK [1][-]{section.6.3}{Limiti di Haskell}{chapter.6}% 34
-\BOOKMARK [-1][-]{part.4}{IV Implementazione in Haskell}{}% 35
-\BOOKMARK [0][-]{chapter.7}{Problemi implementati}{part.4}% 36
+\BOOKMARK [2][-]{subsection.5.2.3}{Parallelismo\040in\040Haskell}{section.5.2}% 26
+\BOOKMARK [0][-]{chapter.6}{Parallel\040Haskell}{part.3}% 27
+\BOOKMARK [1][-]{section.6.1}{Parallelismo\040puro:\040Control.Parallel}{chapter.6}% 28
+\BOOKMARK [2][-]{subsection.6.1.1}{Esempio:\040la\040serie\040di\040Fibonacci}{section.6.1}% 29
+\BOOKMARK [1][-]{section.6.2}{Le\040strategie\040di\040calcolo}{chapter.6}% 30
+\BOOKMARK [2][-]{subsection.6.2.1}{La\040monade\040Eval}{section.6.2}% 31
+\BOOKMARK [2][-]{subsection.6.2.2}{Usare\040le\040strategie}{section.6.2}% 32
+\BOOKMARK [2][-]{subsection.6.2.3}{Esempio:\040la\040funzione\040map\040in\040parallelo}{section.6.2}% 33
+\BOOKMARK [1][-]{section.6.3}{Limiti\040di\040Haskell}{chapter.6}% 34
+\BOOKMARK [-1][-]{part.4}{IV\040Implementazione\040in\040Haskell}{}% 35
+\BOOKMARK [0][-]{chapter.7}{Problemi\040implementati}{part.4}% 36
 \BOOKMARK [1][-]{section.7.1}{Ordinamento}{chapter.7}% 37
 \BOOKMARK [2][-]{subsection.7.1.1}{QuickSort}{section.7.1}% 38
 \BOOKMARK [2][-]{subsection.7.1.2}{Mergesort}{section.7.1}% 39
-\BOOKMARK [1][-]{section.7.2}{Algebra Lineare}{chapter.7}% 40
+\BOOKMARK [1][-]{section.7.2}{Algebra\040Lineare}{chapter.7}% 40
 \BOOKMARK [1][-]{section.7.3}{Grafi}{chapter.7}% 41
