@@ -1,76 +1,143 @@
 \chapter{Gli Algoritmi Paralleli}
-\section{Modelli Paralleli}
-Spesso uno dei problemi principali inerenti al calcolo sequenziale è il tempo di esecuzione: si pensi al miglior algoritmo possibile su un problema semplice come l'ordinamento di un set di oggetti e si immagini di aumentare il numero di elementi in maniera spropositata.\\
-Inoltre, in casi di sistemi in tempo reale (real-time), il tempo di calcolo diventa essenziale, al punto che una mancata esecuzione in tempi utili può portare a un deterioramento del sistema stesso.\\
-Una soluzione a questo problema è rappresentata dalla suddivisione del lavoro in parti da eseguire contemporaneamente da più processori, nel tentativo di ottenere un'ulteriore ottimizzazione dei tempi di calcolo.\\
-I sistemi di questo tipo vengono detti \textit{paralleli}, per distinguerli dalla loro controparte monoprocessore, chiamati \textit{sequenziali}. Analogamente un algoritmo che può essere eseguito su un sistema multiprocessore è detto \textit{algoritmo parallelo}.\\
-\subsection{La macchina PRAM}
-Analogamente alla RAM per il calcolo sequenziale, sottoprodotto della macchina di Turing, il modello di calcolo più semplice per rappresentare sistemi multiprocessore è la macchina PRAM.\\
-Si tratta di un modello avente le seguenti caratteristiche:
+La definizione di calcolo sequenziale è legata al fatto che rappresenta procedure e funzioni eseguite da un singolo processore. Di conseguenza la velocità di esecuzione di un algoritmo è legata sia alla complessità che lo definisce sia alla velocità di calcolo del processore che lo esegue. In casi particolari, come i sistemi real time, questa caratteristica assume un ruolo critico e le limitazioni del calcolo sequenziale diventano evidenti.\\
+Una possibile soluzione a questo problema è rappresentata dalla suddivisione del lavoro in sezioni da eseguire contemporaneamente da più processori, nel tentativo di ottenere una significativa riduzione al tempo di calcolo proporzionale all'aumento di risorse utilizzate. In questo modo a ogni ciclo di clock corrisponde un numero al più uguale al numero di processori in uso. I sistemi di questo tipo vengono detti \textit{paralleli}.\\
+Come si può facilmente intuire l'esecuzione parallela necessita di calcoli aggiuntivi per coordinare i vari processori, aggiunta che può diventare problematica se mal gestita (approfondiremo questo concetto in un secondo momento). La comunicazione tra i processori può avvenire in due modalità, a seconda della categoria del modello in uso: distinguiamo due famiglie di sistemi paralleli, ovvero i modelli a memoria condivisa e i modelli a memoria distribuita. Nel primo caso i processori utilizzano contemporaneamente una memoria globale, che viene usata anche per casi di coordinazione (i processori non comunicano direttamente tra loro). Nei sistemi distribuiti, invece, ogni processore ha una propria memoria locale, inaccessibile dagli altri, e la comunicazione avviene in maniera diretta. La maggior parte dei sistemi in uso sfruttano processori multicore a memoria condivisa, dunque ci concentreremo principalmente su questa categoria di modelli.\\
+\newpage
+\noindent Il passaggio da sequenziale a parallelo offre sicuramente la possibilità di ottenere un guadagno considerevole in termini di esecuzione, ma al tempo stesso apre la porta a nuove sfide: 
 \begin{itemize}
-\item{un insieme di p processori uguali;}
-\item{una memoria globale condivisa tra tutti i processori;}
-\item{un'unità di controllo che consente ai processori di accedere alla memoria globale (chiamata MAU, Memory Access Unit).}
+\item{sono necessarie ulteriori analisi del problema, in particolare se e come è possibile creare una procedura capace di parallelizzarlo (le parti che è possibile eseguire parallelamente);}
+\item{esistono problemi impossibili da parallelizzare;}
+\item{esistono problemi che in ambito parallelo sono meno performanti che in ambito sequenziale;}
+\item{è necessaria una coordinazione tra i vari processori;}
+\item{la programmazione parallela spesso risulta più complicata di quella sequenziale.}
 \end{itemize}
-L'esecuzione dei processori avviene in maniera indipendente: l'elaborazione di un processore è scorrelata dall'attività dei suoi compagni. La comunicazione e lo scambio di dati, invece, avviene mediante la memoria globale, a cui i processori accedono in tempo $\mathcal {O}(1)$ (Random Access).\\
-L'attività di un singolo processore continua a procedere in modo sequenziale: a ogni ciclo di clock un processore può decidere se effettuare operazioni sui dati che possiede o se effettuare operazioni di lettura e scrittura sulla memoria condivisa. Ad un singolo ciclo di clock corrispondo molteplici istruzioni eseguite in contemporanea e in questo modo si ottiene parallelismo. Le macchine che si reggono su questo principio sono chiamate anche SIMD (Single Instruction Multiple Data).\\
-Si può inoltre distinguere i tipi di macchine parallele in base all'accesso dei processori a memoria condivisa:
+Nel corso di questo capitolo analizzeremo l'approccio a queste problematiche, servendoci di un modello di calcolo ad analizzare il parallelismo.
+\section{La macchina PRAM}
+Il modello che andremo ad analizzare è essenzialmente un'evoluzione di un particolare modello sequenziale. Nel capitolo precendente ci siamo serviti della Macchina di Turing come modello di calcolo ideale per analizzare le caratteristiche degli algoritmi sequenziali. Un altro esempio di modello sequenziale è la macchina RAM (Random Access Memory), formata essenzialmente da un singolo processore, capace di eseguire un set di operazioni elementari, e una memoria potenzialmente infinita di celle, accessibili dal processore in maniera casuale.\\
+Questo modello nel calcolo parallelo definisce la base di quello che è il modello di calcolo che useremo: la macchina PRAM, un modello composto da un insieme di $p$ processori RAM e una memoria globale.\\
+Come abbiamo già affermato l'esecuzione dei processori avviene in maniera indipendente: l'esecuzione di un attività su un processore non influisce l'esecuzione di uno dei suoi "compagni". Lo scambio di dati, invece, avviene mediante la memoria globale, a cui i processori accedono in tempo $\mathcal {O}(1)$ (Random Access).\\
+\newpage
+\noindent L'attività di un singolo processore continua a procedere in modo sequenziale: a ogni ciclo di clock un processore può decidere se effettuare operazioni sui dati che possiede o se effettuare operazioni di lettura e scrittura sulla memoria condivisa. In caso di esecuzione parallela ad un singolo ciclo di clock corrispondo molteplici istruzioni eseguite in contemporanea: in questo modo si ottiene il parallelismo desiderato.\\
+Si distinguono i seguenti tipi di PRAM:
 \begin{itemize}
 \item{EREW (Exclusive Read Exclusive Write): l'accesso contemporaneo a memoria condivisa non è consentito;}
 \item{CREW (Concurrent Read Exclusive Write): l'accesso contemporaneo a memoria condivisa è consentito solo in lettura;}
-\item{CRCW (Concurrent Read Concurrent Write):: l'accesso contemporaneo a memoria condivisa è consentito in lettura e in scrittura.}
+\item{CRCW (Concurrent Read Concurrent Write): l'accesso contemporaneo a memoria condivisa è consentito in lettura e in scrittura.}
 \end{itemize}
-Il nostro scopo è confrontare l'esecuzione parallela con quella sequenziale, pertanto verranno considerati solo problemi relativi alle macchine EREW o CREW.
-\subsubsection{Parallelizzare un problema}
-Ogni problema parallelo nasce come algoritmo sequenziale: trasformare un algoritmo iterativo in un algoritmo parallelo significa scegliere l'insieme di operazioni da eseguire parallelamente sui vari processori. Non vale il viceversa: la sola presenza di operazioni atomiche vale come condizione sufficiente per asserire che non tutti i problemi sequenziali possano essere parallelizzati.\\
-\section{Esecuzione negli Algoritmi Paralleli}
-\subsection{La legge di Amdahl}
-L'aumento delle prestazioni di un sistema manipolando le risorse a disposizione è un concetto più vecchio della parallelizzazione. Dato che un algoritmo può essere diviso in componenti di esecuzione è ragionevole pensare che riducendo i tempi di calcolo di di una di quelle sezioni migliorerà in maniera sostanziale anche l'efficienza dell'algoritmo stesso. Tuttavia ci sono delle limitazioni.\\
-Si tratta di un concetto è riassumibile nella \textbf{legge di Amdahl}:\\\\
-\textit{"Il miglioramento che si può ottenere su una certa parte del sistema è limitato dalla frazione di tempo in cui tale attività ha luogo"}\\\\
-In parole povere, migliorate le prestazioni di una parte di un algoritmo, esiste un limite di ottimizzazione, legato principalmente al livello di migliorie apportate ed a quanto tempo quella sezione va effettivamente in esecuzione.\\
-La formula che descrive questo fenomeno è la seguente:
-\begin{equation}
-\frac{1}{(1 - P) + \frac{P}{S}}
-\end{equation}
-in cui P è la percentuale di tempo in cui la sezione migliorata va in esecuzione e S è il livello di miglioramento apportato (ad esempio raddoppiando la velocità di esecuzione S equivale a 2).\\
-Notiamo subito che se aumentiamo la velocità all'infinito, ovvero se $\textit{S}\to\infty$, il miglioramento delle prestazioni è limitato da P, il che ci riporta all'enunciato precedente.\\
-Detto ciò, anche l'aggiunta di processori in parallelo è legato a questa legge, traducendosi in:
-\begin{equation}
-\frac{1}{(1 - P) + \frac{P}{N}}
-\end{equation}
-in cui N è il numero di processori a disposizione.\\
-Il programma parallelo ideale quindi, non è quello che viene eseguito su molti processori, quanto più quello che riduce il valore \textit{(1 - P)} al minimo possibile.
-\subsection{Tempo di calcolo}
-Un algoritmo parallelo può essere generalmente definito in questo modo:
+Nel seguito illustreremo in particolare modelli EREW e CREW, sia dal punto di vista implementativo che da quello analitico.\\
+In generale un'istruzione parallela ha questa forma:
 \begin{verbatim}
-for (i from 0 to NumProcessori) do
+for (i from 1 to NumProcessori) do
            operazioneParallela
-end
 \end{verbatim}
 in cui \texttt{NumProcessori} rappresenta il numero di processori che vogliamo sfruttare, mentre \texttt{operazioneParallela} rappresenta una sequenza di istruzioni da eseguire esclusivamente su un singolo processore.\\
-Indichiamo ora il tempo di calcolo legato ad un algoritmo \textit{A} con $\mathrm{T}_{A}(n, p)$, valore dipendente cioè sia dalla dimensione dell'input che dal numero di processori. Notiamo che il caso base, in cui \textit{p = 1} coincide con il valore relativo al caso dell'esecuzione sequenziale, trattandosi di esecuzione monoprocessore. Questo elemento servirà per stimare la bontà dell'esecuzione parallela.\\
-Introduciamo a tal proposito due nuove misurazioni: lo \textit{Speedup} e l'\textit{Efficienza}, che indicheremo rispettivamente con $\mathrm{S}_{A}(p)$ e $\mathrm{E}_{A}(n, p)$.\\
+Indicheremo con $\mathrm{T}_{A}(n, p)$ il tempo di calcolo legato ad un algoritmo parallelo \textit{A} eseguito su $p$ processori su un generico input di dimensioni $n$. Notiamo che il caso base, in cui \textit{p = 1} coincide con il valore relativo al caso dell'esecuzione sequenziale, trattandosi di esecuzione monoprocessore. Questo elemento servirà per stimare la bontà dell'esecuzione parallela.\\
+Poiché lo scopo della parallelizzazione è quello di ottenere un compromesso conveniente tra prestazioni e costo delle risorse aggiuntive ci serviremo di due misure particolari: lo \textit{Speedup} e l'\textit{Efficienza}, che indicheremo rispettivamente con $\mathrm{S}_{A}(n, p)$ e $\mathrm{E}_{A}(n, p)$.\\
 Nel dettaglio:
-\begin{equation}
-\mathrm{S}_{A}(p) = \frac{\mathrm{T}_{A}(n, 1)}{\mathrm{T}_{A}(n, p)}
-\end{equation}
-\begin{equation}
-\mathrm{E}_{A}(n, p) = \frac{\mathrm{S}_{A}(p)}{p} = \frac{\mathrm{T}_{A}(n, 1)}{p\mathrm{T}_{A}(n, p)}
-\end{equation}
-Lo Speedup in questo caso rappresenta il guadagno in termini di tempo di esecuzione relativa all'utilizzo di \textit{p} processori. Si tratta comunque di una misura avente un limite matematico: come dimostrato dalla legge di Amdahl l'accelerazione dell'esecuzione è superiormente limitata dalla percentuale di codice eseguito in parallelo, dunque è impossibile ottenere Speedup lineare e direttamente proporzionale a \textit{p}.\\
-L'efficienza, invece, indica quanto l'algoritmo sfrutta effettivamente il parallelismo. Nel caso ideale un algoritmo parallelo ha efficienza 1, ovvero quando lo speedup ha andamento lineare (\textit{S(p) = p}), nel caso pratico è una funzione monotona decrescente, essendo inversamente proporzionale a \textit{p}. Ciò significa che aumentando i processori diminuisce l'efficienza dell'algoritmo parallelo, anche in casi in cui lo Speedup continui ad aumentare.\\
-Per questo motivo possiamo definire il seguente enunciato:
-\begin{equation}
-\forall k \geq 1 \Rightarrow { } 1 \geq \mathrm{E}_{A}(n, p) \geq \mathrm{E}_{A}(n, p/k)
-\end{equation}
-Ciò che limita lo speedup, e di conseguenza l'efficienza, degli algoritmi paralleli viene solitamente chiamato \textit{Overhead} di esecuzione, ovvero calcoli non necessari alla sola risoluzione del problema.
-Osserviamo da cosa si compone:
-\begin{equation}
-\mathrm{O}_{A}(p) = p\mathrm{T}_{A}(n, p) - \mathrm{T}_{A}(n,1) 
-\end{equation}
-%\chapter{Esempi}
-
-%\section{Somme Prefisse}
-
-%\section{Ordinamento}
+\begin{center}
+$\displaystyle \mathrm{S}_{A}(n, p) = \frac{\mathrm{T}_{A}(n, 1)}{\mathrm{T}_{A}(n, p)}$
+\end{center}
+\begin{center}
+$\displaystyle \mathrm{E}_{A}(n, p) = \frac{\mathrm{S}_{A}(p)}{p} = \frac{\mathrm{T}_{A}(n, 1)}{p\mathrm{T}_{A}(n, p)}$
+\end{center}
+\newpage
+\noindent Notiamo che lo Speedup rappresenta il guadagno in termini di tempo di esecuzione relativa all'utilizzo di \textit{p} processori e l'efficienza risulta essere il rapporto tra il tempo dell'algoritmo sequenziale e il tempo totale consumato dai processori, come se fossero usati sequenzialmente. In altri termini lo Speedup misura la riduzione del tempo di calcolo, mentre l'efficienza definisce quanto l'algoritmo in uso sfrutta il parallelismo della macchina.\\
+Dato un algoritmo $A$ che lavora con $p$ processori con una data efficienza $E$, è in
+generale possibile estendere l'algoritmo a lavorare con un numero inferiore di processori senza che l'efficienza diminuisca significativamente:
+\begin{center}
+Se $k \geq 1 \ \rightarrow \ E_{A}(n, \frac{p}{k}) \geq E_{A}(n,p)$
+\end{center}
+Dato un algoritmo $A$ che lavora con $p$ processori, basta infatti costruire un algoritmo che utilizza $\frac{p}{k}$ processori. Ad ogni nuovo processore si fa corrispondere un blocco di k vecchi processori: ogni nuovo processore usa al più k passi per emulare il singolo passo parallelo dei k processori corrispondenti. Quindi vale che:
+\begin{center}
+$\displaystyle T_{A}(n,\frac{p}{k}) \leq k T_{A}(n,p)$
+\end{center}
+Osservando che:
+\begin{center}
+$\displaystyle E_{A}(n, \frac{p}{k}) = \frac{T_{A}(n,1)}{\frac{p}{k} T_{A}(n, \frac{p}{k})} \geq \frac{T_{A}(n,1)}{p T_{A}(n, \frac{p}{k})} = E_{A}(n,p)$
+\end{center}
+concludiamo che l'efficienza non diminuisce diminuendo i processori. In particolare, poiché $E_{A}(n,p) \leq E_{A}(n,1) = 1$, l'efficienza non può superare 1, ovvero il caso ideale, in cui l'algoritmo utilizza tutti i processori per tutta l'esecuzione.\\
+Ciò che limita lo speedup e di conseguenza l'efficienza degli algoritmi rappresenta l'\textit{Overhead} di esecuzione, ovvero calcoli non necessari alla sola risoluzione del problema, e può essere definito come:
+\begin{center}
+$O_{A}(n) = p T_{A}(n,p) - T_{A}(n,1)$
+\end{center}
+Il tempo speso in Overhead è determinato da diversi fattori: momenti di idle, eventi di comunicazione, ecc.
+\newpage
+\section{Limiti della Parallelizzazione}
+Le leggi inerenti allo speedup e all'efficienza specificano implicitamente che non sempre l'aumento di più processori garantisce un guadagno in termini di prestazioni. Proviamo a dimostrarlo con un semplice esempio: immaginiamo di voler definire un algoritmo $A$ che calcoli la somma di $n$ numeri disposti in un array, dividendo quest'ultimo in $p$ parti pari al numero di processori utilizzati. I processori sommeranno i valori contenuti nei loro array e restituiranno il risultato una volta finita l'esecuzione, dopodiché un singolo processore raggrupperà e sommerà tra loro tutti i risultati ottenuti. Il tempo di esecuzione sarà pari a:
+\[\left\{
+  \begin{array}{lr}
+   T_{A}(n,1) \simeq n\\
+   T_{A}(n,p) \simeq + \frac{n}{p} \log_2(p)
+  \end{array}
+\right.
+\]
+Il conseguente overhead risulta quindi:
+\begin{center}
+$O_{A}(n) \simeq p T_{A}(n,p) - T_{A}(n,1) = p(\frac{n}{p} + \log_2(p)) - n = p \log_2(p)$
+\end{center} 
+Deduciamo quindi che l'overhead aumenta al crescere del numero di processori (in questo caso con una crescita pari a $\mathcal{O}(p \log_2(p))$).\\
+L'unico modo per limitare calcoli di overhead è cercare di ottenere uno speedup prossimo al caso ideale (ovvero avente crescita lineare). Per ottenere questo risultato occorre un'ulteriore analisi relativa al tempo di esecuzione. Dividiamo il tempo $T_A(n,1)$ in due parti: chiameremo $T_{As}$ il tempo inerente alle operazioni eseguite esclusivamente in ambiente sequenziale e $T_{Ap}$ quello inerente alle operazioni eseguite in parallelo; ovviamente $T_A(n,1) = T_{As}(n) + T_{Ap}(n)$. Ora possiamo ottenere $T_A(n,p) \ p \geq 2$ in funzione di $T_A(n,1)$. Notiamo che, mentre la parte sequenziale rimane fissa al valore $T_{As}$, la componente parallela decresce in proporzione a $p$. Quindi otterremo:
+\begin{center}
+$\displaystyle T_{A}(n,p) = T_{As}(n) + \frac{T_{Ap}(n)}{p}$
+\end{center}
+Se chiamiamo $\alpha$ la componente sequenziale $T_{As}$ otteniamo che:
+\begin{center}
+$\displaystyle S_{A}(n,p) = \frac{1}{\displaystyle \alpha + \frac{1-\alpha}{p}}$
+\end{center}
+\newpage
+\noindent La formula che abbiamo ottenuto non è altro che un caso particolare della \textit{legge di Amdahl}, che afferma un concetto coerente con quello che abbiamo cercato di esprimere:\\ \\
+\textit{"Il miglioramento che si può ottenere su una certa parte del sistema è limitato dalla frazione di tempo in cui tale attività ha luogo"}\\ \\
+Intuitivamente è ragionevole che la miglioria legata all'aumento di processori perda il suo effetto nel momento in cui venga utilizzato esclusivamente il calcolo sequenziale. Infatti, poiché il miglioramento della componente parallela si riduce ad aumentare il numero di processori in uso, se facciamo tendere $p$ a $\infty$ allora $S_A(n,p) \rightarrow \frac{1}{\alpha}$. In altre parole lo speedup ottenuto dalla parallelizzazione di qualsiasi algoritmo è sempre limitato dalla sua componente sequenziale.\\
+Da questi risultati possiamo anche affermare che:
+\begin{center}
+$\displaystyle E_{A}(n,p) = \frac{S_{A}(n,p)}{p} = \frac{1}{\alpha + (1 - \alpha)p} = \frac{1}{\alpha (p-1) + 1}$
+\end{center}
+\begin{center}
+$\displaystyle O_A(n,p) = (p - 1) \alpha$
+\end{center}
+\chapter{Esempi di Problemi Paralleli Risolti}
+Di seguito verranno presentati i casi di problemi presentati precedentemente nel caso parallelo.
+\section{Ordinamento}
+Abbiamo già mostrato che l'algoritmo Mergesort si compone essenzialmente di due fasi di calcolo: nel caso base di array di due elementi l'ordinamento è banale; in caso contrario l'algoritmo divide un array a metà, lo ordina ricorsivamente e effettua l'operazione di merge sui due risultati. L'operazione di merging, essendo efficiente (complessità $\mathcal{O}(n)$), può essere lasciata invariata ed eseguita sequenzialmente: avendo a disposizione $p$ processori, il parallelismo si limiterà semplicemente ad assegnarne $\frac{p}{2}$ per le due parti in cui abbiamo diviso l'array. In altre parole il parallelismo si limita a fornire sotto-array ordinati, pronti per la fase merging.\\
+Avendo a disposizione abbastanza processori questa procedura consente di ridurre la complessità di calcolo per la fase non merging a $\mathcal{O}(1)$, ottenendo una complessità totale di $\mathcal{O}(n)$. Ovviamente il vincolo per ottenere questo risultato è quello di avere un numero di processori pari a $n/2$.
+\newpage
+\noindent
+\section{Algebra Lineare}
+Riproponiamo di seguito i problemi che trattiamo nell'ambito dell'algebra lineare:
+\begin{itemize}
+\item{prodotto tra matrici;}
+\item{calcolo del determinante;}
+\item{inversione di una matrice.}
+\end{itemize}
+Il primo esempio presentato per le operazioni tra matrici è quello del prodotto. In questo caso osserviamo che dal punto di vista computazionale ogni elemento che compone la matrice risultante può essere calcolato in modo del tutto indipendente dagli altri: calcolare l'elemento in posizione $(i,j)$ necessita esclusivamente dell'$i-esima$ riga della prima matrice e della $j-esima$ colonna della seconda. Possiamo quindi scrivere l'algoritmo parallelo in questo modo:
+\begin{verbatim}
+    ProdottoMatriciParallelo(A : matrice MxN, B : matrice NxP)
+        begin
+            C = matrice di zeri MxP
+            for i = 1,..,M do
+                for j = 1,..,P do
+                    Esegui in parallelo la seguente operazione:
+                        for k = 1,..,N do
+                            C[i][j] = C[i,j] + A[i][k] + B[k][j]
+                        done
+                done
+            done
+            return C
+        end
+\end{verbatim}
+Avendo a disposizione $M*P$ processori otteniamo una complessità pari a $\mathcal{O}(N)$.\\
+Il calcolo del determinante, come abbiamo visto, può essere implementato in modo inefficiente (metodo di Laplace) o efficiente (metodo di riduzione di Gauss). La parallelizzazione del primo caso è semplice: va effettuata sul calcolo dei vari determinanti per ogni minore ottenuto scorrendo una riga/colonna della matrice. Data una matrice $A$ di dimensioni $N$x$N$ possiamo quindi scrivere l'algoritmo in questo modo:
+\begin{enumerate}
+\item{\textit{Caso base: se N = 1 allora restituisci l'unico elemento presente in matrice.}}
+\item{\textit{Se N > 1, scegli una riga o una colonna i tale che $i \in [1,..N]$ e calcola in parallelo i determinanti dei minori $A_{i,j}$ per ogni $j \in [1,..,N]$ e moltiplicali per $(-1)^{i+j}$.}}
+\item{\textit{Somma i risultati ottenuti.}}
+\end{enumerate}
+Anche in questo caso il parallelismo garantisce un buon guadagno di prestazioni. Concentriamoci ora sul caso efficiente: ricordiamo che si tratta di eseguire sottrazioni iterativamente tra le varie righe (prese due a due) per ottenere una matrice triangolare, dopodiché si moltiplicano i valori sulla diagonale. In questo caso l'unico modo per introdurre parallelismo è quello di eseguire in parallelo il prodotto finale: ricavare la matrice triangolare non può essere fatto in parallelo. Di fatto il calcolo va eseguito in larga parte in modo sequenziale, dunque può risultare poco conveniente introdurre risorse aggiuntive.\\
+Vedremo nel capitolo successivo come questo si ripercuote concretamente in un'esecuzione parallela.\\
+L'ultimo caso, l'operazione di inversione di matrici, è per certi versi legato al calcolo del determinante, ma fortunatamente qui possiamo introdurre un altro livello di parallelismo. Invertire una matrice $N$x$N$ significa calcolare $N^2$ determinanti, ognuno in maniera indipendente dagli altri. Possiamo quindi scrivere, presa una matrice $A$ di dimensioni $N$x$N$:
+\begin{enumerate}
+\item{\textit{Calcola la matrice dei cofattori, in cui ogni cofattore è calcolato in parallelo.}}
+\item{\textit{Moltiplica ogni elemento per $\frac{1}{det(A)}$.}}
+\item{\textit{La matrice $A^{-1}$ è la matrice dei cofattori traslata.}}
+\end{enumerate}
+\section{Grafi}

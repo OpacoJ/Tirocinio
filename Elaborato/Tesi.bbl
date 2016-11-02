@@ -16,30 +16,5 @@
   {}
 \endgroup
 
-\sortlist[entry]{nty/global/}
-  \entry{Placeholder}{article}{}
-    \name{author}{1}{}{%
-      {{hash=mmI}{%
-         prefix={me},
-         prefix_i={m\bibinitperiod},
-         family={medesimo},
-         family_i={m\bibinitperiod},
-         given={Io},
-         given_i={I\bibinitperiod},
-      }}%
-    }
-    \strng{namehash}{mIm1}
-    \strng{fullhash}{mIm1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{sortinit}{M}
-    \field{sortinithash}{M}
-    \field{issue}{1}
-    \field{pages}{2\bibrangedash 3}
-    \field{title}{Lor Anittal}
-    \field{volume}{1}
-    \field{journaltitle}{Boh}
-    \field{year}{2016}
-  \endentry
-\endsortlist
+\sortlist[entry]{nty/global/}\endsortlist
 \endinput

@@ -108,52 +108,52 @@ Un ultimo concetto da tener presente nella complessità algoritmi è il principi
 Di seguito verranno presentati alcuni esempi di algoritmi sequenziali, molti dei quali verranno implementati a livello di codice alla fine dell'elaborato.
 \section{Ordinamento}
 L'ordinamento di un insieme di oggetti confrontabili è uno degli problemi tipici del calcolo. Ne esistono di diversi tipi, il che lo rende un esempio perfetto per confrontare le varie alternative.\\
-Prendiamo ad esempio due algoritmi piuttosto comuni in questo campo: quicksort e mergesort. In questo caso, ad esempio i vari casi di esecuzione cambiano:
+Prendiamo ad esempio due algoritmi piuttosto comuni in questo campo: quicksort e mergesort. In pseudocodice saranno:
+\begin{verbatim}
+    Quicksort(L = [a1,...,an])
+        if(n <= 1) then
+            return L
+        else
+            scegli un elemento "p" in L
+	        calcola la lista "left" di elementi minori di p
+	        calcola la lista "right" di elementi maggiori di p
+	        left = Quicksort(left)
+	        right = Quicksort(right)
+	        return left : [p] : right
+
+
+    Mergesort(L = [a1,..,an])
+        begin
+        if(n <= 1) then
+            return L
+        else
+            dividi la lista L a metà, creando le liste "left" e "right" 
+            left = Mergesort(left)
+            right = Mergesort(right)
+            return merge(left, right)
+        end
+        
+    merge(left, right)
+        begin
+        if(left = []) return right
+        else if(right = []) return left
+        else
+            h1 = head(left)
+            h2 = head(right)
+            if (h1 < h2) then
+                t = tail(left)
+                return [h1] : merge(t, right)
+            else
+                t = tail(right)
+                return [h2] : merge(left, t)
+        end
+\end{verbatim}
+In questo caso, ad esempio i vari casi di esecuzione cambiano, anche a seconda del caso in analisi:
 \begin{itemize}
 \item{caso migliore:  $\mathcal {O}(n \log {}n)$ per quicksort e  $\mathcal {O}(n \log {}n)$ per mergesort;}
 \item{caso peggiore:  $\mathcal {O}(n^2)$ per quicksort e  $\mathcal {O}(n \log {}n)$ per mergesort;}
-\item{caso medio:  $\mathcal {O}(n \log {}n)$ per quicksort e  $\mathcal {O}(n \log {}n)$ per mergesort;}
+\item{caso medio:  $\mathcal {O}(n \log {}n)$ per quicksort e  $\mathcal {O}(n \log {}n)$ per mergesort.}
 \end{itemize}
-\subsubsection{Pseudocodice}
-\begin{verbatim}
-Quicksort(L = [a1,...,an])
-    if(n <= 1) then
-        return L
-    else
-        scegli un elemento "p" in L
-	    calcola la lista "left" di elementi minori di p
-	    calcola la lista "right" di elementi maggiori di p
-	    left = Quicksort(left)
-	    right = Quicksort(right)
-	    return left : [p] : right
-
-
-Mergesort(L = [a1,..,an])
-    begin
-    if(n <= 1) then
-        return L
-    else
-        dividi la lista L a metà, creando le liste "left" e "right" 
-        left = Mergesort(left)
-        right = Mergesort(right)
-        return merge(left, right)
-    end
-        
-merge(left, right)
-    begin
-    if(left = []) return right
-    else if(right = []) return left
-    else
-        h1 = head(left)
-        h2 = head(right)
-        if (h1 < h2) then
-            t = tail(left)
-            return [h1] : merge(t, right)
-        else
-            t = tail(right)
-            return [h2] : merge(left, t)
-    end
-\end{verbatim}
 \section{Algebra Lineare}
 Facciamo degli esempi riguardanti le operazioni con matrici:
 \begin{itemize}
@@ -161,14 +161,35 @@ Facciamo degli esempi riguardanti le operazioni con matrici:
 \item{calcolo del determinante;}
 \item{inversione di una matrice.}
 \end{itemize}
-In caso di prodotto di una matrice $mxn$ con una $nxp$ sarà necessario un algoritmo di complessità asintotica  $\mathcal {O}(n*m*p)$; nel caso peggiore questo si traduce in una complessità $\mathcal {O}(n^3)$.
-
+\newpage
+\noindent Nel primo caso l'algoritmo per calcolare il prodotto tra due matrici $A$ e $B$ è il seguente:
+\begin{verbatim}
+    ProdottoMatrici(A : matrice MxN, B : matrice NxP)
+        begin
+            C = matrice di zeri MxP
+            for i = 1,..,M do
+                for j = 1,..,P do
+                    for k = 1,..,N do
+                        C[i][j] = C[i,j] + A[i][k] + B[k][j]
+                    done
+                done
+            done
+            return C
+        end
+\end{verbatim}
+In caso di prodotto di una matrice $MxN$ con una $NxP$ l'algoritmo avrà complessità asintotica  $\mathcal {O}(N*M*P)$; nel caso peggiore questo si traduce in una complessità $\mathcal {O}(n^3)$.\\
 Nel caso del calcolo del determinante di una matrice quadrata $A$ di dimensione $n$, solitamente viene sfruttato il metodo di Laplace, mediante il seguente algoritmo ricorsivo:
-\begin{center}
-{$det(A_k) \ = \ \sum\limits_{i=1}^n (-1)^{i+k} a_{i,k} det(A_{i,k})$}
-\end{center}
-in cui $a_{i,k}$ è l'elemento $(i,k)$ della matrice $A$ e $A_{i,k}$ è il minore ottenuto eliminando da $A$ la \textit{i-esima} riga e la \textit{k-esima} colonna.\\
-In questo caso la complessità è evidentemente inefficiente: si tratta di calcolare ricorsivamente per ogni determinante di ordine $n$ altri $n$ determinanti di ordine $n-1$. In altre parole possiede una complessità di $\mathcal {O}(n!)$. Si tratta ovviamente di un algoritmo altamente sconveniente da utilizzare, anche per problemi di piccole dimensioni. In questi casi è consigliabile cambiare strategia: una possibile alternativa è rappresentata dal \textit{metodo di eliminazione di Gauss}. In sostanza si converte una matrice quadrata in una matrice triangolare (cioè formata da zeri al di sotto/sopra della sua diagonale) e calcolarne il determinante (operazione che si riduce a moltiplicare gli elementi sulla diagonale). La procedura consiste in tre passaggi:
+\[det(A) =\left\{
+  \begin{array}{lr}
+    a_{1,1} & \ se \ n  \ = \ 1 \\
+    \sum\limits_{i=1}^n (-1)^{i+k} a_{i,k} det(A_{i,k}) & \ altrimenti
+  \end{array}
+\right.
+\]\\
+in cui, preso un qualsiasi $i \in [1,..,n]$, $a_{i,k}$ è l'elemento $(i,k)$ della matrice $A$ e $A_{i,k}$ è il minore ottenuto eliminando da $A$ la \textit{i-esima} riga e la \textit{k-esima} colonna.\\
+In questo caso la complessità è evidentemente inefficiente: si tratta di calcolare ricorsivamente per ogni determinante di ordine $n$ altri $n$ determinanti di ordine $n-1$. In altre parole possiede una complessità di $\mathcal {O}(n!)$. Si tratta ovviamente di un algoritmo altamente sconveniente da utilizzare, anche per problemi di piccole dimensioni. In questi casi è consigliabile cambiare strategia: una possibile alternativa è rappresentata dal \textit{metodo di eliminazione di Gauss}. In sostanza si converte una matrice quadrata in una matrice triangolare (cioè formata da zeri al di sotto/sopra della sua diagonale) e calcolarne il determinante (operazione che si riduce a moltiplicare gli elementi sulla diagonale).
+\newpage
+\noindent La procedura consiste in tre passaggi:
 \begin{enumerate}
 \item{\textit{Se la prima riga ha il primo elemento nullo, essa viene scambiata con una riga che ha il primo elemento non nullo. Se tutte le righe hanno il primo elemento nullo, vai al punto 3.\\}}
 \item{\textit{Per ogni riga $A_{i}$ con primo elemento non nullo, eccetto la prima, moltiplica la prima riga per un coefficiente scelto in maniera tale che la somma tra la prima riga e $A_{i}$ abbia il primo elemento nullo (quindi coefficiente = $-\frac{a_{i1}}{a_{11}}$. Sostituisci $A_{i}$ con la somma appena ricavata.\\}}
@@ -180,22 +201,22 @@ L'ultimo esempio dell'algebra lineare che affronteremo è quello della matrice i
 \begin{center}
 {$A^{-1} = \frac{1}{det(A)}(cof(A))^T$\\}
 \end{center}
-In questo caso $cof(A)$ è la matrice dei cofattori o dei complementi algebrici di A, $a_{11}, ..., a_{nn}$, ottenuti nel seguente modo:
+In questo caso $cof(A)$ è la matrice dei cofattori o dei complementi algebrici di A, $a_{11},.., a_{nn}$, ottenuti nel seguente modo:
 \begin{center}
 {$a_{ij} = (-1)^{i+j} det(A_{ij})$ \\}
 \end{center}
-Con $i,j\rightarrow[1..n]$, $A_{ij}$ = A priva della $i-esima$ riga e della $j-esima$ colonna.\\
+Con $i,j\rightarrow[1,..,n]$, $A_{ij}$ = A priva della $i-esima$ riga e della $j-esima$ colonna.\\
 In questo caso la complessità dipende esclusivamente dall'algoritmo usato per ottenere il determinante: poiché in questo caso è un'operazione eseguita $n^2$ volte, l'efficienza/inefficienza si conserva.
 \section{Grafi}
-Un grafo è una struttura matematica composta da un insieme di elementi detti nodi che si possono collegare tra loro mediante oggetti archi. Formalmente un grafo $G$ è una coppia di elementi $<N, E>$ in cui $N$ è l'insieme dei nodi, ed $E$ l'insieme degli archi; ogni arco è definito come $e \ = \ (n1,n2)$ in cui $n1,n2 \in N$ sono i nodi collegati. Definiamo inoltre "cammino" da un nodo $n_1$ a un nodo $n_m$ una sequenza di archi $(n_1,n_2),(n_2,n_3),..,(n_{m-1}, n_m)$.\\
-Esistono numerose proprietà e operazioni sui grafi, ma ci concentreremo su alcuni classici problemi riguardanti i grafi:
+Un grafo è una struttura matematica composta da un insieme di elementi detti nodi che si possono collegare tra loro mediante oggetti archi. Formalmente un grafo $G$ è una coppia di elementi $<N, E>$ in cui $N$ è l'insieme dei nodi, ed $E$ l'insieme degli archi; ogni arco è definito come $e \ = \ (n1,n2)$ in cui $n1,n2 \in N$ sono i nodi collegati. Definiamo inoltre "cammino" da un nodo $n_1$ a un nodo $n_m$ una sequenza di archi $(n_1,n_2),(n_2,n_3),..,(n_{m-1}, n_m)$.
+\newpage
+\noindent Esistono numerose proprietà e operazioni sui grafi, ma ci concentreremo su alcuni classici problemi riguardanti i grafi:
 \begin{itemize}
 \item{grafo connesso;}
 \item{cammino minimo.}
 \end{itemize}
 Molti di questi problemi sfrutteranno le leggi dell'algebra lineare, ovvero costruendo una matrice di adiacenza così definita: si crea una matrice quadrata di dimensione pari alla cardinalità dell'insieme dei nodi in cui ogni elemento $m_{ij}$ della matrice rappresenta un possibile collegamento tra i nodi $n_i$ e $n_j$; se l'arco $(n_i,n_j)$ o $(n_j,n_i)$ appartengono all'insieme degli archi del grafo, allora $m_{ij} = 1$, altrimenti $m_{ij} = 0$. Poiché semplicità studieremo i grafi non orientati (ovvero i grafi tali che ogni arco $i-j$ rappresenta anche un arco $j-i$).\\
-Analizziamo ora i vari problemi nel dettaglio. Nel primo caso diremo che un grafo $G = <N, E>$ è connesso se e solo se per ogni coppia di nodi $n_i, n_j \in N$ esiste un cammino che li unisce. Il metodo più semplice per verificare questa proprietà è quello sfruttare la matrice di adiacenza $M$ relativa $G$. 
-\newpage
+Analizziamo ora i vari problemi nel dettaglio. Nel primo caso diremo che un grafo $G = <N, E>$ è connesso se e solo se per ogni coppia di nodi $n_i, n_j \in N$ esiste un cammino che li unisce. Il metodo più semplice per verificare questa proprietà è quello sfruttare la matrice di adiacenza $M$ relativa $G$. \\
 L'algoritmo è il seguente:
 \begin{verbatim}
     n = numero di nodi
@@ -208,7 +229,8 @@ L'algoritmo è il seguente:
         done
     done
 \end{verbatim}
-Se al termine dell'algoritmo la matrice contiene degli zeri il grafo non è connesso.\\
+\newpage
+\noindent Se al termine dell'algoritmo la matrice contiene degli zeri il grafo non è connesso.\\
 Si tratta di tre cicli innestati, proporzionali alla dimensione del grafo, dunque la complessità di calcolo equivale a $\mathcal{O}(n^3)$.\\
 Il secondo caso che affronteremo è la ricerca di un cammino di costo minimo tra due nodi raggiungibili. Esistono molti algoritmi che risolvono questo problema, ma ci concentreremo su quello più utilizzato e conosciuto: l'algoritmo di Dijkstra. Si tratta di un algoritmo appartenete alla categoria degli \textit{algoritmi greedy}, ovvero quelli che, partendo da una soluzione parziale, la estendono fino a che non è più possibile. A ogni iterazione l'algoritmo sceglie l'estensione giudicata più conveniente e ripete l'esecuzione.\\
 L'istanza del problema è data da un grafo $G = <N,E>$, una sorgente $s \in N$ e una funzione $w: E \rightarrow \mathbb{Q}$ che definisce un costo (o "peso")\footnote{Si considererà $w(e) \geq 0 \ \forall e \in E$} di ogni arco presente nel grafo. Definiamo inoltre $L(n)$ la lista dei nodi raggiungibili da $n$ con un arco $e \in E$. Dati questi elementi l'algoritmo calcolerà i cammini di costo minimo che collegano $s$ con ogni nodo $n \in N$.\\
@@ -229,14 +251,14 @@ La procedura è la seguente:
                     seleziona il nodo v in D avente C(v) minore
                     cancella n da D
                     for u in L(u) do
-                    if C(v) + w(v,u) < C(u) then
-                        if C(v) = infinity then
-                            aggiungi u a D
+                        if C(v) + w(v,u) < C(u) then
+                            if C(v) = infinity then
+                                aggiungi u a D
+                            end if
+                            C(u) = C(v) + w(v,u)
+                            P(u) = v
                         end if
-                        C(u) = C(v) + w(v,u)
-                        P(u) = v
-                    end if
-                done
+                    done
                 end
             return C, P
         end
