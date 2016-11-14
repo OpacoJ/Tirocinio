@@ -16,5 +16,28 @@
   {}
 \endgroup
 
-\sortlist[entry]{nty/global/}\endsortlist
+\sortlist[entry]{nty/global/}
+  \entry{maclane}{book}{}
+    \name{author}{1}{}{%
+      {{hash=MLS}{%
+         family={Mac\bibnamedelima Lane},
+         family_i={M\bibinitperiod\bibinitdelim L\bibinitperiod},
+         given={Saunders},
+         given_i={S\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{2}{%
+      {Springer Science}%
+      {Business Media}%
+    }
+    \strng{namehash}{MLS1}
+    \strng{fullhash}{MLS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{M}
+    \field{sortinithash}{M}
+    \field{title}{Categories for the Working Mathematician}
+    \field{year}{1971}
+  \endentry
+\endsortlist
 \endinput

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.7.4)  2 NOV 2016 14:10
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.7.4)  14 NOV 2016 15:51
 entering extended mode
 **./Tesi.tex
 (Tesi.tex
@@ -1534,6 +1534,29 @@ Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 ))
+("C:\Program Files\MiKTeX 2.9\tex\latex\csquotes\csquotes.sty"
+Package: csquotes 2016/01/31 v5.1g context-sensitive quotations (JAW)
+\csq@reset=\count104
+\csq@gtype=\count105
+\csq@glevel=\count106
+\csq@qlevel=\count107
+\csq@maxlvl=\count108
+\csq@tshold=\count109
+\csq@ltx@everypar=\toks21
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\csquotes\csquotes.def"
+File: csquotes.def 2016/01/31 v5.1g csquotes generic definitions (JAW)
+)
+Package csquotes Info: Trying to load configuration file 'csquotes.cfg'...
+Package csquotes Info: ... configuration file loaded successfully.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\csquotes\csquotes.cfg"
+File: csquotes.cfg 
+)
+Package csquotes Info: Option 'babel' depreciated.
+(csquotes)             Using 'autostyle'.
+Package csquotes Info: Enabling multilingual quotes.
+)
 ("C:\Program Files\MiKTeX 2.9\tex\latex\biblatex\biblatex.sty"
 Package: biblatex 2016/05/14 v3.4 programmable bibliographies (PK/JW/AB)
 
@@ -1543,7 +1566,7 @@ and LuaTeX
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\logreq\logreq.sty"
 Package: logreq 2010/08/04 v1.0 xml request logger
-\lrq@indent=\count104
+\lrq@indent=\count110
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\logreq\logreq.def"
 File: logreq.def 2010/08/04 v1.0 logreq spec v1.0
@@ -1551,49 +1574,49 @@ File: logreq.def 2010/08/04 v1.0 logreq spec v1.0
 ("C:\Program Files\MiKTeX 2.9\tex\latex\xstring\xstring.sty"
 ("C:\Program Files\MiKTeX 2.9\tex\generic\xstring\xstring.tex"
 \@xs@message=\write4
-\integerpart=\count105
-\decimalpart=\count106
+\integerpart=\count111
+\decimalpart=\count112
 )
 Package: xstring 2013/10/13  v1.7c  String manipulations (C Tellechea)
 )
-\c@tabx@nest=\count107
-\c@listtotal=\count108
-\c@listcount=\count109
-\c@liststart=\count110
-\c@liststop=\count111
-\c@citecount=\count112
-\c@citetotal=\count113
-\c@multicitecount=\count114
-\c@multicitetotal=\count115
-\c@instcount=\count116
-\c@maxnames=\count117
-\c@minnames=\count118
-\c@maxitems=\count119
-\c@minitems=\count120
-\c@citecounter=\count121
-\c@savedcitecounter=\count122
-\c@uniquelist=\count123
-\c@uniquename=\count124
-\c@refsection=\count125
-\c@refsegment=\count126
-\c@maxextratitle=\count127
-\c@maxextratitleyear=\count128
-\c@maxextrayear=\count129
-\c@maxextraalpha=\count130
-\c@abbrvpenalty=\count131
-\c@highnamepenalty=\count132
-\c@lownamepenalty=\count133
-\c@maxparens=\count134
-\c@parenlevel=\count135
-\blx@tempcnta=\count136
-\blx@tempcntb=\count137
-\blx@tempcntc=\count138
-\blx@maxsection=\count139
-\blx@maxsegment@0=\count140
-\blx@notetype=\count141
-\blx@parenlevel@text=\count142
-\blx@parenlevel@foot=\count143
-\blx@sectionciteorder@0=\count144
+\c@tabx@nest=\count113
+\c@listtotal=\count114
+\c@listcount=\count115
+\c@liststart=\count116
+\c@liststop=\count117
+\c@citecount=\count118
+\c@citetotal=\count119
+\c@multicitecount=\count120
+\c@multicitetotal=\count121
+\c@instcount=\count122
+\c@maxnames=\count123
+\c@minnames=\count124
+\c@maxitems=\count125
+\c@minitems=\count126
+\c@citecounter=\count127
+\c@savedcitecounter=\count128
+\c@uniquelist=\count129
+\c@uniquename=\count130
+\c@refsection=\count131
+\c@refsegment=\count132
+\c@maxextratitle=\count133
+\c@maxextratitleyear=\count134
+\c@maxextrayear=\count135
+\c@maxextraalpha=\count136
+\c@abbrvpenalty=\count137
+\c@highnamepenalty=\count138
+\c@lownamepenalty=\count139
+\c@maxparens=\count140
+\c@parenlevel=\count141
+\blx@tempcnta=\count142
+\blx@tempcntb=\count143
+\blx@tempcntc=\count144
+\blx@maxsection=\count145
+\blx@maxsegment@0=\count146
+\blx@notetype=\count147
+\blx@parenlevel@text=\count148
+\blx@parenlevel@foot=\count149
+\blx@sectionciteorder@0=\count150
 \labelnumberwidth=\skip44
 \labelalphawidth=\skip45
 \biblabelsep=\skip46
@@ -1604,81 +1627,81 @@ Package: xstring 2013/10/13  v1.7c  String manipulations (C Tellechea)
 \bibhang=\skip51
 \blx@bcfin=\read2
 \blx@bcfout=\write5
-\c@mincomprange=\count145
-\c@maxcomprange=\count146
-\c@mincompwidth=\count147
+\c@mincomprange=\count151
+\c@maxcomprange=\count152
+\c@mincompwidth=\count153
 Package biblatex Info: Trying to load biblatex default data model...
 Package biblatex Info: ... file 'blx-dm.def' found.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\biblatex\blx-dm.def")
 Package biblatex Info: Trying to load biblatex custom data model...
 Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
-\c@afterword=\count148
-\c@savedafterword=\count149
-\c@annotator=\count150
-\c@savedannotator=\count151
-\c@author=\count152
-\c@savedauthor=\count153
-\c@bookauthor=\count154
-\c@savedbookauthor=\count155
-\c@commentator=\count156
-\c@savedcommentator=\count157
-\c@editor=\count158
-\c@savededitor=\count159
-\c@editora=\count160
-\c@savededitora=\count161
-\c@editorb=\count162
-\c@savededitorb=\count163
-\c@editorc=\count164
-\c@savededitorc=\count165
-\c@foreword=\count166
-\c@savedforeword=\count167
-\c@holder=\count168
-\c@savedholder=\count169
-\c@introduction=\count170
-\c@savedintroduction=\count171
-\c@namea=\count172
-\c@savednamea=\count173
-\c@nameb=\count174
-\c@savednameb=\count175
-\c@namec=\count176
-\c@savednamec=\count177
-\c@translator=\count178
-\c@savedtranslator=\count179
-\c@shortauthor=\count180
-\c@savedshortauthor=\count181
-\c@shorteditor=\count182
-\c@savedshorteditor=\count183
-\c@labelname=\count184
-\c@savedlabelname=\count185
-\c@institution=\count186
-\c@savedinstitution=\count187
-\c@lista=\count188
-\c@savedlista=\count189
-\c@listb=\count190
-\c@savedlistb=\count191
-\c@listc=\count192
-\c@savedlistc=\count193
-\c@listd=\count194
-\c@savedlistd=\count195
-\c@liste=\count196
-\c@savedliste=\count197
-\c@listf=\count198
-\c@savedlistf=\count199
-\c@location=\count266
-\c@savedlocation=\count267
-\c@organization=\count268
-\c@savedorganization=\count269
-\c@origlocation=\count270
-\c@savedoriglocation=\count271
-\c@origpublisher=\count272
-\c@savedorigpublisher=\count273
-\c@publisher=\count274
-\c@savedpublisher=\count275
-\c@language=\count276
-\c@savedlanguage=\count277
-\c@pageref=\count278
-\c@savedpageref=\count279
+\c@afterword=\count154
+\c@savedafterword=\count155
+\c@annotator=\count156
+\c@savedannotator=\count157
+\c@author=\count158
+\c@savedauthor=\count159
+\c@bookauthor=\count160
+\c@savedbookauthor=\count161
+\c@commentator=\count162
+\c@savedcommentator=\count163
+\c@editor=\count164
+\c@savededitor=\count165
+\c@editora=\count166
+\c@savededitora=\count167
+\c@editorb=\count168
+\c@savededitorb=\count169
+\c@editorc=\count170
+\c@savededitorc=\count171
+\c@foreword=\count172
+\c@savedforeword=\count173
+\c@holder=\count174
+\c@savedholder=\count175
+\c@introduction=\count176
+\c@savedintroduction=\count177
+\c@namea=\count178
+\c@savednamea=\count179
+\c@nameb=\count180
+\c@savednameb=\count181
+\c@namec=\count182
+\c@savednamec=\count183
+\c@translator=\count184
+\c@savedtranslator=\count185
+\c@shortauthor=\count186
+\c@savedshortauthor=\count187
+\c@shorteditor=\count188
+\c@savedshorteditor=\count189
+\c@labelname=\count190
+\c@savedlabelname=\count191
+\c@institution=\count192
+\c@savedinstitution=\count193
+\c@lista=\count194
+\c@savedlista=\count195
+\c@listb=\count196
+\c@savedlistb=\count197
+\c@listc=\count198
+\c@savedlistc=\count199
+\c@listd=\count266
+\c@savedlistd=\count267
+\c@liste=\count268
+\c@savedliste=\count269
+\c@listf=\count270
+\c@savedlistf=\count271
+\c@location=\count272
+\c@savedlocation=\count273
+\c@organization=\count274
+\c@savedorganization=\count275
+\c@origlocation=\count276
+\c@savedoriglocation=\count277
+\c@origpublisher=\count278
+\c@savedorigpublisher=\count279
+\c@publisher=\count280
+\c@savedpublisher=\count281
+\c@language=\count282
+\c@savedlanguage=\count283
+\c@pageref=\count284
+\c@savedpageref=\count285
 \shorthandwidth=\skip52
 \shortjournalwidth=\skip53
 \shortserieswidth=\skip54
@@ -1706,13 +1729,13 @@ Package biblatex Info: Trying to load generic definitions...
 Package biblatex Info: ... file 'biblatex.def' found.
  ("C:\Program Files\MiKTeX 2.9\tex\latex\biblatex\biblatex.def"
 File: biblatex.def 2016/05/14 v3.4 biblatex compatibility (PK/JW/AB)
-\c@textcitecount=\count280
-\c@textcitetotal=\count281
-\c@textcitemaxnames=\count282
-\c@biburlnumpenalty=\count283
-\c@biburlucpenalty=\count284
-\c@biburllcpenalty=\count285
-\c@smartand=\count286
+\c@textcitecount=\count286
+\c@textcitetotal=\count287
+\c@textcitemaxnames=\count288
+\c@biburlnumpenalty=\count289
+\c@biburlucpenalty=\count290
+\c@biburllcpenalty=\count291
+\c@smartand=\count292
 )
 Package biblatex Info: Trying to load bibliography style 'numeric'...
 Package biblatex Info: ... file 'numeric.bbx' found.
@@ -1724,8 +1747,8 @@ Package biblatex Info: ... file 'standard.bbx' found.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\biblatex\bbx\standard.bbx"
 File: standard.bbx 2016/05/14 v3.4 biblatex bibliography style (PK/JW/AB)
-\c@bbx:relatedcount=\count287
-\c@bbx:relatedtotal=\count288
+\c@bbx:relatedcount=\count293
+\c@bbx:relatedtotal=\count294
 ))
 Package biblatex Info: Trying to load citation style 'numeric'...
 Package biblatex Info: ... file 'numeric.cbx' found.
@@ -1750,53 +1773,49 @@ Package biblatex Info: ... file 'biblatex.cfg' found.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\biblatex\biblatex.cfg"
 File: biblatex.cfg 
 ))
+Package csquotes Info: Checking for multilingual support...
+Package csquotes Info: ... found 'babel' package.
 Package biblatex Info: Trying to load language 'italian'...
 Package biblatex Info: ... file 'italian.lbx' found.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\biblatex\lbx\italian.lbx"
 File: italian.lbx 2016/05/14 v3.4 biblatex localization (PK/JW/AB)
-)
-
-Package biblatex Warning: 'babel/polyglossia' detected but 'csquotes' missing.
-(biblatex)                Loading 'csquotes' recommended.
-
-\@quotelevel=\count289
-\@quotereset=\count290
-(Tesi.aux (prefazione.aux) (chapter1.aux) (chapter2.aux) (chapter3.aux)
-(chapter4.aux))
+) (Tesi.aux
+(prefazione.aux) (chapter1.aux) (chapter2.aux) (chapter3.aux) (chapter4.aux))
 \openout1 = `Tesi.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Info: Redefining \it@ocap on input line 16.
-LaTeX Info: Redefining \it@ccap on input line 16.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Info: Redefining \it@ocap on input line 18.
+LaTeX Info: Redefining \it@ccap on input line 18.
 \AtBeginShipoutBox=\box26
-Package hyperref Info: Link coloring OFF on input line 16.
- ("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
+Package hyperref Info: Link coloring OFF on input line 18.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 
 ("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\gettitlestring.sty"
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count291
+\c@section@level=\count295
 )
-LaTeX Info: Redefining \ref on input line 16.
-LaTeX Info: Redefining \pageref on input line 16.
-LaTeX Info: Redefining \nameref on input line 16.
+LaTeX Info: Redefining \ref on input line 18.
+LaTeX Info: Redefining \pageref on input line 18.
+LaTeX Info: Redefining \nameref on input line 18.
 
 (Tesi.out) (Tesi.out)
 \@outlinefile=\write6
@@ -1805,17 +1824,17 @@ LaTeX Info: Redefining \nameref on input line 16.
 
 ("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count292
+\scratchcounter=\count296
 \scratchdimen=\dimen110
 \scratchbox=\box27
-\nofMPsegments=\count293
-\nofMParguments=\count294
-\everyMPshowfont=\toks21
-\MPscratchCnt=\count295
+\nofMPsegments=\count297
+\nofMParguments=\count298
+\everyMPshowfont=\toks22
+\MPscratchCnt=\count299
 \MPscratchDim=\dimen111
-\MPnumerator=\count296
-\makeMPintoPDFobject=\count297
-\everyMPtoPDFconversion=\toks22
+\MPnumerator=\count300
+\makeMPintoPDFobject=\count301
+\everyMPtoPDFconversion=\toks23
 ) ("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\epstopdf-base.sty"
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
@@ -1838,30 +1857,30 @@ Package biblatex Info: Data encoding 'utf8' specified.
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'Tesi.bbl' found.
  (Tesi.bbl)
-Package biblatex Info: Reference section=0 on input line 16.
-Package biblatex Info: Reference segment=0 on input line 16.
+Package biblatex Info: Reference section=0 on input line 18.
+Package biblatex Info: Reference segment=0 on input line 18.
 
-<logo.pdf, id=174, 179.67125pt x 179.67125pt>
+<logo.pdf, id=166, 179.67125pt x 179.67125pt>
 File: logo.pdf Graphic file (type pdf)
  <use logo.pdf>
-Package pdftex.def Info: logo.pdf used on input line 22.
+Package pdftex.def Info: logo.pdf used on input line 24.
 (pdftex.def)             Requested size: 56.90378pt x 56.9055pt.
-LaTeX Font Info:    Try loading font information for U+lasy on input line 36.
+LaTeX Font Info:    Try loading font information for U+lasy on input line 38.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\ulasy.fd"
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 36.
+LaTeX Font Info:    Try loading font information for U+msa on input line 38.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 36.
+LaTeX Font Info:    Try loading font information for U+msb on input line 38.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Overfull \hbox (51.11009pt too wide) in paragraph at lines 45--50
+Overfull \hbox (51.11009pt too wide) in paragraph at lines 47--52
 [][] 
  []
 
@@ -1877,7 +1896,7 @@ Overfull \hbox (51.11009pt too wide) in paragraph at lines 45--50
 ge.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.55 ...atematicamente puro}{33}{subsection.6.2.1}
+l.63 ...llelismo in Haskell}{35}{subsection.5.1.5}
                                                    [1
 
 
@@ -1890,7 +1909,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.70 \part
+l.72 \part
           {Calcolo Sequenziale} [2] [3
 
 ]
@@ -2017,22 +2036,12 @@ Overfull \hbox (5.10352pt too wide) in paragraph at lines 127--127
  (chapter3.tex
 Capitolo 5.
 
-Underfull \hbox (badness 10000) in paragraph at lines 2--8
+Underfull \hbox (badness 10000) in paragraph at lines 2--7
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2--8
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 2--8
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 2--8
+Underfull \hbox (badness 10000) in paragraph at lines 2--7
 
  []
 
@@ -2040,69 +2049,61 @@ Underfull \hbox (badness 10000) in paragraph at lines 2--8
 
 
 ] [30]
+Underfull \hbox (badness 10000) in paragraph at lines 44--45
+
+ []
+
+[31] [32] [33] [34]
+Overfull \hbox (23.624pt too wide) in paragraph at lines 122--122
+[]\T1/cmtt/m/n/12 return a >>= k  =  k a                      <-- identità a si
+nistra[] 
+ []
+
+
+Overfull \hbox (11.27701pt too wide) in paragraph at lines 122--122
+[]\T1/cmtt/m/n/12 m >>= return  =  m                          <-- identità a de
+stra[] 
+ []
+
+[35] [36]
 Capitolo 6.
-
-Overfull \hbox (12.53079pt too wide) in paragraph at lines 28--32
-\T1/cmr/m/n/12 Il pac-ka-ge che uti-liz-ze-mo per que-sto la-vo-ro sa-ran-no Pa
--ral-lel ([]$\T1/cmtt/m/n/12 https : / / hackage .
- []
-
-[31
-
-]
-Underfull \hbox (badness 10000) in paragraph at lines 42--43
-
- []
-
-[32]
-Underfull \hbox (badness 10000) in paragraph at lines 53--55
-
- []
-
-[33] [34] [35] [36]
-Capitolo 7.
 [37
 
-] [38] [39]
-Overfull \hbox (18.17392pt too wide) in paragraph at lines 171--172
+] [38] [39] [40]
+Overfull \hbox (18.17392pt too wide) in paragraph at lines 206--207
 \T1/cmr/m/n/12 La mo-na-de Eval è una strut-tu-ra con-te-nu-ta nel pac-ka-ge Co
 n-tol.Parallel.Strategies.
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 181--183
-
- []
-
-[40]
-Underfull \hbox (badness 10000) in paragraph at lines 203--204
+[41]
+Underfull \hbox (badness 10000) in paragraph at lines 238--239
 
  []
 
-[41]) [42] [43
+[42]) [43] [44
 
 
 ]
 \openout2 = `chapter4.aux'.
 
  (chapter4.tex
-Capitolo 8.
+Capitolo 7.
 
 Overfull \hbox (42.14447pt too wide) in paragraph at lines 21--21
 []\T1/cmtt/m/n/12 parquicksort (x:xs) = (left `par` right) `pseq` (left ++ [x] 
 ++ right)[] 
  []
 
-[44
+[45
 
 
-] [45]
+] [46]
 Overfull \hbox (29.79749pt too wide) in paragraph at lines 127--127
 []                   \T1/cmtt/m/n/12 ++ (replicate (n-m-1) 0))] ++ (identity2 n
  (m+1))[] 
  []
 
-[46] [47]
+[47] [48]
 Overfull \hbox (17.4505pt too wide) in paragraph at lines 163--163
 []\T1/cmtt/m/n/12 minor m row col = deleteRow m1 row where m1 = (deleteColumn m
  col)[] 
@@ -2114,7 +2115,7 @@ Overfull \hbox (66.83844pt too wide) in paragraph at lines 163--163
 t s = (-1)^i][] 
  []
 
-[48]
+[49]
 Overfull \hbox (66.83844pt too wide) in paragraph at lines 194--194
 []            \T1/cmtt/m/n/12 let a = (head m !! i), let m1 = (minor m i 0), le
 t s = (-1)^i][] 
@@ -2126,36 +2127,37 @@ Overfull \hbox (85.35892pt too wide) in paragraph at lines 194--194
 j <- [0..dim-1]][] 
  []
 
-[49]
+[50]
 Overfull \hbox (29.79749pt too wide) in paragraph at lines 223--223
 []\T1/cmtt/m/n/12 setEdge (x, y) v m = replacePosition x y v (replacePosition y
  x v m)[] 
  []
 
-[50]) [51]
+[51]) [52]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 99.
+ [53
 
-LaTeX Warning: Empty bibliography on input line 95.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 97.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 97.
-(Tesi.aux (prefazione.aux) (chapter1.aux) (chapter2.aux) (chapter3.aux)
-(chapter4.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 97.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 97.
+]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 99.
+ (Tesi.aux (prefazione.aux) (chapter1.aux) (chapter2.aux)
+(chapter3.aux) (chapter4.aux))
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 99.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 99.
 Package rerunfilecheck Info: File `Tesi.out' has not changed.
-(rerunfilecheck)             Checksum: BDE45B209E8D85D540E2A3BB8C096BD3;3087.
+(rerunfilecheck)             Checksum: 0443D1BA3AEBC12EF73E3247985A417E;2987.
 Package logreq Info: Writing requests to 'Tesi.run.xml'.
 \openout1 = `Tesi.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 18344 strings out of 493335
- 274531 string characters out of 3139258
- 480698 words of memory out of 3000000
- 21481 multiletter control sequences out of 15000+200000
+ 18966 strings out of 493335
+ 284974 string characters out of 3139258
+ 498614 words of memory out of 3000000
+ 22098 multiletter control sequences out of 15000+200000
  21846 words of font info for 62 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 38i,8n,47p,1032b,2904s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 38i,8n,47p,1032b,2952s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/cm-super/cm-super-t1.enc}<C:/Pro
 gram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Fil
 es/MiKTeX 2.9/fonts/type1/public/amsfonts/cmextra/cmex8.pfb><C:/Program Files/M
@@ -2183,9 +2185,9 @@ uper/sfrm1728.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/cm-super/sfrm
 2074.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/cm-super/sfti1200.pfb>
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/cm-super/sftt1000.pfb><C:/Progr
 am Files/MiKTeX 2.9/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on Tesi.pdf (53 pages, 1143505 bytes).
+Output written on Tesi.pdf (55 pages, 1147260 bytes).
 PDF statistics:
- 657 PDF objects out of 1000 (max. 8388607)
- 118 named destinations out of 1000 (max. 500000)
- 354 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 653 PDF objects out of 1000 (max. 8388607)
+ 115 named destinations out of 1000 (max. 500000)
+ 338 words of extra memory for PDF output out of 10000 (max. 10000000)
 

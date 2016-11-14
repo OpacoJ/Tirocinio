@@ -1,15 +1,17 @@
-\chapter{Il Parallelismo oggi}
+\chapter{Programmazione Parallela}
 Cominciamo a discutere della parallelizzazione in senso più concreto partendo dalla \textbf{prima legge di Moore}:\\\\
 \textit{"La complessità di un microcircuito, misurata ad esempio tramite il numero di transistori per chip, raddoppia ogni 18 mesi"}\\\\
-Dal punto di vista industriale la creazione di processori più potenti e aventi una frequenza di clock superiore comincia a perdere significato, come dimostrato dal fatto che la potenza dei singoli core abbiano avuto un improvviso blocco verso gli inizi degli anni 2000. Questo fenomeno ha reso evidenti i limiti della legge di Moore sopracitata: di per sè i processori non sono migliorati, eppure la potenza di calcolo delle architetture non ha accennato a rallentare. Come ci spieghiamo tutto ciò?\\
+Dal punto di vista industriale la creazione di processori più potenti aventi una frequenza di clock superiore comincia a perdere significato, come dimostrato dal fatto che la potenza dei singoli core abbiano avuto un improvviso blocco verso gli inizi degli anni 2000. Questo fenomeno ha reso evidenti i limiti della legge di Moore sopracitata: di per sè i processori non sono migliorati, eppure la potenza di calcolo delle architetture non ha accennato a rallentare. Come ci spieghiamo tutto ciò?\\
 Di certo uno sviluppo tecnologico c'è stato, si è solo spostato verso un altro campo: i multiprocessori. Raggiunti i limiti fisici legati alla capacità di elaborazione dei core, la strategia migliore (e per certi versi anche la sola disponibile) per aumentare la potenza di calcolo è stata la concentrazione di molteplici processori installati sulla stessa macchina che lavorano in parallelo.\\
-A causa di ciò, il problema della parallelizzazione è concetto sempre più presente nel panorama informatico moderno, che può aprire svariate opportunità di ricerca anche dal punto di vista dei linguaggi di programmazione. L'idea di concedere ad un programmatore gli strumenti giusti per ottimizzare le risorse della macchina già nella compilazione del codice da eseguire è al tempo stesso affascinante e allettante. Non è quindi un caso che numerosi linguaggi si siano attrezzati per fornire strutture adatte a questo scopo.\\\\\\
+A causa di ciò, il problema della parallelizzazione è concetto sempre più presente nel panorama informatico moderno, può aprire svariate opportunità di ricerca anche dal punto di vista dei linguaggi di programmazione. L'idea di concedere ad un programmatore gli strumenti giusti per ottimizzare le risorse della macchina già nella compilazione del codice da eseguire è al tempo stesso affascinante e allettante. Non è quindi un caso che numerosi linguaggi si siano attrezzati per fornire strutture adatte a questo scopo.
+\newpage
+\noindent
 In generale, quando si tratta di paradigmi di programmazione, distinguiamo due diverse tecniche di programmazione parallela:
 \begin{itemize}
 \item{implicita: il sistema riconosce autonomamente i meccanismi da adoperare per dividere il problema in modo da poterne eseguire le parti parallelamente; di fatto il programmatore non effettua nessuna precisazione sulla natura dell'esecuzione e scrive il codice come se fosse un programma sequenziale;}
 \item{esplicita: il ruolo del programmatore è quello di partizionare il problema nel modo da lui ritenuto migliore; la stesura del codice è cruciale.}
 \end{itemize}
-La parallelizzazione esplicita è quella che ci interessa maggiormente: vogliamo trovare un modo efficace per parallelizzare un'esecuzione in maniera diretta, definendo le parti da suddividere all'interno del problema già a livello di codice.
+La parallelizzazione esplicita è quella che ci interessa maggiormente: vogliamo trovare un modo efficace per parallelizzare un'esecuzione in maniera diretta, definendo le parti da suddividere all'interno del problema già a livello di codice; ovviamente il vincolo richiesto è di ottenere in parallelo lo stesso risultato che si otterrebbe nell'esecuzione sequenziale (in questo caso si parla anche di \textit{parallelismo deterministico}). 
 
 %\chapter{Linguaggi di Programmazione Paralleli}
 
@@ -17,20 +19,20 @@ La parallelizzazione esplicita è quella che ci interessa maggiormente: vogliamo
 
 %\chapter{Chapel (CRAY)}
 
-\chapter{Haskell}
-Tra tutti i linguaggi che consentono una gestione delle risorse interne delle architetture multi processore, Haskell è un ottimo candidato per essere il più fruibile tra tutti quelli disponibili.\\
-Oltre a fornire un'interessante serie di caratteristiche formali, quali la programmazione funzionale, la lazy evaluation, le funzioni higher-order e altre che vedremo in dettaglio, possiede già un ricco quantitativo di librerie e strutture che consentono la creazione di programmi paralleli già nel codice
-\section{Introduzione al linguaggio Haskell}
-Haskell è un linguaggio di funzionale puro caratterizzato da una tipizzazione forte e statica, creato alla fine degli anni '80, disponibile e integrabile su tutte le principali piattaforme software odierne. Possiede le caratteristiche più note dei linguaggi di programmazione (funzionali e non), tra cui la lazy evaluation, il polimorfismo e le funzioni di ordine superiore, in virtù del lambda calcolo, su cui si regge dal punto di vista matematico. Oltre a questo supporta i tipi di dati più comuni, come gli interi e i valori booleani, e permette di crearne di nuovi sotto forma di strutture dati.\\
+\section{Haskell}
+Tra tutti i linguaggi che consentono una gestione delle risorse interne delle architetture multiprocessore, Haskell è un ottimo candidato per essere il più fruibile tra tutti quelli disponibili.\\
+Oltre a fornire un'interessante serie di caratteristiche formali, quali la programmazione funzionale, la lazy evaluation, le funzioni higher-order e altre che vedremo in dettaglio, possiede già un ricco quantitativo di librerie e strutture che consentono la creazione di programmi paralleli già nel codice.
+\subsection{Introduzione al linguaggio Haskell}
+Haskell è un linguaggio funzionale puro creato alla fine degli anni '80, disponibile e integrabile su tutte le principali piattaforme software odierne. Possiede le caratteristiche più note dei linguaggi di programmazione (funzionali e non) tra cui la lazy evaluation, il polimorfismo e le funzioni di ordine superiore e supporta il lambda calcolo, su cui si regge dal punto di vista matematico. Caratterizzato da una tipizzazione forte e statica, supporta i tipi di dati più comuni, come gli interi e i valori booleani, e permette di crearne di nuovi sotto forma di strutture dati.\\
 Particolare di non poco conto per il nostro interesse, è già pienamente avviato nel mondo dell'elaborazione parallela e dispone di numerose librerie in open source che supportano programmazione parallela e concorrente.\\
-Descrivere nel dettaglio un intero linguaggio di programmazione rischia di risultare troppo complicato, pertanto ci limiteremo a descriverne i punti salienti per concentrarci sul lato della programmazione parallela; un tutorial su come muovere i primi passi in Haskell è disponibile sul sito \url{https://www.schoolofhaskell.com/}.
+Descrivere nel dettaglio un intero linguaggio di programmazione rischia di risultare troppo complicato, pertanto ci limiteremo a descriverne i punti salienti per concentrarci sul lato della programmazione parallela; un tutorial su come muovere i primi passi in Haskell è disponibile al sito \url{https://www.schoolofhaskell.com/}.
 \subsection{Installazione}
 Per poter eseguire correttamente Haskell è necessario installare il compilatore associato, GHC, the Glasgow Haskell Compiler, disponibile online su \url{https://www.haskell.org/ghc/} per tutte piattaforme Linux, Windows e Mac OS.\\
 Oltre a questo è disponibile anche il tool Cabal per l'installazione di package aggiuntivi, scaricabile dal sito \url{https://www.haskell.org/cabal/}.\\
-Il package che utilizzemo per questo lavoro saranno Parallel (\url{https://hackage.haskell.org/package/parallel}) per l'esecuzione parallela.\\
-Inoltre è consigliabile un editor di programmazione adatto allo scopo. Un semplice editor di testo è sufficiente, ma è consigliabile utilizzare IDE più specifici, come Leksah o Eclipse. I file di haskell hanno tutti formato \textit{.hs} .
-\section{Perchè Haskell?}
-Ci sono svariati motivi legati all'utilizzo di Haskell per programmare in parallelo:
+Il package utilizzato per questo lavoro sono Parallel (\url{https://hackage.haskell.org/package/parallel}) per l'esecuzione parallela.\\
+Inoltre è consigliabile un editor di programmazione adatto allo scopo. Un semplice editor di testo è sufficiente, ma è consigliabile utilizzare IDE più specifici, come Leksah o Eclipse. I file di haskell hanno tutti estensione \textit{.hs} .
+\subsection{Perchè Haskell?}
+Ci sono svariati motivi legati all'utilizzo di Haskell per programmare in parallelo; nello specifico:
 \begin{itemize}
 \item{il paradigma sfruttato da Haskell facilita la creazione di codice pulito e conciso;}
 \item{possiede una semantica relativamente semplice da acquisire;}
@@ -39,29 +41,31 @@ Ci sono svariati motivi legati all'utilizzo di Haskell per programmare in parall
 \item{consente un livello di astrazione molto alto;}
 \item{le librerie disponibili consentono già una programmazione parallela implicita ad alto livello.}
 \end{itemize}
-Va fatto notare che la maggior parte delle caratteristiche che sono state enunciate sono rappresentate dal semplice fatto che Haskell è un linguaggio funzionale. In generale i linguaggi funzionali hanno sempre dimostrato un ottimo utilizzo nella progettazione del software, poiché, consentono una maggiore fruibilità di altre fasi di lavorazione, quali stesura delle specifiche (test funzionali) e manutenzione del software (software inspection facilitato dal codice conciso).\\
+Va fatto notare che la maggior parte delle caratteristiche che sono state enunciate sono garantite dal semplice fatto che Haskell è un linguaggio funzionale. In generale i linguaggi funzionali hanno sempre dimostrato un ottimo utilizzo nella progettazione del software, poiché, consentono una maggiore fruibilità di altre fasi di lavorazione, quali stesura delle specifiche (test funzionali) e manutenzione del software (software inspection facilitato dal codice conciso).\\
 \subsection{Linguaggio funzionale: un linguaggio matematicamente puro}
-Andiamo più nel dettaglio per quanto riguarda le categorie dei linguaggi informatici. I linguaggi di programmazione più comuni e usati sono solitamente linguaggi  \textit{imperativi} . Si pensi ai più famosi, come C, Java e così via. Rappresentano la tecnica di programmazione più classica e "antica": ogni programma è composto da una serie di istruzioni eseguite sequenzialmente, una dopo l'altra. Le varie funzioni (in C) e metodi (in Java) che compongono i programmi sono di fatto \textit{procedure} che lavorano in maniera iterativa.\\
-Al contrario, Haskell è un linguaggio \textit{funzionale}; appartiene, cioè, ad una categoria di linguaggi  composta essenzialmente da funzioni matematiche pure, da cui il nome del paradigma. Una funzione in un linguaggio funzionale non esegue calcoli come nella sua controparte imperativa, ma, come in matematica, mappa elementi di un insieme (Dominio) in un altro (Codominio).\\
+Si pensi ai più famosi, come C, Java e così via. Rappresentano la tecnica di programmazione più classica e "antica": ogni programma è composto da una serie di istruzioni eseguite sequenzialmente, una dopo l'altra. Le varie funzioni (in C) e metodi (in Java) che compongono i programmi sono di fatto \textit{procedure} che lavorano in maniera sequenziale.\\
+Al contrario, Haskell è un linguaggio \textit{funzionale}; appartiene, cioè, ad una categoria di linguaggi  composta esclusivamente da funzioni matematiche pure, da cui il nome del paradigma. Una funzione in un linguaggio funzionale non esegue calcoli come nella sua controparte imperativa, ma, come in matematica, mappa elementi di un insieme (Dominio) in un altro (Codominio).\\
 Ecco come si presenta una funzione matematica:
-\begin{equation}
-f(x) = y
-\end{equation}
-Ad ogni elemento \textit{x} appartenente al dominio \textit{X} di definizione, la funzione \textit{f} associa univocamente il valore \textit{y} del Codominio \textit{Y}. In questo caso si dice che \textit{y} dipende da \textit{x} in base alla relazione:
-\begin{equation}
-f:X \to Y
-\end{equation}
+\begin{center}
+$f(x) = y$
+\end{center}
+Ad ogni elemento \textit{x} appartenente a un dominio \textit{X} di definizione, la funzione \textit{f} associa univocamente il valore \textit{y} del Codominio \textit{Y}. In questo caso si dice che \textit{y} dipende da \textit{x} in base alla relazione:
+\begin{center}
+$f:X \to Y$
+\end{center}
 Tale concetto rappresenta la base dell'algebra e viene implementato elegantemente da tutti i linguaggi funzionali.\\
-\newpage
-Osserviamo un esempio semplice in Haskell, come la funzione incremento:
+Nel caso di Haskell, la questione è molto simile, anche dal punto di vista semantico. Osserviamo un esempio semplice, come la funzione incremento:
 \begin{verbatim}
 module Esempio where
 
 inc :: Int -> Int 
 inc x = x + 1
 \end{verbatim}
+Analizziamo ora il codice riga per riga. In Haskell un programma è sostanzialmente una composizione di moduli (definiti appunto \textit{modules}), una struttura a cui è associato un nome (\textit{Esempio}) e definita da un insieme di valori, tipi di dati e funzioni (in questo caso solo \textit{inc}). Per utilizzare il contenuto di un modulo all'interno di un programma è sufficiente importarne il contenuto.\\
+In questo caso osserviamo che \textit{inc} viene prima definito dal punto di vista relazionale: è una funzione da elementi di tipo \textit{Int} a elementi di tipo \textit{Int}.\\
 Il valore restituito da \textit{inc} dipenderà dall'input (intero) in ingresso. In particolare (aperta la console ghci) otterremo:
 \begin{verbatim}
+Prelude> import Esempio
 Prelude Esempio> inc 2
 3
 Prelude Esempio> inc 4
@@ -69,9 +73,10 @@ Prelude Esempio> inc 4
 Prelude Esempio> inc 100
 101
 \end{verbatim}
+Ovviamente, poiché abbiamo limitato la funzione a parametri interi, l'esecuzione di \textit{inc} su valori in floating point solleverà un'eccezione (tipizzazione statica di Haskell).
 \subsubsection{Funzioni di ordine superiore}
-Ci addentriamo ora in uno dei punti chiave dei linguaggi funzionali. Come già specificato, in questo tipo di linguaggi ogni elemento che compone il programma è rappresentato da una funzione matematica. Ciò rende effettivamente potenti i linguaggi funzionali è lo sfruttamento di questa caratteristica per creare quelle che vengono definite funzioni \textbf{higher-order} o di ordine superiore.\\
-Una funzione higher-order è un particolare tipo di funzioni che accetta altre funzioni come parametri o ne restituisce altre come risultato.\\
+Ci addentriamo ora in uno dei punti chiave dei linguaggi funzionali. Come già specificato, in questo tipo di linguaggi ogni elemento che compone il programma è rappresentato da una funzione matematica. Ciò che rende effettivamente potenti i linguaggi funzionali è lo sfruttamento di questa caratteristica per creare quelle che vengono definite funzioni \textbf{higher-order} o di ordine superiore.\\
+Una funzione higher-order è un particolare tipo di funzione che accetta altre funzioni come parametri o ne restituisce altre come risultato.\\
 Facciamo un esempio aggiungendo al codice di prima una nuova funzione:
 \begin{verbatim}
 
@@ -79,7 +84,7 @@ myOperator :: (Int -> Int) -> Int -> Int
 myOperator f n = (f n) * 2 
 
 \end{verbatim}
-In questo caso la funzione \textit{myOperator} accetta in ingresso una funzione da \textit{Int} a \textit{Int} e un valore \textit{Int}. Il suo valore equivale al valore della funzione operata sull'intero in input moltiplicato per 2. Poiché la funzione \textit{inc} corrisponde alle richieste, possiamo sfruttarla per fare qualche esempio di esecuzione:
+In questo caso la funzione \textit{myOperator} accetta in ingresso una funzione da \textit{Int} a \textit{Int} e un valore \textit{Int}. Il suo valore equivale al valore della funzione operata sull'intero in input moltiplicato per 2. Poiché la funzione \textit{inc} corrisponde alle richieste del primo parametro, possiamo sfruttarla per fare qualche esempio di esecuzione:
 \begin{verbatim}
 Prelude Esempio> myOperator inc 2
 6
@@ -89,15 +94,18 @@ Prelude Esempio>  myOperator inc 100
 202
 \end{verbatim}
 Questi sono esempi basilari, ma dovrebbero rendere conto delle potenzialità inerenti ad un linguaggio funzionale come Haskell. Le funzioni di ordine superiore non solo consentono un alto livello di modularità del codice, ma aprono le porte a numerose funzionalità, tra cui la capacità di incapsulare tra di loro varie funzioni per variarne meccanismi e risultati.
+\subsubsection{Astrazione}
+La capacità di creare funzioni di ordine superiore è la conseguenza dell'alto livello di astrazione di cui si compone il linguaggio Haskell. Si definisce astrazione la capacità di creare elementi il cui funzionamento interno è definito in maniera implicita e non diretta. Pensiamo alla funzione \textit{myOperator} di prima: pur necessitando di un parametro avente una particolare struttura (\textit{Int -> Int}) non è stato necessario fare alcuna assunzione sul calcolo che essa eseguiva. Potevamo creare qualsiasi funzione che rispettasse le caratteristiche richieste e il programma avrebbe agito di conseguenza in fase di esecuzione.\\
+L'astrazione consente di modulare il codice a vantaggio della progettazione generale e permette la creazione di strutture ad alto livello intercambiabili e di semplice utilizzo. Un buon livello di astrazione è generalmente indice di una buona programmazione, facilita la progettazione software e, nel nostro caso, consente di implementare al meglio le funzioni che gestiscono il parallelismo.
 \subsubsection{Monade}
-Altro elemento cardine di Haskell è la \textbf{Monade}. Una monade è sostanzialmente una classe di computazioni concatenabili, e consente ad Haskell di eseguire operazioni sequenziali anche nel suo contesto funzionale.\\
-Per rendere più chiaro il concetto, definiamo una monade come una tripla \texttt{< M, return, >{}>= >}, in cui:
+Altro elemento cardine di Haskell è la \textbf{Monade}. Dal punto di vista matematico, preso un insieme \textit{X} di definizione, una monade è una \textit{un monoide di X nella categoria degli endofuntori di X}(def. Mac Lane\cite{maclane}). Formalmente definiamo una monade come una tripla \texttt{< M, return, >{}>= >}, in cui:
 \begin{itemize}
 \item{\texttt{M} è un costruttore di tipi;}
 \item{\texttt{return} è una funzione che specifica come costruire i tipi di monadi a partire dal loro contenuto;}
-\item{\texttt{>{}>=} è l'operazione di bind; presi due parametri, passa ogni valore prodotto dal primo come argomento per il secondo; è ciò che rende sequenziali le operazioni per i linguaggi funzionali.}
+\item{\texttt{>{}>=} è l'operazione di binding; presi due parametri, passa ogni valore prodotto dal primo come argomento per il secondo; è ciò che rende sequenziali le operazioni per i linguaggi funzionali.}
 \end{itemize}
-In Haskell la classe Monad si presenta così\footnote{In Haskell le lettere minuscole nella definizione dei tipi indicano sempre tipi generici; una funzione \texttt{f :: a -> b} indica una relazione tra un tipo generico \texttt{a} e un'altro tipo generico \texttt{b}, non necessariamente della stessa natura.}:
+In informatica le monadi sono essenzialmente strutture che esprimono classi di computazioni concatenabili e risultano particolarmente utili nei linguaggi funzionali. Il meccanismo è il seguente: Haskell funziona mediante una tecnica di esecuzione detta valutazione pigra, o lazy evaluation, viste le sue caratteristiche poco performanti. In questo modo ogni elemento o funzione che compone i programmi vengono calcolati solo ed esclusivamente on-demand. Come conseguenza, da un lato una funzione può non venire calcolata se non viene richiesta, dall'altro un insieme di funzioni cui viene richiesta l'esecuzione viene trattato come un sistema di equazioni valutate simultaneamente. Le monadi aggirano questa caratteristica, consentendo una computazione più controllata e introducendo la sequenzialità nel linguaggio.\\
+La classe che implementa le monadi in Haskell si presenta così\footnote{In Haskell le lettere minuscole nella definizione dei tipi indicano sempre tipi generici; una funzione \texttt{f :: a -> b} indica una relazione tra un tipo generico \texttt{a} e un altro tipo generico \texttt{b}, non necessariamente della stessa natura.}:
 \begin{verbatim}
 class Monad m where
   (>>=)  :: m a    -> (a  -> m b) -> m b
@@ -106,17 +114,19 @@ class Monad m where
   return :: a      -> m a
   fail   :: String -> m a
 \end{verbatim}
-\subsection{Astrazione}
-Il fatto che ogni elemento di Haskell sia una funzione matematica che può prenderne altre in ingresso o restituirne altre in uscita consente a una funzione di non avere una definizione esplicita di come funziona esattamente una funzione per poter essere sfruttata. Ogni elaborazione può essere sfruttata e intercambiata a piacimento e viene decisa solo in fase di esecuzione.\\
-Tale caratteristica prende il nome di astrazione, la capacità di creare elementi il cui funzionamento interno è definito in maniera implicita e non diretta.\\
-L'astrazione è consente di modulare il codice a vantaggio della progettazione generale e permette la creazione di strutture ad alto livello intercambiabili e di semplice utilizzo. Un buon livello di astrazione è generalmente indice di una buona programmazione.
+Nel caso specifico le monadi devono rispettare le seguenti regole:
+\begin{verbatim}
+return a >>= k  =  k a                      <-- identità a sinistra
+m >>= return  =  m                          <-- identità a destra
+m >>= (\x -> k x >>= h)  =  (m >>= k) >>= h <-- associatività
+\end{verbatim}
 \subsection{Parallelismo in Haskell}
-All'inizio del capitolo abbiamo distinto due categorie di parallelismo, implicito ed esplicito, stabilendo di voler concentrare la nostra attenzione sulla seconda. Nelle librerie che utilizzeremo Haskell garantisce una sorta di via di mezzo, una forma definita semi-esplicita: per l'esecuzione parallela sono richiesti dall'utente solo alcuni aspetti della coordinazione tra le varie partizioni del programma. Tuttavia ciò non è assolutamente un fatto negativo: cedendo al sistema la maggior parte del lavoro "sporco", ci consentirà di focalizzarci solo sulla stesura del codice.\\
-Il nostro lavoro sarà solo ed esclusivamente partizionare il problema all'interno del codice in sezioni che possano essere eseguite parallelamente, senza precisazioni sulle caratteristiche della macchina che andrà ad eseguire il codice, nemmeno il numero di processori di cui dispone.\\
-Ovviamente l'obiettivo è di mantenere i processori in attività sul problema limitando le interazioni tra gli stessi. Ovviamente i problemi derivanti da questa programmazione non mancano. In primis vi è la dipendenza che può intercorrere tra i dati: due sezioni possono condividere una stessa sezione di memoria o essere l'una in attesa di un risultato offerto dall'altra. Ciò porta ad una sorta di ritorno alla sequenzialità non accettabile visto il nostro obiettivo. In secondo luogo vi è il concetto di granularità dei threads, ovvero la dimensione delle partizioni che andremo a creare. Threads troppo piccoli rischiano di diventare un collo di bottiglia per l'esecuzione, che impegna i processori principalmente a coordinarsi piuttosto che a eseguire lavoro utile, vanificando (o anche rendendo obsoleti) gli sforzi della parallelizzazione.
+All'inizio del capitolo abbiamo distinto due categorie di parallelismo, implicito ed esplicito, stabilendo di voler concentrare la nostra attenzione sulla seconda. Nelle librerie che utilizzeremo Haskell garantisce una sorta di via di mezzo, una forma definita semi-esplicita: per l'esecuzione parallela sono richiesti dall'utente solo alcuni aspetti della coordinazione tra le varie partizioni del programma. Tuttavia ciò non è assolutamente un fatto negativo: cedendo al sistema la maggior parte del lavoro "sporco", ciò consente di focalizzare l'attenzione solo sulla stesura del codice.\\
+Il nostro lavoro sarà solo ed esclusivamente partizionare il problema all'interno del codice in sezioni che possano essere eseguite parallelamente, senza precisazioni sulle caratteristiche della macchina che andrà ad eseguire il codice, nemmeno il numero di processori di cui dispone. Tutte queste caratteritiche andranno definite solo in fase di esecuzione.\\
+L'obiettivo è di mantenere i processori in attività sul problema limitando le interazioni tra gli stessi. Ovviamente i problemi derivanti da questa programmazione non mancano. In primis vi è la dipendenza che può intercorrere tra i dati: due sezioni possono condividere una stessa sezione di memoria o essere l'una in attesa di un risultato offerto dall'altra. Ciò porta ad una sorta di ritorno alla sequenzialità non accettabile visto il nostro obiettivo. In secondo luogo vi è il concetto di granularità dei threads, ovvero la dimensione delle partizioni che andremo a creare. Threads troppo piccoli rischiano di diventare un collo di bottiglia per l'esecuzione, che impegna i processori principalmente a coordinarsi piuttosto che a eseguire lavoro utile, vanificando (o anche rendendo obsoleti) gli sforzi della parallelizzazione.
 \chapter{Parallel Haskell}
-Abbiamo affermato che la finalità di sfruttare Haskell in parallelo (o come viene comunemente chiamato, Parallel Haskell), è di suddividere il lavoro e di eseguirlo su più processori contemporaneamente.\\
-L'esecuzione in parallelo non è implicita nel codice e deve quindi passare con le corrette impostazioni prima a livello di compilatore, e successivamente a livello di esecuzione. Bisogna dunque assicurarsi di aver scaricato l'ultima versione di GHC, o di averlo aggiornato di conseguenza, e, una volta terminato il codice eseguire i seguenti passi:
+Abbiamo affermato che la finalità di sfruttare Haskell in parallelo (o come viene comunemente chiamato, Parallel Haskell) è di suddividere il lavoro e di eseguirlo su più processori contemporaneamente.\\
+L'effettiva esecuzione su un sistema multiprocessore non è implicita nel codice e deve quindi passare con le corrette impostazioni prima a livello di compilatore e successivamente a livello di esecuzione. Bisogna dunque assicurarsi di aver scaricato l'ultima versione di GHC, o di averlo aggiornato di conseguenza e, una volta terminato il codice, eseguire i seguenti passi:
 \begin{itemize}
 \item{compilare il codice con l'opzione \texttt{-threaded}; esempio \texttt{ghc -threaded foo.hs -o foo};}
 \item{una volta ottenuto il compilato, va mandato in esecuzione con l'opzione \texttt{+RTS -N4}; nello specifico \texttt{RTS} lega l'esecuzione con un sistema Real-Time (per la gestione autonoma di threads, memoria e così via), mentre l'opzione \texttt{-N4} specifica il numero di core da utilizzare, in questo caso quattro (omettere il numero di core da usare consente all'esecuzione di utilizzare tutti quelli presenti nella macchina); esempio \texttt{\.foo +RTS -N4};}
@@ -124,20 +134,38 @@ L'esecuzione in parallelo non è implicita nel codice e deve quindi passare con 
 \end{itemize}
 \section{Parallelismo puro: Control.Parallel}
 Cominciamo a descrivere la parallelizzazione esplicita in Haskell partendo dalla libreria più importante in questo ambito, ciò che ci consentirà di trasformare il nostro codice sequenziale in codice parallelo.\\
-La libreria Control.Parallel si compone essenzialmente di due funzioni, par e pseq, così definite:
+La libreria Control.Parallel si compone essenzialmente di due funzioni, $par$ e $pseq$, così definite:
 \begin{verbatim}
 par :: a -> b -> b
 pseq :: a -> b -> b
 \end{verbatim}
-\subsubsection{La funzione par}
-La funzione \texttt{par f1 f2}, esprimibile anche come \texttt{f1 'par' f2}, si traduce sostanzialmente in: "l'esecuzione di f1 può essere parallelizzata con f2; il valore di ritorno è il risultato di f2".\\ Questa funzione viene usata per effettuare l'esecuzione parallela di due elementi, di cui il valore del primo non è richiesto immediatamente.
-\subsubsection{La funzione pseq}
-La funzione \texttt{pseq f1 f2}, esprimibile anche come \texttt{f1 'pseq' f2}, è la controparte parallela della funzione \texttt{seq}, della libreria standard di Haskell. Nel caso di \texttt{seq} si tratta di una funzione sfruttata per ottimizzare le prestazioni dell'esecuzione, mediante la gestione della lazy evaluation: \texttt{seq f1 f2} restituisce il valore di \texttt{f2} solo dopo che entrambe le funzioni in input hanno terminato il loro ciclo di esecuzione\footnote{Piccola nota: ciò non significa che \texttt{f2} viene eseguita dopo \texttt{f1}; si tratta solo di un modo per impedire inutili valutazioni pigre}.\\
-Analogamente la funzione \texttt{pseq f1 f2} si regge sullo stesso principio di base, ma con una particolarità in più: in genere, quando si tratta di parallelismo, vogliamo sfruttare il controllo sulla lazy evaluation in modo da valutare f1 prima di f2, magari perché abbiamo già specificato che i due vanno eseguiti in parallelo.\\
-In tal caso \texttt{seq} non è sufficiente, poiché legata a entrambi gli argomenti. Con \texttt{pseq}, invece, ci assicuriamo che l'esecuzione avvenga nell'ordine corretto.
-\newpage
+La funzione \texttt{par f1 f2}, esprimibile anche come \texttt{f1 `par` f2}, si traduce sostanzialmente in: "l'esecuzione di f1 può essere parallelizzata con f2; il valore restituito è il risultato di f2". La funzione \textit{par} quindi definisce \textit{f1} come un thread che può essere eseguito in parallelo su un altro processore libero e restituisce il risultato di \textit{f2}.\\
+Questa funzione viene usata per effettuare l'esecuzione parallela di due elementi, di cui il valore del primo non è richiesto immediatamente.\\
+Tuttavia questo non basta per definire il parallelismo in ogni situazione: il fatto che il primo termine possa venire parallelizzato non implica che verrà effettivamente eseguito in parallelo su un altro processore. Osserviamo il seguente esempio per capirne il motivo:
+\begin{verbatim}
+parOp = f1 `par` (f1 + f2) where
+            f1 = fib 20
+            f2 = fib 20
+\end{verbatim}
+Abbiamo definito queste due funzioni, che calcolano entrambe la somma del elemento 20 della serie di Fibonacci (ipotizziamo di aver già creato una funzione che calcoli tale valore, in seguito ne vedremo un'implementazione effettiva). La prima definisce \textit{f1} come thread parallelizzabile dopodiché calcola $f1 + f2$. La funzione somma in Haskell funziona in modo da calcolare per primo l'elemento sinistro e poiché \textit{f1} viene richiesto per primo\footnote{Ricordiamo che ogni elemento di Haskell viene valutato on demand.} il sistema real time rimane sul processore che ha eseguito la richiesta, ne valuta il risultato, calcola \textit{f2} e restituisce il risultato della somma. Di fatto in questo modo abbiamo vanificato gli sforzi per la parallelizzazione.\\
+Una soluzione immediata è di riscrivere il codice specificando prima l'esecuzione di \textit{f2}, nel seguente modo:
+\begin{verbatim}
+parOp2 = f1 `par` (f2 + f1) where
+            f1 = fib 20
+            f2 = fib 20
+\end{verbatim}
+Il processore che ha eseguito la richiesta calcolerà \textit{f2}, mentre un processore libero eseguirà il calcolo di \textit{f1}. In questo caso abbiamo ottenuto il parallelismo richiesto.\\
+Spesso però la gestione della lazy evaluation non è così immediata. Per questo motivo subentra la seconda funzione del package. La funzione \texttt{pseq f1 f2}, esprimibile anche come \texttt{f1 `pseq` f2}, è la controparte parallela della funzione \texttt{seq}, della libreria standard di Haskell. Nel caso di \texttt{seq} si tratta di una funzione sfruttata per ottimizzare le prestazioni dell'esecuzione, mediante la gestione della lazy evaluation: \texttt{f1 `seq` f2} restituisce il valore di \texttt{f2} solo dopo che entrambe le funzioni in input hanno terminato il loro ciclo di esecuzione. In questo modo ci assicuriamo che entrambe le funzioni abbiano terminato la loro esecuzione prima di restituire il risultato di \textit{f2} le due funzioni possono essere eseguite in qualsiasi ordine senza problemi. In generale si dice che la funzione \textit{seq} esegue il suo primo argomento in \textit{weak head normal form}.\\
+Analogamente la funzione \texttt{pseq f1 f2} si regge sullo stesso principio di base, ma con una particolarità in più: anziché attendere l'esecuzione di entrambe le funzioni, \textit{pseq} vincola che il calcolo di \textit{f2} avvenga solo dopo l'esecuzione di \textit{f1}.\\
+Nell'esempio di prima otteniamo lo stesso risultato parallelo scrivendo:
+\begin{verbatim}
+parOp3 = f1 `par` (f2 `pseq` (f1 + f2)) where
+            f1 = fib 20
+            f2 = fib 20
+\end{verbatim}
+Osserviamo che, mentre \textit{f1} viene sempre definito come parallelizzabile, viene forzata l'esecuzione di \textit{f2} prima che venga effettivamente eseguita la somma. In questo modo il processore che ha eseguito \textit{parOp3} calcola \textit{f2}, mentre \textit{f1} passa in esecuzione ad un altro processore libero.
 \subsection{Esempio: la serie di Fibonacci}
-Proviamo con l'"Hello World" degli algoritmi, uno semplici da implementare. Ricavare l'n-esimo elemento della serie di Fibonacci in Haskell diventa:
+Proviamo a mettere in pratica il parallelismo esplicito sulla serie di Fibonacci. Ricavare l'n-esimo elemento della serie in Haskell diventa:
 \begin{verbatim}
 fib :: Int -> Int
 
@@ -155,18 +183,25 @@ fibpar n = (n1 `par` n2) `pseq` (n1 + n2)
                n1 = fibpar (n-1)
                n2 = fibpar (n-2)
 \end{verbatim}
-In questo caso, dato un generico intero \texttt{n}, viene parallelizzata l'esecuzione di Fibonacci su \texttt{n-1} insieme a quella di \texttt{n-2}, specificando che la loro somma deve attendere che restituiscano un risultato.\\
-Notiamo che di per sé gli algoritmi sono concettualmente identici: effettuano la ricorsione due volte per chiamata e uniscono i risultati una volta terminate entrambe le esecuzioni.\\
-Confrontiamone ora il tempo di esecuzione effettuato su input 46: il codice sequenziale ha restituito il risultato dopo 260 secondi, quello parallelo in 58. Ricaviamo quindi uno speedup di:
-\begin{equation}
-Speedup = \frac{260 sec}{58 sec} = 4.48 \simeq 450 \%
-\end{equation} 
+In questo caso, dato un generico intero \texttt{n}, vengono creati due threads (o sparks come vengono chiamati in Parallel Haskell), ognuno associato al calcolo di Fibonacci su \texttt{n-1} e \texttt{n-2}, specificando che possono essere eseguiti parallelamente su due processori liberi (funzione \textit{par})e infine che la loro somma deve attendere che restituiscano un risultato (funzione \textit{seq}).\\
+Notiamo che  di per sé gli algoritmi sono concettualmente identici: effettuano la ricorsione due volte per chiamata e uniscono i risultati una volta terminate entrambe le esecuzioni.\\
+Confrontiamone ora il tempo di esecuzione effettuato su input 46 ($n = \lfloor \log_2(46) \rfloor + 1 = 6$): il codice ha restituito il risultato dopo 260 secondi utilizzando un solo processore, quello parallelo in 58 secondi utilizzando, sulla stessa macchina, 8 processori. Ricaviamo quindi uno speedup di:
+\begin{center}
+$S(6,8) \ = \frac{260 sec}{58 sec} \ = \ 4.48 \simeq 450 \%$
+\end{center} 
+e un'efficienza di:
+\begin{center}
+$E(6,8) \ = \frac{S(6,8)}{8} \ = \ 0.58 \simeq 58 \%$
+\end{center}
 \newpage
 \section{Le strategie di calcolo}
-Un altro modo per parallelizzare l'esecuzione in Haskell è l'utilizzo delle \textbf{strategie}. Una strategia è essenzialmente una funzione in una particolare monade\footnote{Si veda il capitolo "Perchè Haskell per un chiarimento sulle monadi."}, Eval, che prende in ingresso il tipo da associare alla stessa. Il meccanismo in Haskell è il seguente:
+Un altro modo per parallelizzare l'esecuzione in Haskell è l'utilizzo delle \textbf{strategie di valutazione} o più semplicemente \textbf{strategie}. Si tratta di un meccanismo atto a definire parallelismo deterministico che suddivide il codice separando l'algoritmo in sé dal parallelismo. In questo modo, una volta definito un algoritmo, è possibile parallelizzarlo in modi diversi a seconda della strategia applicata.\\
+Sostanzialmente una strategia è una funzione in \textit{Eval}, una monade che prende come argomento un tipo generico e ne restituisce il valore.
 \begin{verbatim}
 type Strategy a = a -> Eval a
 \end{verbatim}
+L'idea alla base delle strategie è quella di prendere una struttura dati generica e di calcolarne le componenti mediante un'esecuzione sequenziale o parallela, a seconda di come è stata costruita la strategia.\\
+Il vantaggio principale delle strategie consiste principalmente nell'essere componibili: trattando una monade, è possibile combinare sequenzialmente strategie semplici per gestire al meglio algoritmi più complessi (mediante l'operazione di binding).
 \subsection{La monade Eval}
 La monade Eval è una struttura contenuta nel package Contol.Parallel.Strategies. Vediamo nel dettaglio come la sua composizione:
 \begin{verbatim}
@@ -178,8 +213,8 @@ rseq :: a -> Eval a
 
 runEval :: Eval a -> a
 \end{verbatim}
-Si compone principalmente di due funzioni, \textbf{rpar} e \textbf{rseq}, semanticamente e funzionalmente identiche alle sopracitate \textbf{par} e \textbf{pseq} del package Control.Parallel (si veda il capitolo precedente). L'unica differenza sostanziale è il tipo che viene restituito: trattandosi di funzioni in seno a una monade, restituiranno, per l'appunto, un elemento Eval (con relativo tipo).\\
-Vi è poi un'altra funzione, \textbf{runEval}, finalizzata ad effettuare la computazione della monade e restituirne il risultato.\\
+Si compone principalmente di due funzioni, \textbf{rpar} e \textbf{rseq}, semanticamente identiche alle sopracitate \textbf{par} e \textbf{pseq} del package Control.Parallel (si veda il capitolo precedente). Tuttavia presentano differenze sostanziali: \textit{rpar} crea il parallelismo, definendo il suo argomento in ingresso come una funzione da calcolare in parallelo (di fatto è una computazione priva di valutazione e se il suo argomento è già stato calcolato altrove la funzione non ha alcun effetto, vanificando il parallelismo); \textit{rseq}, invece, forza il calcolo della funzione richiesta. Va fatto notare che entrambe le funzioni il calcolo è eseguito in  weak head normal form.\\
+Vi è poi un'altra funzione, \textbf{runEval}, finalizzata ad effettuare la computazione della monade e restituirne il risultato.
 \subsection{Usare le strategie}
 Avviamoci ora verso l'utilizzo del tipo \textbf{Strategy}. Usare una strategia significa prendere in ingresso una struttura dati, utilizzare le funzioni \textbf{rpar} e \textbf{rseq} per creare parallelismo e restituire il valore del parametro in ingresso.\\
 In questo caso le funzioni di Eval possono essere riscritte in funzione delle strategie:
@@ -187,7 +222,7 @@ In questo caso le funzioni di Eval possono essere riscritte in funzione delle st
 rpar :: Strategy a
 rseq :: Strategy a
 \end{verbatim}
-Chiariamo il loro utilizzo con un esempio. Immaginiamo di aver creato una funzione \textit{f} e di aver poi deciso di eseguirla sfruttando la strategia \textit{s}. Ricavare il risultato di f diventa:
+Chiariamo il loro utilizzo con un esempio. Immaginiamo di aver creato una funzione \textit{f} e di aver poi deciso di eseguirla sfruttando una strategia \textit{s} creata ad hoc. Ricavare il risultato di f diventa:
 \begin{verbatim}
 runEval (s f)
 \end{verbatim}
@@ -198,9 +233,9 @@ using s x = runEval (s x)
 \end{verbatim}
 Possiamo quindi riscrivere la funzione precedente come:
 \begin{verbatim}
-s `using` f
+f `using` s
 \end{verbatim}
-Un corretto utilizzo delle strategie non è solo un metodo stringente per definire parallelismo. Grazie alla potenza delle astrazioni di Haskell è possibile parallelizzare un algoritmo già esistente semplicemente applicandovi una strategia per costruire il risultato.\\
+Un corretto utilizzo delle strategie non è solo un metodo stringente per definire parallelismo. Grazie alla potenza delle astrazioni di Haskell è possibile parallelizzare un algoritmo sequenziale già esistente semplicemente applicandovi una strategia per ottenere il risultato.\\
 \subsection{Esempio: la funzione map in parallelo}
 Vediamo ora come l'utilizzo delle strategie possa rendere la parallelizzazione concisa ed efficace. La funzione map prende in ingresso due parametri: una funzione (\texttt{f :: a -> b}) e una lista di elementi di tipo \texttt{a}. Il nostro intento è di rendere parallela questa operazione senza modificare l'algoritmo di partenza.\\
 La funzione più semplice finalizzata a questo intento è:
@@ -213,11 +248,5 @@ Osserviamo nel dettaglio le componenti della funzione:
 \item{\texttt{map f s} è l'algoritmo a cui applicare la strategia}
 \item{\texttt{parList rseq} è la strategia da sfruttare; \texttt{rseq} l'abbiamo già menzionata, parList, invece, è una strategia già implementata in Control.Parallel.Strategies, che presa una strategia su valori \texttt{'a'} ne restituisce un'altra sulle liste di elementi di tipo \texttt{'a'}; in questo caso prende la strategia \texttt{rseq} e ne restituisce una che applica la suddetta ad ogni elemento di un lista}
 \end{itemize}
-Osserviamo alcuni elementi fondamentali: prima di tutto non abbiamo creato nessuna funzione ex novo, abbiamo solo assemblato algoritmi preesistenti e vi abbiamo applicato un meccanismo di calcolo; in secondo luogo abbiamo messo in rilievo che è possibile creare strategie di livello superiore senza particolari assunzioni su tipi e strutture. 
-\section{Limiti di Haskell}
-Come è stato affermato in questo capitolo, non esiste il linguaggio perfetto, e anche Haskell non è immune a questa regola. Pur essendo comodo e di facile utilizzo manca di una gestione diretta della memoria, almeno a livello virtuale, come invece consente l'utilizzo di C, grazie ai suoi puntatori. Anche per questo motivo è bene dosare bene i linguaggi da utilizzare: non è difficile immaginare che programmi relativamente semplici, che si poggiano su algoritmi minimali, trovino una migliore applicazione in un linguaggio imperativo come C piuttosto che in Haskell.\\
-Analogamente un programma in Parallel Haskell eseguito su un problema di piccole dimensioni potrebbe creare colli di bottiglia tra overhead e comunicazione tra processori di gran lunga superiori all'effettiva esecuzione del problema rispetto alla sua controparte sequenziale (si ricordi il concetto di granularità).\\
-Inoltre se l'efficienza degli algoritmi è l'obiettivo principale del programmatore, Haskell potrebbe non rivelarsi la scelta migliore quanto a gestione delle risorse della macchina (si pensi alle strategie, in cui la parallelizzazione avviene a livelli di astrazione troppo elevati per pensare di ottenere una efficienza ottimale in tutti i casi in cui viene utilizzata).\\
-Tuttavia, tolti i problemi legati ad una cattiva progettazione, dare priorità all'ottimalità dell'esecuzione non sempre è la scelta migliore. Da questo punto di vista il linguaggio macchina sarebbe la scelta migliore per programmare, eppure è paradossale pensare che si programmi anche solo una semplice sommatoria in un linguaggio così a basso livello.\\
-Come per molte cose, quindi, un buon compromesso è sempre la scelta migliore. Haskell non è stato scelto per essere il più ottimale dei linguaggi, ma perché consente al programmatore una gamma vastissima di scelte progettuali sposate a una buona implementazione della parallelizzazione esplicita.\\
-Se la priorità del programmatore è una buona progettazione del software, un linguaggio funzionale come questo è quasi sempre la scelta migliore.
+Osserviamo alcuni elementi fondamentali: prima di tutto non abbiamo creato nessuna funzione ex novo, abbiamo solo assemblato algoritmi preesistenti e vi abbiamo applicato un meccanismo di calcolo; in secondo luogo abbiamo messo in rilievo che è possibile creare strategie di livello superiore senza particolari assunzioni su tipi e strutture.
+

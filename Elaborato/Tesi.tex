@@ -7,8 +7,10 @@
 \usepackage{graphicx}
 \usepackage{amssymb}
 \PassOptionsToPackage{hyphens}{url}\usepackage{hyperref}
+\usepackage[babel]{csquotes}
 \usepackage[backend=bibtex]{biblatex}
-\addbibresource{./references/references.bib}
+\bibliography{Bibliografia}
+
 
 \author{Jacopo Francesco Zemella}
 \title{Parallelismo e Haskell}
@@ -82,7 +84,7 @@
 
 % Qui cominicia il Terzo capitolo
 
-\part{Programmazione Parallela}
+\part{Programmazione Parallela e Haskell}
 \include{chapter3}
 
 % Qui finisce il Terzo capitolo
@@ -92,6 +94,6 @@
 \part{Implementazione in Haskell}
 \include{chapter4}
 
-\printbibliography[title=Bibliografia]
+\printbibliography
 
 \end{document}

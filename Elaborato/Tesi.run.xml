@@ -83,7 +83,7 @@
       <file>Tesi-blx.bib</file>
     </requires>
     <requires type="editable">
-      <file>./references/references.bib</file>
+      <file>Bibliografia.bib</file>
     </requires>
     <requires type="static">
       <file>biblatex.bst</file>
