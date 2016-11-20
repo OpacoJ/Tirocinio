@@ -3,26 +3,22 @@ module Esempi where
 import Control.Parallel
 import Control.Parallel.Strategies
 
-fib :: Int -> Int
+
 fib 0 = 1
 fib 1 = 1
 fib n = (fib (n-1)) + (fib (n-2))
 
-fibpar :: Int -> Int
-fibpar 0 = 1
-fibpar 1 = 1
-fibpar n = (n1 `par` n2) `pseq` (n1 + n2)
+fibpar n 
+	| n < 10 = fib 10
+	| otherwise = (n1 `par` n2) `pseq` (n1 + n2)
            where
                n1 = fibpar (n-1)
                n2 = fibpar (n-2)
 
-			   
--- Mapping
 
 parMapList :: (a -> b) -> [a] -> [b]
 parMapList f ls = map f ls `using` parList rseq
 
--- Sorting
 
 quicksort :: Ord a => [a] -> [a]
 quicksort [] = []
@@ -31,13 +27,20 @@ quicksort (x:xs) = left ++ [x] ++ right where
 						right = quicksort [a | a <- xs, a > x]
 
 
-parquicksort :: Ord a => [a] -> [a]
+parquicksort :: (Ord a) => [a] -> [a]
 parquicksort [] = []
-parquicksort (x:xs) = (left `par` right) `pseq` (left ++ [x] ++ right)
+parquicksort [x] = [x]
+parquicksort (x:xs) = left `par` (right `pseq` (left ++ x:right))
 						where
 							left = parquicksort [a | a <- xs, a <= x]
 							right = parquicksort [a | a <- xs, a > x]
-	
+
+
+force :: [a] -> ()
+force xs = go xs `pseq` ()
+			where 
+				go (_:xs) = go xs
+				go [] = 1
 
 
 merge :: Ord a => [a] -> [a] -> [a]
@@ -64,14 +67,35 @@ mergesort xs = merge (mergesort left) (mergesort right)
 parmergesort :: Ord a => [a] -> [a]
 parmergesort [] = []
 parmergesort [x] = [x]
-parmergesort xs = ((forceList left) `par` (forceList right)) `pseq` (merge left right)
+parmergesort xs = (forceList left) `par` ((forceList right) `pseq` (merge left right))
 				where
 					(left1, right1) = splitAt l xs
 					l = div (length xs) 2
 					left = parmergesort left1
 					right = parmergesort right1
 	
+mergesort' [x] = [x]
+mergesort' [x,y] = if x < y then [x,y] else [y,x]
+mergesort' xs = (forceList sleft) `par`
+               (forceList sright) `pseq`
+               merge sleft sright
+               where
+                 (left,right) = splitAt (length xs `div` 2) xs
+                 sleft = mergesort' left
+                 sright = mergesort' right	
 
 	
+	
+parOp = f1 `par` (f1 + f2) where
+            f1 = fib 35
+            f2 = fib 35
+			
+parOp2 = f1 `par` (f2 + f1) where
+            f1 = fib 35
+            f2 = fib 35
+			
+parOp3 = f1 `par` (f2 `pseq` (f1 + f2)) where
+            f1 = fib 35
+            f2 = fib 35
 	
 	

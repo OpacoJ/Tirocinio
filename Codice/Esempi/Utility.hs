@@ -1,8 +1,12 @@
 module Utility where
 
+
+import Control.Parallel
 import Control.Parallel.Strategies
-import Control.Exception (evaluate)
-import Data.Time.Clock (NominalDiffTime, diffUTCTime, getCurrentTime)
+import Control.Exception
+import Data.Time.Clock
+import Text.Printf
+import System.Environment
 import System.Random
 
 randomList :: Int -> [Int]
@@ -13,3 +17,8 @@ evalTimed f = do
                  evaluate f
                  end <- getCurrentTime
                  return (diffUTCTime end start)
+				 
+				 
+printTimeSince t0 = do
+  t1 <- getCurrentTime
+  printf "time: %.2fs\n" (realToFrac (diffUTCTime t1 t0) :: Double)
