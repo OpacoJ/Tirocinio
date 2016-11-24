@@ -17,6 +17,103 @@
 \endgroup
 
 \sortlist[entry]{nty/global/}
+  \entry{goldwurm}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=ABMG}{%
+         family={Alberto\bibnamedelima Bertoni},
+         family_i={A\bibinitperiod\bibinitdelim B\bibinitperiod},
+         given={Massimiliano\bibnamedelima Goldwurm},
+         given_i={M\bibinitperiod\bibinitdelim G\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{ABMG1}
+    \strng{fullhash}{ABMG1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \field{howpublished}{\url{https://homes.di.unimi.it/goldwurm/}}
+    \field{title}{Progetto e Analisi di Algoritmi}
+    \field{year}{2011}
+  \endentry
+
+  \entry{mereghettipalano}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=CMABBP}{%
+         family={Carlo\bibnamedelima Mereghetti},
+         family_i={C\bibinitperiod\bibinitdelim M\bibinitperiod},
+         suffix={Beatrice\bibnamedelima Palano},
+         suffix_i={B\bibinitperiod\bibinitdelim P\bibinitperiod},
+         given={Alberto\bibnamedelima Bertoni},
+         given_i={A\bibinitperiod\bibinitdelim B\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{CMBPAB1}
+    \strng{fullhash}{CMBPAB1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{C}
+    \field{sortinithash}{C}
+    \field{howpublished}{\url{http://palano.di.unimi.it/parallel/}}
+    \field{title}{Algoritmi Paralleli}
+    \field{year}{2011}
+  \endentry
+
+  \entry{haskelldocumentation}{misc}{}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{D}
+    \field{sortinithash}{D}
+    \field{howpublished}{\url{https://www.haskell.org/documentation}}
+    \field{title}{Documentazione Haskell}
+    \field{year}{2010}
+  \endentry
+
+  \entry{paralleltutorial}{misc}{}
+    \name{author}{2}{}{%
+      {{hash=JSP}{%
+         family={Jones},
+         family_i={J\bibinitperiod},
+         given={Simon\bibnamedelima Peyton},
+         given_i={S\bibinitperiod\bibinitdelim P\bibinitperiod},
+      }}%
+      {{hash=SS}{%
+         family={Singh},
+         family_i={S\bibinitperiod},
+         given={Satnam},
+         given_i={S\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{JSPSS1}
+    \strng{fullhash}{JSPSS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{J}
+    \field{sortinithash}{J}
+  \field{howpublished}{\url{http://research.microsoft.com/en-us/um/people/simonpj/papers/parallel/AFP08-notes.pdf}}
+    \field{title}{A Tutorial on Parallel and Concurrent Programming in Haskell}
+    \field{year}{2008}
+  \endentry
+
+  \entry{gph}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=LHW}{%
+         family={Loidl},
+         family_i={L\bibinitperiod},
+         given={Hans-Wolfgang},
+         given_i={H\bibinitperiod-W\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{LHW1}
+    \strng{fullhash}{LHW1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+  \field{howpublished}{\url{http://www.macs.hw.ac.uk/~hwloidl/Courses/F21DP/gph_milan15_slides.pdf}}
+    \field{title}{Documentazione Haskell}
+    \field{year}{2010}
+  \endentry
+
   \entry{maclane}{book}{}
     \name{author}{1}{}{%
       {{hash=MLS}{%
@@ -38,6 +135,26 @@
     \field{sortinithash}{M}
     \field{title}{Categories for the Working Mathematician}
     \field{year}{1971}
+  \endentry
+
+  \entry{strategies}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=MS}{%
+         family={Marlow},
+         family_i={M\bibinitperiod},
+         given={Simon},
+         given_i={S\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{MS1}
+    \strng{fullhash}{MS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{M}
+    \field{sortinithash}{M}
+  \field{howpublished}{\url{http://research.microsoft.com/en-us/um/people/simonpj/papers/parallel/AFP08-notes.pdf}}
+    \field{title}{Seq no more: Better Strategies for Parallel Haskell}
+    \field{year}{2010}
   \endentry
 \endsortlist
 \endinput

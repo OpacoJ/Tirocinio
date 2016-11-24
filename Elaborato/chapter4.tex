@@ -1,36 +1,148 @@
 \chapter{Problemi implementati}
-\section{Ordinamento}
-\subsection{QuickSort}
+\section{Esempi}
+\subsection{Modulo Esempi}
 \begin{verbatim}
+module Esempi where
+
+import Control.Parallel
+import Control.Parallel.Strategies
+
+fib :: Int -> Int
+fib 0 = 1
+fib 1 = 1
+fib n = (fib (n-1)) + (fib (n-2))
+
+fibpar :: Int -> Int
+fibpar n 
+    | n < 10 = fib 10
+    | otherwise = (n1 `par` n2) `pseq` (n1 + n2)
+           where
+               n1 = fibpar (n-1)
+               n2 = fibpar (n-2)
+
+parOp = f1 `par` (f1 + f2) where
+            f1 = fib 35
+            f2 = fib 35
+            
+parOp2 = f1 `par` (f2 + f1) where
+            f1 = fib 35
+            f2 = fib 35
+	        
+parOp3 = f1 `par` (f2 `pseq` (f1 + f2)) where
+            f1 = fib 35
+            f2 = fib 35
+            
+
+parMapList :: (a -> b) -> [a] -> [b]
+parMapList f ls = map f ls `using` parList rseq
+
+\end{verbatim}
+\subsection{Codice di Testing}
+\subsubsection{Test Pair Fibonacci}
+\begin{verbatim}
+import Control.Parallel
+import Control.Parallel.Strategies
+import Control.Exception
+import Data.Time.Clock
+import Text.Printf
+import System.Environment
+import Utility
+import Esempi
+
+main = do
+  [n] <- getArgs
+  let test = [test1,test2,test3,test4,test5] !! (read n - 1)
+  t0 <- getCurrentTime
+  r <- evaluate (runEval test)
+  printTimeSince t0
+  print r
+  printTimeSince t0
+
+test1 = return (fib 36,fib 35)
+
+test2 = do
+  x <- rpar (fib 36)
+  y <- rpar (fib 35)
+  return (x,y)
+
+test3 = do
+  x <- rpar (fib 36)
+  y <- rseq (fib 35)
+  return (x,y)
+
+test4 = do
+  x <- rpar (fib 36)
+  y <- rseq (fib 35)
+  rseq x
+  return (x,y)
+
+test5 = do
+  x <- rpar (fib 36)
+  y <- rpar (fib 35)
+  rseq x
+  rseq y
+  return (x,y)
+\end{verbatim}
+\subsubsection{Test ParSeq}
+\begin{verbatim}
+import Control.Parallel
+import Control.Parallel.Strategies
+import Control.Exception
+import Data.Time.Clock
+import Text.Printf
+import System.Environment
+import Esempi
+import Utility
+
+
+main = do
+  [n] <- getArgs
+  let test = [test1,test2,test3] !! (read n - 1)
+  t0 <- getCurrentTime
+  r <- evaluate (runEval test)
+  printTimeSince t0
+  print r
+  printTimeSince t0
+
+
+test1 = return parOp
+test2 = return parOp2
+test3 = return parOp3
+\end{verbatim}
+\section{Ordinamento}
+\subsection{Modulo Sorting}
+\begin{verbatim}
+module Sorting where
+
+import Control.Parallel
+import Control.Parallel.Strategies
+
 --Quicksort Sequenziale
 
 quicksort :: Ord a => [a] -> [a]
 quicksort [] = []
 quicksort (x:xs) = left ++ [x] ++ right where
-						left = quicksort [a | a <- xs, a <= x]
-						right = quicksort [a | a <- xs, a > x]
+                        left = quicksort [a | a <- xs, a <= x]
+                        right = quicksort [a | a <- xs, a > x]
 
 --Quicksort Parallelo
 
 parquicksort :: Ord a => [a] -> [a]
 parquicksort [] = []
 parquicksort (x:xs) = (left `par` right) `pseq` (left ++ [x] ++ right)
-						where
-							left = parquicksort [a | a <- xs, a <= x]
-							right = parquicksort [a | a <- xs, a > x]
-\end{verbatim}
-\newpage
-\subsection{Mergesort}
-\begin{verbatim}
+                        where
+                            left = parquicksort [a | a <- xs, a <= x]
+                            right = parquicksort [a | a <- xs, a > x]
+                            
 --Funzioni ausiliarie
 
 merge :: Ord a => [a] -> [a] -> [a]
 merge xs [] = xs
 merge [] ys = ys
 merge (x:xs) (y:ys)
-	| x <= y = x:(merge xs (y:ys))
-	| otherwise = y:(merge (x:xs) ys)
-	
+    | x <= y = x:(merge xs (y:ys))
+    | otherwise = y:(merge (x:xs) ys)
+    
 forceList :: [a] -> ()
 forceList [] = ()
 forceList (x:xs) = x `pseq` (forceList xs)
@@ -41,9 +153,9 @@ mergesort :: Ord a => [a] -> [a]
 mergesort [] = []
 mergesort [x] = [x]
 mergesort xs = merge (mergesort left) (mergesort right)
-				where
-					(left, right) = splitAt l xs
-					l = div (length xs) 2
+                where
+                    (left, right) = splitAt l xs
+                    l = div (length xs) 2
 
 --Mergesort Parallelo
 
@@ -52,14 +164,43 @@ parmergesort [] = []
 parmergesort [x] = [x]
 parmergesort xs = ((forceList left) `par` (forceList right))
                   `pseq` (merge left right)
-				        where
+                        where
                              (left1, right1) = splitAt l xs
                              l = div (length xs) 2
                              left = parmergesort left1
                              right = parmergesort right1
 \end{verbatim}
-\newpage
+\subsection{Codice di Testing}
+\subsubsection{Test Sorting}
+\begin{verbatim}
+import Control.Parallel
+import Control.Parallel.Strategies
+import Control.Exception
+import Data.Time.Clock
+import Text.Printf
+import System.Environment
+import Esempi
+import Utility
+
+longls = randomList 10000
+
+
+main = do
+  [n] <- getArgs
+  let test = [test1,test2,test3,test4] !! (read n - 1)
+  t0 <- getCurrentTime
+  r <- evaluate (runEval test)
+  printTimeSince t0
+  print r
+  printTimeSince t0
+
+test1 = return (quicksort longls)
+test2 = return (parquicksort longls)
+test3 =  return (mergesort longls)
+test4 =  return (parmergesort longls)
+\end{verbatim}
 \section{Algebra Lineare}
+\subsection{Modulo Matrix}
 \begin{verbatim}
 module Matrix where
 
@@ -68,9 +209,9 @@ import System.Random
 import System.IO
 import Control.Parallel
 import Control.Parallel.Strategies
-	
+    
 type Vector = [Double]
-type Matrix = [Vector]	
+type Matrix = [Vector]    
 
 makeMat :: Int -> Matrix
 makeMat n = replicate n [1.0..t] where t = fromIntegral n
@@ -83,165 +224,360 @@ identity n = identity2 n 0
 identity2 :: Int -> Int -> Matrix
 identity2 n m 
     | n == m = []
-    | otherwise = [((replicate m 0) ++ [1] 
-                   ++ (replicate (n-m-1) 0))] ++ (identity2 n (m+1))  
+    | otherwise = [((replicate m 0) ++ [1] ++ 
+                   (replicate (n-m-1) 0))] ++ (identity2 n (m+1))  
 
---operazioni sequenziali tra matrici
-
+--operazioni tra vettore
+--prodotto vettore x scalare
+smul :: Double -> Vector -> Vector
+smul val = map (val*)
+--somma
 sumVector :: Vector -> Vector -> Vector
-sumVector v1 v2 = [a + b | a <- v1, b <- v2]
+sumVector = zipWith (+)
 
+--differenza
 subVector :: Vector -> Vector -> Vector
-subVector v1 v2 = [a - b | a <- v1, b <- v2]
-					  
+subVector = zipWith (-)
+
+--prodotto scalare                      
 scalar :: Vector -> Vector -> Double
 scalar a b = sum (zipWith (*) a b)
 
 
+--operazioni sequenziali tra matrici
+
+--somma 
 sumMatrix :: Matrix -> Matrix -> Matrix
 sumMatrix = zipWith (zipWith (+))
 
+--differenza
 subMatrix :: Matrix -> Matrix -> Matrix
 subMatrix = zipWith (zipWith (-))
 
+--prodotto
 prodMatrix :: Matrix -> Matrix -> Matrix
 prodMatrix m1 m2 = [[scalar a b | b <- column] | a <- m1]
-                   where column = transpose m2
+                 where column = transpose m2
 
+--potenza
 powMatrix :: Matrix -> Int -> Matrix
 powMatrix m 0 = (identity dim) where dim = length m
 powMatrix m 1 = m
 powMatrix m n = prodMatrix m (powMatrix m (n-1))
-	
-	
+    
+    
 --operazioni parallele tra matrici
-	
+
+--somma    
 sumMatPar :: Matrix -> Matrix -> Matrix
 sumMatPar a b = (sumMatrix a b) `using` parList rdeepseq
 
+--differenza
 subMatPar :: Matrix -> Matrix -> Matrix
 subMatPar a b = (subMatrix a b) `using` parList rdeepseq
-	  
+--prodotto
 prodMatPar :: Matrix -> Matrix -> Matrix
 prodMatPar a b = (prodMatrix a b) `using` parList rdeepseq
-\end{verbatim}
-\newpage
-\begin{verbatim}	  
+--potenza      
 powMatPar :: Matrix -> Int -> Matrix
 powMatPar m 0 = (identity dim) where dim = length m
 powMatPar m 1 = m
 powMatPar m n = prodMatPar m ris
-                    where
-                         ris = powMatPar m (n-1)
-		  
+                where
+                    ris = powMatPar m (n-1)
+
+                  
 --determinante
 
-deleteColumn :: Matrix -> Int -> Matrix
-deleteColumn [] _ = error "Error input Matrix"
-deleteColumn m col = a ++ b where (a, _:b) = splitAt col m
-	
-deleteElement :: Vector -> Int -> Vector
-deleteElement x index = left ++ right
-	where (left, _:right) = splitAt index x
-
-deleteRow :: Matrix -> Int -> Matrix
-deleteRow [] _ = error "Error input Matrix"
-deleteRow m row = [deleteElement x row | x <- m]
-						
-
-minor :: Matrix -> Int -> Int -> Matrix
-minor [] _ _ = error "Error input Matrix"
-minor m row col = deleteRow m1 row where m1 = (deleteColumn m col)
-
+--metodo di Laplace
 det :: Matrix -> Double
 det [] = error "Error input Matrix"
 det [[x]] = x
 det m = sum [a*s*(det m1) | i <- [0..dim-1], 
-            let a = (head m !! i), let m1 = (minor m i 0), let s = (-1)^i] 
-                where
-                     dim = length m
-\end{verbatim}
-\newpage
-\begin{verbatim}		
+             let a = (head m !! i), let m1 = (minor m i 0),
+             let s = (-1)^i] 
+    where
+        dim = length m
+    
+deleteElement :: [a] -> Int -> [a]
+deleteElement x index = left ++ right where (left, _:right) = splitAt index x
+
+deleteRow :: Matrix -> Int -> Matrix
+deleteRow [] _ = error "Error input Matrix"
+deleteRow m row = [deleteElement x row | x <- m]
+                        
+
+minor :: Matrix -> Int -> Int -> Matrix
+minor [] _ _ = error "Error input Matrix"
+minor m row col = deleteRow m1 row where m1 = (deleteElement m col)
+
+
+
+
+--eliminazione gaussiana        
+gauss :: Matrix -> Matrix
+gauss mat 
+    | length mat > 1 = eliminate mat
+    | otherwise      = mat
+
+eliminate :: Matrix -> Matrix
+eliminate (x:xs) = x : (map (0:) (gauss (map (reduce x) xs)))    
+
+
+reduce :: Vector -> Vector -> Vector
+reduce (l:lr) (r:rr) = subVector rr (smul (aux r l) lr) where
+        aux    0 0 = 0
+        aux x y = x / y
+        
+det2 :: Matrix -> Double
+det2 [] = error "Error input Matrix"
+det2 m = product [m1 !! i !! i | i <- [0..dim-1]]
+    where
+        dim = length m
+        m1 = gauss m
+
 --determinante parallelo
 
-		
+--metodo di Laplace    
 detList :: Matrix -> Vector
 detList [] = error "Error input Matrix"
 detList [[x]] = [x]
-detList m = [a*s*(det m1) | i <- [0..dim-1],
-            let a = (head m !! i), let m1 = (minor m i 0), let s = (-1)^i] 
-                  where
-                      dim = length m
-		
+detList m = [a*s*(det m1) | i <- [0..dim-1], 
+             let a = (head m !! i), let m1 = (minor m i 0), let s = (-1)^i] 
+    where
+        dim = length m
+        
+
 pardet :: Matrix -> Double
 pardet m = sum ((detList m) `using` parList rpar)
-		
---matrice inversa
 
+
+
+pfold _ [x] = x
+pfold mappend xs  = (ys `par` zs) `pseq` (ys `mappend` zs) where
+  len = length xs
+  (ys', zs') = splitAt (len `div` 2) xs
+  ys = pfold mappend ys'
+  zs = pfold mappend zs'
+  
+
+pardet2 :: Matrix -> Double
+pardet2 m = pfold (*) [m1 !! i !! i | i <- [0..dim-1]]
+    where
+        dim = length m
+        m1 = gauss m
+        
+        
+        
+--matrice inversa (determinante NON efficiente)
 invert :: Matrix -> Matrix
 invert [[]] = [[]]
-invert m = transpose [[s*(det m1)/d | i <- [0..dim-1],
-               let m1 = (minor m i j), let s = (-1)^(i+j)] | j <- [0..dim-1]]
-                        where
-                             dim = length m
-                             d = det m
+invert m = transpose [[s*(det m1)/d | i <- [0..dim-1], 
+                       let m1 = (minor m i j), 
+                       let s = (-1)^(i+j)] | j <- [0..dim-1]]
+        where
+            dim = length m
+            d = det m
 
---matrice inversa parallela			
-			
-parinvert :: Matrix -> Matrix			
+--matrice inversa (determinante efficiente)        
+invert2 :: Matrix -> Matrix
+invert2 [[]] = [[]]
+invert2 m = transpose [[s*(det m1)/d | i <- [0..dim-1], 
+                        let m1 = (minor m i j), 
+                        let s = (-1)^(i+j)] | j <- [0..dim-1]]
+        where
+            dim = length m
+            d = det m
+            
+            
+--matrice inversa parallela    (determinante NON efficiente)            
+parinvert :: Matrix -> Matrix            
 parinvert m = (invert m) `using` parList rdeepseq
+
+
+--matrice inversa parallela    (determinante NON efficiente)    
+parinvert2 :: Matrix -> Matrix            
+parinvert2 m = (invert2 m) `using` parList rdeepseq
 \end{verbatim}
-\newpage
+\subsection{Codice di Testing}
+\subsubsection{Test Matrici}
+\begin{verbatim}
+import Utility
+import Matrix
+
+bigMat = makeMat 100
+smallMat = makeMat 8
+iden = identity 10
+
+test1 = return (prodMatrix bigMat bigMat)
+test2 = return (prodMatPar bigMat bigMat)
+
+test3 = return (powMatrix bigMat 2)
+test4 = return (powMatPar bigMat 2)
+
+test5 = return (sumMatrix bigMat bigMat)
+test6 = return (sumMatPar bigMat bigMat)
+
+test7 = return (invert iden)
+test8 = return (parinvert iden)
+test9 = return (parinvert2 iden)
+
+main = do
+    [n] <- getArgs
+    let test = [test1,test2,test3,test4,test5,
+                test6,test7,test8,test9] !! (read n - 1)
+    t0 <- getCurrentTime
+    r <- evaluate (runEval test)
+    print r
+    printTimeSince t0
+\end{verbatim}
+\subsubsection{Test Determinante}
+\begin{verbatim}
+import Utility
+import Matrix
+
+bigMat = makeMat 100
+smallMat = makeMat 8
+iden = identity 10
+
+test1 = return (det iden)
+test2 = return (pardet iden)
+test3 = return (det2 bigMat)
+
+
+main = do
+  [n] <- getArgs
+  let test = [test1,test2,test3] !! (read n - 1)
+  t0 <- getCurrentTime
+  r <- evaluate (runEval test)
+  printTimeSince t0
+  print r
+  printTimeSince t0
+        
+        
+\end{verbatim}
 \section{Grafi}
+\subsection{Modulo Graph}
 \begin{verbatim}
 module Graph where
 
-import Matrix
+import Data.List
+import Control.Parallel
+import Control.Parallel.Strategies
 
-type Graph = ([Node], [Edge])
-type Node = Int
-type Edge = (Node, Node)
+type Graph = (Int, [Edge])
+type Edge = (Int, Int)
+type AdjMat = [[Bool]]
 
+--matrice di adiacenza vuota
 
-adjMat :: Graph -> Matrix
-adjMat (nodes, []) = zeroes dim
-                  where
-                        dim = length nodes
-adjMat (nodes, e:edges) = setEdge e 1.0 (adjMat (nodes, edges))
+emptyAdjMat :: Int -> AdjMat
+emptyAdjMat dim = emptyAdjMat' dim 0
 
-setEdge :: Edge -> Double -> Matrix -> Matrix
-setEdge _ _ [] = error "Error out of bound"
+emptyAdjMat' :: Int -> Int -> AdjMat
+emptyAdjMat' n m
+            | m >= n = []
+            |otherwise = [i == m | i <- [0..n-1]]:(emptyAdjMat' n (m+1))
+
+            
+--matrice di adiacenza di un grafo            
+
+makeAdjMat :: Graph -> AdjMat
+makeAdjMat (nodes, []) = emptyAdjMat nodes
+makeAdjMat (nodes, (x, y):edges) = setEdge (x, y) True
+                                    (makeAdjMat (nodes, edges))
+
+setEdge :: (Int, Int) -> Bool -> AdjMat -> AdjMat
+setEdge _ _ [] = error "Error in setEdge"
 setEdge (x, y) v m = replacePosition x y v (replacePosition y x v m)
 
-replacePosition :: Int -> Int -> Double -> Matrix -> Matrix                     
+replacePosition :: Int -> Int -> a -> [[a]] -> [[a]]                            
 replacePosition x y v m = left ++ [new] ++ right
-                     where
-                        (left, old:right) = splitAt x m
-                        (left2, _:right2) = splitAt y old
-                        new = left2 ++ [v] ++ right2
+                            where
+                                (left, old:right) = splitAt x m
+                                (left2, _:right2) = splitAt y old
+                                new = left2 ++ [v] ++ right2
+
+--"prodotto" di matrici di adiacenza
+                        
+prodAdjMat :: AdjMat -> AdjMat -> AdjMat
+prodAdjMat m1 m2 = [[orVect a b | b <- column] | a <- m1]
+                        where column = transpose m2
+    
+prodAdjMatPar :: AdjMat -> AdjMat -> AdjMat
+prodAdjMatPar a b = (prodAdjMat a b) `using` parList rdeepseq
+                        
+orVect :: [Bool] -> [Bool] -> Bool
+orVect a b = foldOr (zipWith (&&) a b)
+
+foldOr :: [Bool] -> Bool
+foldOr [x] = x
+foldOr (x:xs) = x || (foldOr xs)
+
+                
+--sviluppo n-esimo delle matrici di adiacenza (n scatti)
+                        
+powAdjMat :: AdjMat -> Int -> AdjMat
+powAdjMat m 0 = emptyAdjMat dim where dim = length m
+powAdjMat m 1 = m
+powAdjMat m n = prodAdjMat m (powAdjMat m (n-1))
+
+powAdjMatPar :: AdjMat -> Int -> AdjMat
+powAdjMatPar m 0 = emptyAdjMat dim where dim = length m
+powAdjMatPar m 1 = m
+powAdjMatPar m n = prodAdjMatPar m (powAdjMatPar m (n-1))
+
+--connettività del grafo
+isFullyConnected :: Graph -> Bool
+isFullyConnected (n, e) = not(any (elem True) m) where    
+                                m = powAdjMat adj_mat n
+                                adj_mat = makeAdjMat (n, e)
+                                
+isFullyConnectedPar :: Graph -> Bool
+isFullyConnectedPar (n, e) = not(any (elem True) m) where    
+                                m = powAdjMatPar adj_mat n
+                                adj_mat = makeAdjMat (n, e)
 \end{verbatim}
-\newpage
-\begin{verbatim}	
-normalize :: Matrix -> Matrix            
-normalize m = [[reduce x | x <- y] | y <- m]
-               where reduce a 
-                     | a==0 = 0
-                     | otherwise = 1
-                     
-fullyConnected :: Matrix -> Bool
-fullyConnected [] = True
-fullyConnected (x:xs) = (all (/= 0.0) x) && fullyConnected xs
+\subsection{Codice di Testing}
+\subsubsection{Test Determinante}
+\begin{verbatim}
+import Utility
+import Graph
 
-isConnected :: Matrix -> Bool
-isConnected m = checkConnection m1 m1 where m1 = normalize m
+g = (10, [(0,1),(0,2),(0,3),(1,2)(1,4),(2,5),(2,8),(4,7),(8,9)])
+
+test1 = return (isFullyConnected g)
+test2 = return (isFullyConnected g)
 
 
+main = do
+  [n] <- getArgs
+  let test = [test1,test2] !! (read n - 1)
+  t0 <- getCurrentTime
+  r <- evaluate (runEval test)
+  printTimeSince t0
+  print r
+  printTimeSince t0
+        
+        
+\end{verbatim}
+\section{Funzioni ausiliarie}
+\subsection{Modulo Utility}
+\begin{verbatim}
+module Utility where
 
-checkConnection :: Matrix -> Matrix -> Bool
-checkConnection m1 m2
-      | fullyConnected m1 = True
-      | m3 == m1 = False
-      | otherwise = checkConnection m3 m2
-         where m3 = normalize (prodMatrix m1 m2)
+import Control.Parallel
+import Control.Parallel.Strategies
+import Control.Exception
+import Data.Time.Clock
+import Text.Printf
+import System.Environment
+import System.Random
+
+randomList :: Int -> [Int]
+randomList n = take n (randomRs (1, n) (mkStdGen 42))
+                 
+printTimeSince t0 = do
+  t1 <- getCurrentTime
+  printf "time: %.2fs\n" (realToFrac (diffUTCTime t1 t0) :: Double)
 \end{verbatim}
