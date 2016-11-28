@@ -64,7 +64,9 @@ test2 = do
   x <- rpar (fib 36)
   y <- rpar (fib 35)
   return (x,y)
-
+\end{verbatim}
+\newpage
+\begin{verbatim}
 test3 = do
   x <- rpar (fib 36)
   y <- rseq (fib 35)

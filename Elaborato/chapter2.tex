@@ -140,3 +140,6 @@ L'ultimo caso, l'operazione di inversione di matrici, è per certi versi legato 
 \item{\textit{La matrice $A^{-1}$ è la matrice dei cofattori traslata.}}
 \end{enumerate}
 \section{Grafi}
+La connettività di un grafo viene risolta mediante l'utilizzo delle matrici di adiacenza. Vista l'efficienza ottenuta nell'algebra lineare lasceremo inalterato l'algoritmo: ci limiteremo rendere parallele le operazioni interne all'esecuzione.\\
+In primo luogo la creazione della matrice di adiacenza avviene nello stesso modo: presa una matrice di zeri, vengono analizzati gli archi del grafo e viene sostituito l'elemento associato nella matrice con un 1. La potenza $n-esima$ della matrice di adiacenza definirà le parti connesse del grafo.\\
+Il prodotto matriciale per la potenza viene eseguito in parallelo, ottenendo così il parallelismo desiderato.

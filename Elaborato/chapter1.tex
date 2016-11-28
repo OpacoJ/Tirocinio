@@ -116,8 +116,9 @@ Prendiamo ad esempio due algoritmi piuttosto comuni in questo campo: quicksort e
 	        left = Quicksort(left)
 	        right = Quicksort(right)
 	        return left : [p] : right
-
-
+\end{verbatim}
+\newpage
+\begin{verbatim}
     Mergesort(L = [a1,..,an])
         begin
         if(n <= 1) then
@@ -216,11 +217,10 @@ L'algoritmo è il seguente:
     for k = 1,..,n do
         for j = 1,..,n do
             for i = 1,..,n do
-                if Mij = 0 then Mij = Mik && Ckj
+                if Mij = 0 then Mij = Mik && Mkj
             done
         done
     done
 \end{verbatim}
-\newpage
 \noindent Se al termine dell'algoritmo la matrice contiene degli zeri il grafo non è connesso.\\
 Si tratta di tre cicli innestati, proporzionali alla dimensione del grafo, dunque la complessità di calcolo equivale a $\mathcal{O}(n^3)$.\\

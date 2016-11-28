@@ -1,0 +1,10 @@
+Prendiamo il seguente esempio
+\begin{verbatim}
+-- Funzione Map sequenziale
+map f [] = []
+map f (x:xs) = (f x):(map f xs)
+
+-- Funzione Map in parallelo
+strat = parList rseq
+parMap f xs = map f xs `using` strat
+\end{verbatim}

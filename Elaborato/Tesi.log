@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.7.4)  24 NOV 2016 09:24
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.7.4)  27 NOV 2016 16:16
 entering extended mode
 **./Tesi.tex
 (Tesi.tex
@@ -1896,7 +1896,7 @@ Overfull \hbox (51.11009pt too wide) in paragraph at lines 50--55
 ge.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.63 ...llelismo in Haskell}{34}{subsection.5.1.5}
+l.63 ...llelismo in Haskell}{33}{subsection.5.1.5}
                                                    [1
 
 
@@ -1963,35 +1963,35 @@ LaTeX Font Info:    Try loading font information for T1+cmtt on input line 108.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\t1cmtt.fd"
 File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-)
-Overfull \hbox (48.31796pt too wide) in paragraph at lines 146--146
+) [10
+
+]
+Overfull \hbox (48.31796pt too wide) in paragraph at lines 147--147
 []            \T1/cmtt/m/n/12 dividi la lista L a metà, creando le liste "left"
  e "right"[] 
  []
 
-[10
-
-] [11] [12]
-Underfull \hbox (badness 10000) in paragraph at lines 190--191
-
- []
-
-
+[11] [12]
 Underfull \hbox (badness 10000) in paragraph at lines 191--192
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 192--194
+Underfull \hbox (badness 10000) in paragraph at lines 192--193
 
  []
 
-[13] [14])
+
+Underfull \hbox (badness 10000) in paragraph at lines 193--195
+
+ []
+
+[13])
 Underfull \hbox (badness 10000) in paragraph at lines 225--76
 
  []
 
-[15] [16
+[14] [15
 
 
 ]
@@ -2004,7 +2004,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 2--5
 
  []
 
-[17
+[16
 
 
 ]
@@ -2012,7 +2012,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 15--18
 
  []
 
-[18] [19] [20] [21]
+[17] [18] [19] [20]
 Underfull \hbox (badness 10000) in paragraph at lines 87--91
 
  []
@@ -2022,9 +2022,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 87--91
 
  []
 
-[22]
+[21]
 Capitolo 4.
-[23
+[22
 
 ]
 Overfull \hbox (5.10352pt too wide) in paragraph at lines 126--126
@@ -2032,7 +2032,7 @@ Overfull \hbox (5.10352pt too wide) in paragraph at lines 126--126
 [j][] 
  []
 
-[24]) [25] [26
+[23]) [24] [25
 
 
 ]
@@ -2050,15 +2050,15 @@ Underfull \hbox (badness 10000) in paragraph at lines 2--7
 
  []
 
-[27
+[26
 
 
-] [28]
+] [27]
 Underfull \hbox (badness 10000) in paragraph at lines 44--45
 
  []
 
-[29] [30] [31] [32]
+[28] [29] [30] [31]
 Overfull \hbox (23.624pt too wide) in paragraph at lines 121--121
 []\T1/cmtt/m/n/12 return a >>= k  =  k a                      <-- identità a si
 nistra[] 
@@ -2070,22 +2070,22 @@ Overfull \hbox (11.27701pt too wide) in paragraph at lines 121--121
 stra[] 
  []
 
-[33] [34]
+[32] [33]
 Capitolo 6.
-[35
+[34
 
-] [36] [37] [38]
+] [35] [36] [37]
 Overfull \hbox (18.17392pt too wide) in paragraph at lines 230--231
 \T1/cmr/m/n/12 La mo-na-de Eval è una strut-tu-ra con-te-nu-ta nel pac-ka-ge Co
 n-tol.Parallel.Strategies.
  []
 
-[39]
+[38]
 Underfull \hbox (badness 10000) in paragraph at lines 262--263
 
  []
 
-[40]) [41] [42
+[39]) [40] [41
 
 
 ]
@@ -2093,95 +2093,95 @@ Underfull \hbox (badness 10000) in paragraph at lines 262--263
 
  (chapter4.tex
 Capitolo 7.
-[43
+[42
 
 
-] [44] [45]
-Overfull \hbox (42.14447pt too wide) in paragraph at lines 172--172
+] [43] [44]
+Overfull \hbox (42.14447pt too wide) in paragraph at lines 174--174
 []\T1/cmtt/m/n/12 parquicksort (x:xs) = (left `par` right) `pseq` (left ++ [x] 
 ++ right)[] 
  []
 
 
-Overfull \hbox (35.97098pt too wide) in paragraph at lines 172--172
+Overfull \hbox (35.97098pt too wide) in paragraph at lines 174--174
 []                            \T1/cmtt/m/n/12 left = parquicksort [a | a <- xs,
  a <= x][] 
  []
 
 
-Overfull \hbox (35.97098pt too wide) in paragraph at lines 172--172
+Overfull \hbox (35.97098pt too wide) in paragraph at lines 174--174
 []                            \T1/cmtt/m/n/12 right = parquicksort [a | a <- xs
 , a > x][] 
  []
 
-[46] [47]
-Overfull \hbox (11.27701pt too wide) in paragraph at lines 401--401
+[45] [46] [47]
+Overfull \hbox (11.27701pt too wide) in paragraph at lines 403--403
 []                   \T1/cmtt/m/n/12 (replicate (n-m-1) 0))] ++ (identity2 n (m
 +1))[] 
  []
 
-[48] [49]
-Overfull \hbox (85.35892pt too wide) in paragraph at lines 401--401
+[48]
+Overfull \hbox (85.35892pt too wide) in paragraph at lines 403--403
 []\T1/cmtt/m/n/12 deleteElement x index = left ++ right where (left, _:right) =
  splitAt index x[] 
  []
 
-[50]
-Overfull \hbox (23.624pt too wide) in paragraph at lines 401--401
+[49]
+Overfull \hbox (23.624pt too wide) in paragraph at lines 403--403
 []\T1/cmtt/m/n/12 minor m row col = deleteRow m1 row where m1 = (deleteElement 
 m col)[] 
  []
 
 
-Overfull \hbox (73.01193pt too wide) in paragraph at lines 401--401
+Overfull \hbox (73.01193pt too wide) in paragraph at lines 403--403
 []             \T1/cmtt/m/n/12 let a = (head m !! i), let m1 = (minor m i 0), l
 et s = (-1)^i][] 
  []
 
-[51]
-Overfull \hbox (5.10352pt too wide) in paragraph at lines 401--401
+[50]
+Overfull \hbox (5.10352pt too wide) in paragraph at lines 403--403
 []\T1/cmtt/m/n/12 pfold mappend xs  = (ys `par` zs) `pseq` (ys `mappend` zs) wh
 ere[] 
  []
 
-[52] [53] [54]
-Overfull \hbox (54.49146pt too wide) in paragraph at lines 540--540
+[51] [52] [53]
+Overfull \hbox (54.49146pt too wide) in paragraph at lines 542--542
 []            \T1/cmtt/m/n/12 |otherwise = [i == m | i <- [0..n-1]]:(emptyAdjMa
 t' n (m+1))[] 
  []
 
 
-Overfull \hbox (29.79749pt too wide) in paragraph at lines 540--540
+Overfull \hbox (29.79749pt too wide) in paragraph at lines 542--542
 []\T1/cmtt/m/n/12 setEdge (x, y) v m = replacePosition x y v (replacePosition y
  x v m)[] 
  []
 
 
-Overfull \hbox (11.27701pt too wide) in paragraph at lines 540--540
+Overfull \hbox (11.27701pt too wide) in paragraph at lines 542--542
 []                                \T1/cmtt/m/n/12 (left2, _:right2) = splitAt y
  old[] 
  []
 
-[55]
-Overfull \hbox (5.10352pt too wide) in paragraph at lines 563--563
+[54]
+Overfull \hbox (5.10352pt too wide) in paragraph at lines 565--565
 []\T1/cmtt/m/n/12 g = (10, [(0,1),(0,2),(0,3),(1,2)(1,4),(2,5),(2,8),(4,7),(8,9
 )])[] 
  []
 
-[56]
-Overfull \hbox (23.624pt too wide) in paragraph at lines 583--583
+[55]
+Overfull \hbox (23.624pt too wide) in paragraph at lines 585--585
 []  \T1/cmtt/m/n/12 printf "time: %.2fs\n" (realToFrac (diffUTCTime t1 t0) :: D
 ouble)[] 
  []
 
-) [57]
+) [56]
 Overfull \hbox (0.50807pt too wide) in paragraph at lines 90--90
 []\T1/cmr/m/n/12 Simon Mar-low. \T1/cmr/m/it/12 Seq no mo-re: Bet-ter Stra-te-g
 ies for Pa-ral-lel Ha-skell\T1/cmr/m/n/12 . []$\T1/cmtt/m/n/12 http :
  []
 
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 91.
-[58
+[57
 
 
 ]
@@ -2197,8 +2197,8 @@ Package logreq Info: Writing requests to 'Tesi.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 19012 strings out of 493335
- 285918 string characters out of 3139258
+ 19011 strings out of 493335
+ 285911 string characters out of 3139258
  496614 words of memory out of 3000000
  22120 multiletter control sequences out of 15000+200000
  21846 words of font info for 62 fonts, out of 3000000 for 9000
@@ -2229,9 +2229,9 @@ type1/public/cm-super/sfrm1728.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pub
 lic/cm-super/sfrm2074.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/cm-su
 per/sfti1200.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/cm-super/sftt1
 000.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on Tesi.pdf (60 pages, 1143791 bytes).
+Output written on Tesi.pdf (59 pages, 1143613 bytes).
 PDF statistics:
- 730 PDF objects out of 1000 (max. 8388607)
- 139 named destinations out of 1000 (max. 500000)
+ 725 PDF objects out of 1000 (max. 8388607)
+ 138 named destinations out of 1000 (max. 500000)
  410 words of extra memory for PDF output out of 10000 (max. 10000000)
 

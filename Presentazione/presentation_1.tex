@@ -1,0 +1,319 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Beamer Presentation
+% LaTeX Template
+% Version 1.0 (10/11/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND THEMES
+%----------------------------------------------------------------------------------------
+
+\documentclass[14pt]{beamer}
+\usepackage[italian]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{latexsym}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\mode<presentation> {
+
+% The Beamer class comes with a number of default slide themes
+% which change the colors and layouts of slides. Below this is a list
+% of all the themes, uncomment each in turn to see what they look like.
+
+%\usetheme{default}
+%\usetheme{AnnArbor}
+%\usetheme{Antibes}
+%\usetheme{Bergen}
+%\usetheme{Berkeley}
+%\usetheme{Berlin}
+%\usetheme{Boadilla}
+%\usetheme{CambridgeUS}
+%\usetheme{Copenhagen}
+%\usetheme{Darmstadt}
+%\usetheme{Dresden}
+%\usetheme{Frankfurt}
+%\usetheme{Goettingen}
+%\usetheme{Hannover}
+%\usetheme{Ilmenau}
+%\usetheme{JuanLesPins}
+%\usetheme{Luebeck}
+\usetheme{Madrid}
+%\usetheme{Malmoe}
+%\usetheme{Marburg}
+%\usetheme{Montpellier}
+%\usetheme{PaloAlto}
+%\usetheme{Pittsburgh}
+%\usetheme{Rochester}
+%\usetheme{Singapore}
+%\usetheme{Szeged}
+%\usetheme{Warsaw}
+
+% As well as themes, the Beamer class has a number of color themes
+% for any slide theme. Uncomment each of these in turn to see how it
+% changes the colors of your current slide theme.
+
+%\usecolortheme{albatross}
+%\usecolortheme{beaver}
+%\usecolortheme{beetle}
+%\usecolortheme{crane}
+%\usecolortheme{dolphin}
+%\usecolortheme{dove}
+%\usecolortheme{fly}
+%\usecolortheme{lily}
+%\usecolortheme{orchid}
+%\usecolortheme{rose}
+%\usecolortheme{seagull}
+%\usecolortheme{seahorse}
+%\usecolortheme{whale}
+%\usecolortheme{wolverine}
+
+%\setbeamertemplate{footline} % To remove the footer line in all slides uncomment this line
+%\setbeamertemplate{footline}[page number] % To replace the footer line in all slides with a simple slide count uncomment this line
+
+%\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
+}
+
+\usepackage{graphicx} % Allows including images
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title[Parallelismo e Haskell]{Parallelismo e Haskell} % The short title appears at the bottom of every slide, the full title is only on the title page
+
+\author{Jacopo Francesco Zemella} % Your name
+\institute[Unimi] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
+{
+Universit\`a degli studi di Milano \\ % Your institution for the title page
+\medskip
+\textit{jacopofrancesco.zemella@studenti.unimi.it} % Your email address
+}
+\date{\today} % Date, can be changed to a custom date
+
+\begin{document}
+
+\begin{frame}
+\titlepage % Print the title page as the first slide
+\end{frame}
+
+\begin{frame}
+\frametitle{Overview} % Table of contents slide, comment this block out to remove it
+\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+%	PRESENTATION SLIDES
+%----------------------------------------------------------------------------------------
+
+%------------------------------------------------
+\section{Algoritmi Sequenziali} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
+%------------------------------------------------
+
+
+\begin{frame}
+\frametitle{Algoritmi Sequenziali}
+\textbf{Algoritmo:} Sequenza finita di istruzioni interpretabili da un determinato agente, finalizzate a risolvere un problema\\
+\textbf{Calcolo Sequenziale}: Insieme delle procedure in cui le istruzioni vengono eseguite in \textit{sequenza}, una dopo l'altra. Nei sistemi informatici gli algoritmi sequenziali vengono eseguiti da una singola CPU: ad ogni istante \textit{t} di tempo è in esecuzione una e una sola operazione
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Complessità Sequenziale}
+La bontà di un algoritmo è legato al numero di operazioni che esegue per ottenere un risultato $\rightarrow$ \textbf{Complessità}\\
+\textbf{Complessità Asintotica}: Stima asintotica della complessità di un algoritmo in funzione della dimensione $n$ dell'input; esempi: $n, \ n\log n, \ n^k, \ 2^n, \ n!$
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Caratteristiche degli Algoritmi}
+\textbf{Efficienza}: Un algoritmo si dice \textit{efficiente} se la sua complessità asintotica è di ordine polinomiale ($\mathcal{O}(n^k), \ k \in \mathbb{N}$)\\
+\textbf{Ottimalità}: Un algoritmo di complessità $f(n)$ si dice \textit{ottimo} se ogni altro algoritmo che risolve lo stesso problema ha complessità pari \textit{almeno} a $f(n)$
+\end{frame}
+
+%------------------------------------------------
+
+
+\section{Algoritmi Paralleli}
+\begin{frame}
+\frametitle{Algoritmi Paralleli}
+\textbf{Calcolo Parallelo}: Insieme delle procedure in cui parte delle istruzioni vengono eseguite su più processori contemporaneamente\\
+\textbf{Scopo della Parallelizzazione}: Ottenere un compromesso conveniente tra prestazioni e costo delle risorse aggiunte
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+Un generico algoritmo parallelo si presenta così:\\
+\begin{verbatim}
+    for (i from 1 to NumProcessori) do
+             operazioneParallela
+\end{verbatim}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Analisi degli Algoritmi Paralleli}
+Chiamiamo $\mathrm{T}_{A}(n, p)$ il tempo di esecuzione di un algoritmo parallelo $A$ in funzione della dimensione dell'input $n$ e del numero di processori $p$\\
+\begin{itemize}
+\item{Speedup}: $\displaystyle \mathrm{S}_{A}(n, p) = \frac{\mathrm{T}_{A}(n, 1)}{\mathrm{T}_{A}(n, p)}$\\
+\item{Efficienza}: $\displaystyle \mathrm{E}_{A}(n, p) = \frac{\mathrm{S}_{A}(p)}{p} = \frac{\mathrm{T}_{A}(n, 1)}{p\mathrm{T}_{A}(n, p)}$
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Legge di Amdahl}
+\textit{"Il miglioramento che si può ottenere su una certa parte del sistema è limitato dalla frazione di tempo in cui tale attività ha luogo"}\\
+Analogamente il guadagno prestazionale ottenuto dal parallelismo è limitato dalla sua componente sequenziale
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+Se chiamiamo $\alpha$ la componente sequenziale del tempo di esecuzione otteniamo che:
+\begin{center}
+$\displaystyle S_{A}(n,p) = \frac{1}{\displaystyle \alpha + \frac{1-\alpha}{p}}$\\
+\end{center}
+
+\begin{center}
+$\displaystyle S_A(n,p) = \frac{1}{\alpha} \ se \ p \rightarrow \infty$
+\end{center}
+
+\end{frame}
+
+\section{Haskell}
+\begin{frame}
+\frametitle{Haskell}
+Caratteristiche di Haskell:
+\begin{itemize}
+\item Linguaggio funzionale
+\item Tipizzazione forte e statica
+\item Lazy Evaluation
+\item Alto livello di astrazioni
+\item Funzioni Higher-Order
+\item Pienamente avviato verso la programmazione parallela
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Premesse nel parallelismo in Haskell}
+Haskell definisce i threads (o sparks) parallelizzabili in fase di compilazione
+\begin{verbatim}
+    ghc -threaded foo.hs
+\end{verbatim}
+In fase di esecuzione è inoltre possibile specificare il numero di processori da utilizzare mediante l'opzione \texttt{-N}
+\begin{verbatim}
+    ./foo +RTS -N2
+\end{verbatim}
+\end{frame}
+
+
+%------------------------------------------------
+
+\section{Haskell in Parallelo}
+
+\begin{frame}
+\frametitle{Parallel Haskell}
+Distinguiamo le seguenti metodologie di programmazione:
+\begin{itemize}
+\item \textit{par} e \textit{pseq} $\rightarrow$ parallelismo esplicito
+\item \textit{Strategies} $\rightarrow$ parallelismo semi-esplicito
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+
+\begin{frame}
+\frametitle{Control.Paralell: par e pseq}
+Generiamo parallelismo a livello di codice mediante due funzioni del pacchetto Control.Paralell:
+\begin{itemize}
+\item \textit{par}: definisce il parallelismo in modo esplicito; prende in ingresso due funzioni e definisce la prima come "parallelizzabile", ovvero eseguibile su un altro processore
+\item \textit{pseq}: permette un controllo mirato sull'esecuzione delle varie funzioni che definiscono il programma
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Perché controllare l'esecuzione?}
+Sia "\texttt{fib n}" la funzione che calcola l'elemento \textit{n-esimo} della serie di Fibonacci. Eseguiamo il seguente programma:
+\begin{verbatim}
+pairFib = f1 + f2 where
+    		f1 = fib 36
+    		f2 = fib 36
+    
+pairFibPar = f1 `par` (f1 + f2) where
+    			f1 = fib 36
+    			f2 = fib 36
+\end{verbatim}
+\end{frame}
+
+%------------------------------------------------
+
+
+\begin{frame}
+Tempo di esecuzione \texttt{pairFib} = 6.92 sec\\
+Tempo di esecuzione \texttt{pairFibPar} = 6.92 sec\\
+Abbiamo vainificato gli sforzi per il Parallelismo\\
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Soluzione: pseq}
+\begin{verbatim}
+pairFibPar2 =
+    f1 `par` (f2 `pseq` (f1 + f2)) where
+        f1 = fib 36
+        f2 = fib 36
+\end{verbatim}
+Tempo di esecuzione \texttt{pairFibPar2} = 3.48 sec\\
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Control.Paralell.Strategies: strategie}
+Scopo = dividiamo l'algoritmo dalla componente parallela\\[1ex]
+Prendiamo un algoritmo "sequenziale" e vi applichiamo una strategia di calcolo che definisce implicitamente come deve essere parallelizzato \\[1ex]
+Possiamo sfruttare strategie già esistenti o crearne altre ex-novo adatte al nostro scopo
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+Prendiamo il seguente esempio
+\begin{verbatim}
+-- Funzione Map sequenziale
+map f [] = []
+map f (x:xs) = (f x):(map f xs)
+
+-- Funzione Map in parallelo
+strat = parList rseq
+parMap f xs = map f xs `using` strat
+\end{verbatim}
+\end{frame}
+
+\begin{frame}
+\Huge{\centerline{The End}}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+
+\end{document} 

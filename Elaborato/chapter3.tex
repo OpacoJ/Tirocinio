@@ -261,7 +261,8 @@ f `using` s
 \end{verbatim}
 Un corretto utilizzo delle strategie non è solo un metodo stringente per definire parallelismo. Grazie alla potenza delle astrazioni di Haskell è possibile parallelizzare un algoritmo sequenziale già esistente semplicemente applicandovi una strategia per ottenere il risultato.\\
 \subsection{Esempio: la funzione map in parallelo}
-Vediamo ora come l'utilizzo delle strategie possa rendere la parallelizzazione concisa ed efficace. La funzione map prende in ingresso due parametri: una funzione (\texttt{f :: a -> b}) e una lista di elementi di tipo \texttt{a}. Il nostro intento è di rendere parallela questa operazione senza modificare l'algoritmo di partenza.\\
+Vediamo ora come l'utilizzo delle strategie possa rendere la parallelizzazione concisa ed efficace. La funzione map prende in ingresso due parametri: una funzione (\texttt{f :: a -> b}) e una lista di elementi di tipo \texttt{a}. Il nostro intento è di rendere parallela questa operazione senza modificare l'algoritmo di partenza.\newpage
+\noindent
 La funzione più semplice finalizzata a questo intento è:
 \begin{verbatim}
 parMapList :: (a -> b) -> [a] -> [b]
