@@ -99,50 +99,12 @@ L'astrazione consente di modulare il codice a vantaggio della progettazione gene
 \subsubsection{Monade}
 Altro elemento cardine di Haskell è la \textbf{Monade}. Dal punto di vista matematico, preso un insieme \textit{X} di definizione, una monade è una \textit{un monoide di X nella categoria degli endofuntori di X}(def. Mac Lane\cite{maclane}). Formalmente definiamo una monade come una tripla \texttt{< M, return, >{}>= >}, in cui:
 \begin{itemize}
-\item{\texttt{M} è un costruttore di tipi;}
-\item{\texttt{return} è una funzione che specifica come costruire i tipi di monadi a partire dal loro contenuto;}
-\item{\texttt{>{}>=} è l'operazione di binding; presi due parametri, passa ogni valore prodotto dal primo come argomento per il secondo; è ciò che rende sequenziali le operazioni per i linguaggi funzionali.}
+\item{\texttt{M} rappresenta la tipologia del costrutto;}
+\item{\texttt{return} è una funzione che definisce una monade a partire da suo contenuto;}
+\item{\texttt{>{}>=} è l'operazione di binding; permette la concatenazione o la composizione di monadi della stessa tipologia.}
 \end{itemize}
-In informatica le monadi sono essenzialmente strutture che esprimono classi di computazioni concatenabili e risultano particolarmente utili nei linguaggi funzionali. Il meccanismo è il seguente: Haskell funziona mediante una tecnica di esecuzione detta valutazione pigra, o lazy evaluation, viste le sue caratteristiche poco performanti. In questo modo ogni elemento o funzione che compone i programmi vengono calcolati solo ed esclusivamente on-demand. Come conseguenza, da un lato una funzione può non venire calcolata se non viene richiesta, dall'altro un insieme di funzioni cui viene richiesta l'esecuzione viene trattato come un sistema di equazioni valutate simultaneamente. Le monadi aggirano questa caratteristica, consentendo una computazione più controllata e introducendo la sequenzialità nel linguaggio.\\
-La classe che implementa le monadi in Haskell si presenta così\footnote{In Haskell le lettere minuscole nella definizione dei tipi indicano sempre tipi generici; una funzione \texttt{f :: a -> b} indica una relazione tra un tipo generico \texttt{a} e un altro tipo generico \texttt{b}, non necessariamente della stessa natura.}:
-\begin{verbatim}
-class Monad m where
-  (>>=)  :: m a    -> (a  -> m b) -> m b
-  (>>)   :: m a    -> m b -> m b            
-  -- (>>) è come (>>=) ma scarta il risultato dell'operazione
-  return :: a      -> m a
-  fail   :: String -> m a
-\end{verbatim}
-Nel caso specifico le monadi devono rispettare le seguenti regole:
-\begin{verbatim}
-return a >>= k  =  k a                      <-- identità a sinistra
-m >>= return  =  m                          <-- identità a destra
-m >>= (\x -> k x >>= h)  =  (m >>= k) >>= h <-- associatività
-\end{verbatim}
-Vediamo ora queste strutture in azione nella console GHCI:
-\begin{verbatim}
-##Definiamo per prima cosa la monade
-Prelude> let m = return 3
-
-##Ricaviamone il tipo associato
-Prelude> :type m
-m :: (Monad m, Num a) => m a
-\end{verbatim}
-\newpage
-\begin{verbatim}
-##Richiamare una monade ne restituisce il contenuto
-Prelude> m
-3
-
-##Definiamo alcuni operatori per le monadi su interi
-Prelude> let inc n = return (n + 1)
-Prelude> let sub n = return (n - 1)
-
-
-##Operiamo inc e sub in successione
-Prelude> m >>= inc >>= sub >>=  inc
-4
-\end{verbatim}
+In informatica le monadi sono essenzialmente strutture che esprimono classi di computazioni concatenabili e risultano particolarmente utili nei linguaggi funzionali. Possiamo identificare una monade come una struttura dati con uno stato  associato. Tipicamente è utilizzata per modellare un aspetto del mondo esterno al programma e   permette   ai   linguaggi funzionali di rimanere puri, cioè senza effetti collaterali.\\
+Si tratta comunque di un argomento ampio e complesso, che ci sarà utile quando andremo a definire una tecnica particolare di programmazione parallela; per maggiori informazioni è disponibile una descrizione più dettagliata sul sito della documentazione Haskell: \url{https://wiki.haskell.org/Monad}.
 \subsection{Parallelismo in Haskell}
 All'inizio del capitolo abbiamo distinto due categorie di parallelismo, implicito ed esplicito, stabilendo di voler concentrare la nostra attenzione sulla seconda. Nelle librerie che utilizzeremo Haskell garantisce una sorta di via di mezzo, una forma definita semi-esplicita: per l'esecuzione parallela sono richiesti dall'utente solo alcuni aspetti della coordinazione tra le varie partizioni del programma. Tuttavia ciò non è assolutamente un fatto negativo: cedendo al sistema la maggior parte del lavoro "sporco", ciò consente di focalizzare l'attenzione solo sulla stesura del codice.\\
 Il nostro lavoro sarà solo ed esclusivamente partizionare il problema all'interno del codice in sezioni che possano essere eseguite parallelamente, senza precisazioni sulle caratteristiche della macchina che andrà ad eseguire il codice, nemmeno il numero di processori di cui dispone. Tutte queste caratteritiche andranno definite solo in fase di esecuzione.\\

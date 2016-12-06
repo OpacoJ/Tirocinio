@@ -1,4 +1,5 @@
 \chapter{Problemi implementati}
+Di seguito verranno presentati gli esempi di problemi risolti mediante algoritmi sequenziali e paralleli. Per analizzarne l'esecuzione sono disponibili file di testing sulla repository di questa tesi: \url{https://github.com/OpacoJ/Tirocinio}.
 \section{Esempi}
 \subsection{Modulo Esempi}
 \begin{verbatim}
@@ -37,80 +38,7 @@ parMapList :: (a -> b) -> [a] -> [b]
 parMapList f ls = map f ls `using` parList rseq
 
 \end{verbatim}
-\subsection{Codice di Testing}
-\subsubsection{Test Pair Fibonacci}
-\begin{verbatim}
-import Control.Parallel
-import Control.Parallel.Strategies
-import Control.Exception
-import Data.Time.Clock
-import Text.Printf
-import System.Environment
-import Utility
-import Esempi
 
-main = do
-  [n] <- getArgs
-  let test = [test1,test2,test3,test4,test5] !! (read n - 1)
-  t0 <- getCurrentTime
-  r <- evaluate (runEval test)
-  printTimeSince t0
-  print r
-  printTimeSince t0
-
-test1 = return (fib 36,fib 35)
-
-test2 = do
-  x <- rpar (fib 36)
-  y <- rpar (fib 35)
-  return (x,y)
-\end{verbatim}
-\newpage
-\begin{verbatim}
-test3 = do
-  x <- rpar (fib 36)
-  y <- rseq (fib 35)
-  return (x,y)
-
-test4 = do
-  x <- rpar (fib 36)
-  y <- rseq (fib 35)
-  rseq x
-  return (x,y)
-
-test5 = do
-  x <- rpar (fib 36)
-  y <- rpar (fib 35)
-  rseq x
-  rseq y
-  return (x,y)
-\end{verbatim}
-\subsubsection{Test ParSeq}
-\begin{verbatim}
-import Control.Parallel
-import Control.Parallel.Strategies
-import Control.Exception
-import Data.Time.Clock
-import Text.Printf
-import System.Environment
-import Esempi
-import Utility
-
-
-main = do
-  [n] <- getArgs
-  let test = [test1,test2,test3] !! (read n - 1)
-  t0 <- getCurrentTime
-  r <- evaluate (runEval test)
-  printTimeSince t0
-  print r
-  printTimeSince t0
-
-
-test1 = return parOp
-test2 = return parOp2
-test3 = return parOp3
-\end{verbatim}
 \section{Ordinamento}
 \subsection{Modulo Sorting}
 \begin{verbatim}
@@ -126,7 +54,9 @@ quicksort [] = []
 quicksort (x:xs) = left ++ [x] ++ right where
                         left = quicksort [a | a <- xs, a <= x]
                         right = quicksort [a | a <- xs, a > x]
-
+\end{verbatim}
+\newpage
+\begin{verbatim}
 --Quicksort Parallelo
 
 parquicksort :: Ord a => [a] -> [a]
@@ -158,7 +88,9 @@ mergesort xs = merge (mergesort left) (mergesort right)
                 where
                     (left, right) = splitAt l xs
                     l = div (length xs) 2
-
+\end{verbatim}
+\newpage
+\begin{verbatim}
 --Mergesort Parallelo
 
 parmergesort :: Ord a => [a] -> [a]
@@ -171,35 +103,6 @@ parmergesort xs = ((forceList left) `par` (forceList right))
                              l = div (length xs) 2
                              left = parmergesort left1
                              right = parmergesort right1
-\end{verbatim}
-\subsection{Codice di Testing}
-\subsubsection{Test Sorting}
-\begin{verbatim}
-import Control.Parallel
-import Control.Parallel.Strategies
-import Control.Exception
-import Data.Time.Clock
-import Text.Printf
-import System.Environment
-import Esempi
-import Utility
-
-longls = randomList 10000
-
-
-main = do
-  [n] <- getArgs
-  let test = [test1,test2,test3,test4] !! (read n - 1)
-  t0 <- getCurrentTime
-  r <- evaluate (runEval test)
-  printTimeSince t0
-  print r
-  printTimeSince t0
-
-test1 = return (quicksort longls)
-test2 = return (parquicksort longls)
-test3 =  return (mergesort longls)
-test4 =  return (parmergesort longls)
 \end{verbatim}
 \section{Algebra Lineare}
 \subsection{Modulo Matrix}
@@ -222,7 +125,9 @@ zeroes n = replicate n (replicate n 0.0)
 
 identity :: Int -> Matrix
 identity n = identity2 n 0
-
+\end{verbatim}
+\newpage
+\begin{verbatim}
 identity2 :: Int -> Int -> Matrix
 identity2 n m 
     | n == m = []
@@ -260,7 +165,9 @@ subMatrix = zipWith (zipWith (-))
 prodMatrix :: Matrix -> Matrix -> Matrix
 prodMatrix m1 m2 = [[scalar a b | b <- column] | a <- m1]
                  where column = transpose m2
-
+\end{verbatim}
+\newpage
+\begin{verbatim}
 --potenza
 powMatrix :: Matrix -> Int -> Matrix
 powMatrix m 0 = (identity dim) where dim = length m
@@ -300,7 +207,10 @@ det m = sum [a*s*(det m1) | i <- [0..dim-1],
              let s = (-1)^i] 
     where
         dim = length m
-    
+
+\end{verbatim}
+\newpage
+\begin{verbatim}
 deleteElement :: [a] -> Int -> [a]
 deleteElement x index = left ++ right where (left, _:right) = splitAt index x
 
@@ -337,7 +247,9 @@ det2 m = product [m1 !! i !! i | i <- [0..dim-1]]
     where
         dim = length m
         m1 = gauss m
-
+\end{verbatim}
+\newpage
+\begin{verbatim}
 --determinante parallelo
 
 --metodo di Laplace    
@@ -368,9 +280,9 @@ pardet2 m = pfold (*) [m1 !! i !! i | i <- [0..dim-1]]
     where
         dim = length m
         m1 = gauss m
-        
-        
-        
+\end{verbatim}
+\newpage
+\begin{verbatim}
 --matrice inversa (determinante NON efficiente)
 invert :: Matrix -> Matrix
 invert [[]] = [[]]
@@ -401,63 +313,7 @@ parinvert m = (invert m) `using` parList rdeepseq
 parinvert2 :: Matrix -> Matrix            
 parinvert2 m = (invert2 m) `using` parList rdeepseq
 \end{verbatim}
-\subsection{Codice di Testing}
-\subsubsection{Test Matrici}
-\begin{verbatim}
-import Utility
-import Matrix
-
-bigMat = makeMat 100
-smallMat = makeMat 8
-iden = identity 10
-
-test1 = return (prodMatrix bigMat bigMat)
-test2 = return (prodMatPar bigMat bigMat)
-
-test3 = return (powMatrix bigMat 2)
-test4 = return (powMatPar bigMat 2)
-
-test5 = return (sumMatrix bigMat bigMat)
-test6 = return (sumMatPar bigMat bigMat)
-
-test7 = return (invert iden)
-test8 = return (parinvert iden)
-test9 = return (parinvert2 iden)
-
-main = do
-    [n] <- getArgs
-    let test = [test1,test2,test3,test4,test5,
-                test6,test7,test8,test9] !! (read n - 1)
-    t0 <- getCurrentTime
-    r <- evaluate (runEval test)
-    print r
-    printTimeSince t0
-\end{verbatim}
-\subsubsection{Test Determinante}
-\begin{verbatim}
-import Utility
-import Matrix
-
-bigMat = makeMat 100
-smallMat = makeMat 8
-iden = identity 10
-
-test1 = return (det iden)
-test2 = return (pardet iden)
-test3 = return (det2 bigMat)
-
-
-main = do
-  [n] <- getArgs
-  let test = [test1,test2,test3] !! (read n - 1)
-  t0 <- getCurrentTime
-  r <- evaluate (runEval test)
-  printTimeSince t0
-  print r
-  printTimeSince t0
-        
-        
-\end{verbatim}
+\newpage
 \section{Grafi}
 \subsection{Modulo Graph}
 \begin{verbatim}
@@ -492,7 +348,9 @@ makeAdjMat (nodes, (x, y):edges) = setEdge (x, y) True
 setEdge :: (Int, Int) -> Bool -> AdjMat -> AdjMat
 setEdge _ _ [] = error "Error in setEdge"
 setEdge (x, y) v m = replacePosition x y v (replacePosition y x v m)
-
+\end{verbatim}
+\newpage
+\begin{verbatim}
 replacePosition :: Int -> Int -> a -> [[a]] -> [[a]]                            
 replacePosition x y v m = left ++ [new] ++ right
                             where
@@ -539,47 +397,4 @@ isFullyConnectedPar :: Graph -> Bool
 isFullyConnectedPar (n, e) = not(any (elem True) m) where    
                                 m = powAdjMatPar adj_mat n
                                 adj_mat = makeAdjMat (n, e)
-\end{verbatim}
-\subsection{Codice di Testing}
-\subsubsection{Test Determinante}
-\begin{verbatim}
-import Utility
-import Graph
-
-g = (10, [(0,1),(0,2),(0,3),(1,2)(1,4),(2,5),(2,8),(4,7),(8,9)])
-
-test1 = return (isFullyConnected g)
-test2 = return (isFullyConnected g)
-
-
-main = do
-  [n] <- getArgs
-  let test = [test1,test2] !! (read n - 1)
-  t0 <- getCurrentTime
-  r <- evaluate (runEval test)
-  printTimeSince t0
-  print r
-  printTimeSince t0
-        
-        
-\end{verbatim}
-\section{Funzioni ausiliarie}
-\subsection{Modulo Utility}
-\begin{verbatim}
-module Utility where
-
-import Control.Parallel
-import Control.Parallel.Strategies
-import Control.Exception
-import Data.Time.Clock
-import Text.Printf
-import System.Environment
-import System.Random
-
-randomList :: Int -> [Int]
-randomList n = take n (randomRs (1, n) (mkStdGen 42))
-                 
-printTimeSince t0 = do
-  t1 <- getCurrentTime
-  printf "time: %.2fs\n" (realToFrac (diffUTCTime t1 t0) :: Double)
 \end{verbatim}
