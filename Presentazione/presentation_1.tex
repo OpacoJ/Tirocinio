@@ -93,11 +93,10 @@
 \author{Jacopo Francesco Zemella} % Your name
 \institute[Unimi] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
 {
-Universit\`a degli studi di Milano \\ % Your institution for the title page
+Universit\`a degli studi di Milano \\[2ex] % Your institution for the title page
 \medskip
 \textit{jacopofrancesco.zemella@studenti.unimi.it} % Your email address
 }
-\date{\today} % Date, can be changed to a custom date
 
 \begin{document}
 
@@ -105,10 +104,10 @@ Universit\`a degli studi di Milano \\ % Your institution for the title page
 \titlepage % Print the title page as the first slide
 \end{frame}
 
-\begin{frame}
-\frametitle{Overview} % Table of contents slide, comment this block out to remove it
-\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
-\end{frame}
+%\begin{frame}
+%\frametitle{Overview} % Table of contents slide, comment this block out to remove it
+%\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+%\end{frame}
 
 %----------------------------------------------------------------------------------------
 %	PRESENTATION SLIDES
@@ -121,7 +120,7 @@ Universit\`a degli studi di Milano \\ % Your institution for the title page
 
 \begin{frame}
 \frametitle{Algoritmi Sequenziali}
-\textbf{Algoritmo:} Sequenza finita di istruzioni interpretabili da un determinato agente, finalizzate a risolvere un problema\\
+\textbf{Algoritmo:} Sequenza finita di istruzioni interpretabili da un determinato agente, finalizzate a risolvere un problema\\[2ex]
 \textbf{Calcolo Sequenziale}: Insieme delle procedure in cui le istruzioni vengono eseguite in \textit{sequenza}, una dopo l'altra. Nei sistemi informatici gli algoritmi sequenziali vengono eseguiti da una singola CPU: ad ogni istante \textit{t} di tempo è in esecuzione una e una sola operazione
 \end{frame}
 
@@ -129,7 +128,7 @@ Universit\`a degli studi di Milano \\ % Your institution for the title page
 
 \begin{frame}
 \frametitle{Complessità Sequenziale}
-La bontà di un algoritmo è legato al numero di operazioni che esegue per ottenere un risultato $\rightarrow$ \textbf{Complessità}\\
+La bontà di un algoritmo è legato al numero di operazioni che esegue per ottenere un risultato $\rightarrow$ \textbf{Complessità}\\[2ex]
 \textbf{Complessità Asintotica}: Stima asintotica della complessità di un algoritmo in funzione della dimensione $n$ dell'input; esempi: $n, \ n\log n, \ n^k, \ 2^n, \ n!$
 \end{frame}
 
@@ -137,7 +136,7 @@ La bontà di un algoritmo è legato al numero di operazioni che esegue per otten
 
 \begin{frame}
 \frametitle{Caratteristiche degli Algoritmi}
-\textbf{Efficienza}: Un algoritmo si dice \textit{efficiente} se la sua complessità asintotica è di ordine polinomiale ($\mathcal{O}(n^k), \ k \in \mathbb{N}$)\\
+\textbf{Efficienza}: Un algoritmo si dice \textit{efficiente} se la sua complessità asintotica è di ordine polinomiale ($\mathcal{O}(n^k), \ k \in \mathbb{N}$)\\[2ex]
 \textbf{Ottimalità}: Un algoritmo di complessità $f(n)$ si dice \textit{ottimo} se ogni altro algoritmo che risolve lo stesso problema ha complessità pari \textit{almeno} a $f(n)$
 \end{frame}
 
@@ -147,14 +146,14 @@ La bontà di un algoritmo è legato al numero di operazioni che esegue per otten
 \section{Algoritmi Paralleli}
 \begin{frame}
 \frametitle{Algoritmi Paralleli}
-\textbf{Calcolo Parallelo}: Insieme delle procedure in cui parte delle istruzioni vengono eseguite su più processori contemporaneamente\\
+\textbf{Calcolo Parallelo}: Insieme delle procedure in cui parte delle istruzioni vengono eseguite su più processori contemporaneamente\\[2ex]
 \textbf{Scopo della Parallelizzazione}: Ottenere un compromesso conveniente tra prestazioni e costo delle risorse aggiunte
 \end{frame}
 
 %------------------------------------------------
 
 \begin{frame}[fragile]
-Un generico algoritmo parallelo si presenta così:\\
+Come si presenta generico algoritmo parallelo:\\[2ex]
 \begin{verbatim}
     for (i from 1 to NumProcessori) do
              operazioneParallela
@@ -165,9 +164,9 @@ Un generico algoritmo parallelo si presenta così:\\
 
 \begin{frame}
 \frametitle{Analisi degli Algoritmi Paralleli}
-Chiamiamo $\mathrm{T}_{A}(n, p)$ il tempo di esecuzione di un algoritmo parallelo $A$ in funzione della dimensione dell'input $n$ e del numero di processori $p$\\
+Chiamiamo $\mathrm{T}_{A}(n, p)$ il tempo di esecuzione di un algoritmo parallelo $A$ in funzione della dimensione dell'input $n$ e del numero di processori $p$\\[2ex]
 \begin{itemize}
-\item{Speedup}: $\displaystyle \mathrm{S}_{A}(n, p) = \frac{\mathrm{T}_{A}(n, 1)}{\mathrm{T}_{A}(n, p)}$\\
+\item{Speedup}: $\displaystyle \mathrm{S}_{A}(n, p) = \frac{\mathrm{T}_{A}(n, 1)}{\mathrm{T}_{A}(n, p)}$\\[2ex]
 \item{Efficienza}: $\displaystyle \mathrm{E}_{A}(n, p) = \frac{\mathrm{S}_{A}(p)}{p} = \frac{\mathrm{T}_{A}(n, 1)}{p\mathrm{T}_{A}(n, p)}$
 \end{itemize}
 \end{frame}
@@ -176,7 +175,7 @@ Chiamiamo $\mathrm{T}_{A}(n, p)$ il tempo di esecuzione di un algoritmo parallel
 
 \begin{frame}
 \frametitle{Legge di Amdahl}
-\textit{"Il miglioramento che si può ottenere su una certa parte del sistema è limitato dalla frazione di tempo in cui tale attività ha luogo"}\\
+\textit{"Il miglioramento che si può ottenere su una certa parte del sistema è limitato dalla frazione di tempo in cui tale attività ha luogo"}\\[2ex]
 Analogamente il guadagno prestazionale ottenuto dal parallelismo è limitato dalla sua componente sequenziale
 \end{frame}
 
@@ -185,7 +184,7 @@ Analogamente il guadagno prestazionale ottenuto dal parallelismo è limitato dal
 \begin{frame}
 Se chiamiamo $\alpha$ la componente sequenziale del tempo di esecuzione otteniamo che:
 \begin{center}
-$\displaystyle S_{A}(n,p) = \frac{1}{\displaystyle \alpha + \frac{1-\alpha}{p}}$\\
+$\displaystyle S_{A}(n,p) = \frac{1}{\displaystyle \alpha + \frac{1-\alpha}{p}}$\\[2ex]
 \end{center}
 
 \begin{center}
@@ -227,14 +226,14 @@ In fase di esecuzione è inoltre possibile specificare il numero di processori d
 
 \section{Haskell in Parallelo}
 
-\begin{frame}
-\frametitle{Parallel Haskell}
-Distinguiamo le seguenti metodologie di programmazione:
-\begin{itemize}
-\item \textit{par} e \textit{pseq} $\rightarrow$ parallelismo esplicito
-\item \textit{Strategies} $\rightarrow$ parallelismo semi-esplicito
-\end{itemize}
-\end{frame}
+%\begin{frame}
+%\frametitle{Parallel Haskell}
+%Distinguiamo le seguenti metodologie di programmazione:
+%\begin{itemize}
+%\item \textit{par} e \textit{pseq} $\rightarrow$ parallelismo esplicito
+%\item \textit{Strategies} $\rightarrow$ parallelismo semi-esplicito
+%\end{itemize}
+%\end{frame}
 
 %------------------------------------------------
 
@@ -268,9 +267,9 @@ pairFibPar = f1 `par` (f1 + f2) where
 
 
 \begin{frame}
-Tempo di esecuzione \texttt{pairFib} = 6.92 sec\\
-Tempo di esecuzione \texttt{pairFibPar} = 6.92 sec\\
-Abbiamo vainificato gli sforzi per il Parallelismo\\
+Tempo di esecuzione \texttt{pairFib} = 6.92 sec\\[2ex]
+Tempo di esecuzione \texttt{pairFibPar} = 6.92 sec\\[2ex]
+Abbiamo vainificato gli sforzi per il Parallelismo\\[2ex]
 \end{frame}
 
 %------------------------------------------------
@@ -283,22 +282,22 @@ pairFibPar2 =
         f1 = fib 36
         f2 = fib 36
 \end{verbatim}
-Tempo di esecuzione \texttt{pairFibPar2} = 3.48 sec\\
+Tempo di esecuzione \texttt{pairFibPar2} = 3.48 sec\\[2ex]
 \end{frame}
 
 %------------------------------------------------
 
 \begin{frame}[fragile]
 \frametitle{Control.Paralell.Strategies: strategie}
-Scopo = dividiamo l'algoritmo dalla componente parallela\\[1ex]
-Prendiamo un algoritmo "sequenziale" e vi applichiamo una strategia di calcolo che definisce implicitamente come deve essere parallelizzato \\[1ex]
+Scopo = dividiamo l'algoritmo dalla componente parallela\\[2ex]
+Prendiamo un algoritmo "sequenziale" e vi applichiamo una strategia di calcolo che definisce implicitamente come deve essere parallelizzato \\[2ex]
 Possiamo sfruttare strategie già esistenti o crearne altre ex-novo adatte al nostro scopo
 \end{frame}
 
 %------------------------------------------------
 
 \begin{frame}[fragile]
-Prendiamo il seguente esempio
+\frametitle{Esempio: Map mediante Strategies}
 \begin{verbatim}
 -- Funzione Map sequenziale
 map f [] = []
@@ -311,7 +310,7 @@ parMap f xs = map f xs `using` strat
 \end{frame}
 
 \begin{frame}
-\Huge{\centerline{The End}}
+\Huge{\centerline{Grazie per l'attenzione!}}
 \end{frame}
 
 %----------------------------------------------------------------------------------------

@@ -1,4 +1,4 @@
-Prendiamo il seguente esempio
+\frametitle{Esempio: Map mediante Strategies}
 \begin{verbatim}
 -- Funzione Map sequenziale
 map f [] = []
