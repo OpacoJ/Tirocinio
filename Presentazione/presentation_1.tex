@@ -1,318 +1,249 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Beamer Presentation
-% LaTeX Template
-% Version 1.0 (10/11/12)
-%
-% This template has been downloaded from:
-% http://www.LaTeXTemplates.com
-%
-% License:
-% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%----------------------------------------------------------------------------------------
-%	PACKAGES AND THEMES
-%----------------------------------------------------------------------------------------
-
 \documentclass[14pt]{beamer}
 \usepackage[italian]{babel}
 \usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{latexsym}
 \usepackage{graphicx}
-\usepackage{amssymb}
-\mode<presentation> {
-
-% The Beamer class comes with a number of default slide themes
-% which change the colors and layouts of slides. Below this is a list
-% of all the themes, uncomment each in turn to see what they look like.
-
-%\usetheme{default}
-%\usetheme{AnnArbor}
-%\usetheme{Antibes}
-%\usetheme{Bergen}
-%\usetheme{Berkeley}
-%\usetheme{Berlin}
-%\usetheme{Boadilla}
-%\usetheme{CambridgeUS}
-%\usetheme{Copenhagen}
-%\usetheme{Darmstadt}
-%\usetheme{Dresden}
-%\usetheme{Frankfurt}
-%\usetheme{Goettingen}
-%\usetheme{Hannover}
-%\usetheme{Ilmenau}
-%\usetheme{JuanLesPins}
-%\usetheme{Luebeck}
+\mode<presentation>
 \usetheme{Madrid}
-%\usetheme{Malmoe}
-%\usetheme{Marburg}
-%\usetheme{Montpellier}
-%\usetheme{PaloAlto}
-%\usetheme{Pittsburgh}
-%\usetheme{Rochester}
-%\usetheme{Singapore}
-%\usetheme{Szeged}
-%\usetheme{Warsaw}
-
-% As well as themes, the Beamer class has a number of color themes
-% for any slide theme. Uncomment each of these in turn to see how it
-% changes the colors of your current slide theme.
-
-%\usecolortheme{albatross}
-%\usecolortheme{beaver}
-%\usecolortheme{beetle}
-%\usecolortheme{crane}
-%\usecolortheme{dolphin}
-%\usecolortheme{dove}
-%\usecolortheme{fly}
-%\usecolortheme{lily}
-%\usecolortheme{orchid}
-%\usecolortheme{rose}
-%\usecolortheme{seagull}
-%\usecolortheme{seahorse}
-%\usecolortheme{whale}
-%\usecolortheme{wolverine}
-
-%\setbeamertemplate{footline} % To remove the footer line in all slides uncomment this line
-%\setbeamertemplate{footline}[page number] % To replace the footer line in all slides with a simple slide count uncomment this line
-
-%\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
-}
-
-\usepackage{graphicx} % Allows including images
-\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
-
-%----------------------------------------------------------------------------------------
-%	TITLE PAGE
-%----------------------------------------------------------------------------------------
 
 \title[Parallelismo e Haskell]{Parallelismo e Haskell} % The short title appears at the bottom of every slide, the full title is only on the title page
 
 \author{Jacopo Francesco Zemella} % Your name
 \institute[Unimi] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
 {
-Universit\`a degli studi di Milano \\[2ex] % Your institution for the title page
+Università degli studi di Milano \\[2ex] % Your institution for the title page
 \medskip
 \textit{jacopofrancesco.zemella@studenti.unimi.it} % Your email address
 }
 
+
 \begin{document}
 
 \begin{frame}
-\titlepage % Print the title page as the first slide
+\titlepage
 \end{frame}
 
-%\begin{frame}
-%\frametitle{Overview} % Table of contents slide, comment this block out to remove it
-%\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
-%\end{frame}
 
-%----------------------------------------------------------------------------------------
-%	PRESENTATION SLIDES
-%----------------------------------------------------------------------------------------
-
-%------------------------------------------------
-\section{Algoritmi Sequenziali} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
-%------------------------------------------------
+\section{Algoritmi Sequenziali} 
 
 
 \begin{frame}
 \frametitle{Algoritmi Sequenziali}
 \textbf{Algoritmo:} Sequenza finita di istruzioni interpretabili da un determinato agente, finalizzate a risolvere un problema\\[2ex]
-\textbf{Calcolo Sequenziale}: Insieme delle procedure in cui le istruzioni vengono eseguite in \textit{sequenza}, una dopo l'altra. Nei sistemi informatici gli algoritmi sequenziali vengono eseguiti da una singola CPU: ad ogni istante \textit{t} di tempo è in esecuzione una e una sola operazione
+\textbf{Calcolo Sequenziale}: Le istruzioni vengono eseguite in \textit{sequenza}, una dopo l'altra da una singola CPU: ad ogni istante di tempo è in esecuzione una e una sola operazione
 \end{frame}
 
-%------------------------------------------------
+
+\section{Algoritmi Paralleli} 
+\frame
+{
+	\frametitle{Algoritmi Paralleli}
+	\textbf{Calcolo Parallelo}: Le istruzioni vengono eseguite su più processori contemporaneamente\\[2ex]
+  \begin{figure}
+    \centering
+    \includegraphics[width=8 cm]{./pram}
+  \end{figure}
+
+}
+
 
 \begin{frame}
-\frametitle{Complessità Sequenziale}
-La bontà di un algoritmo è legato al numero di operazioni che esegue per ottenere un risultato $\rightarrow$ \textbf{Complessità}\\[2ex]
-\textbf{Complessità Asintotica}: Stima asintotica della complessità di un algoritmo in funzione della dimensione $n$ dell'input; esempi: $n, \ n\log n, \ n^k, \ 2^n, \ n!$
-\end{frame}
-
-%------------------------------------------------
-
-\begin{frame}
-\frametitle{Caratteristiche degli Algoritmi}
-\textbf{Efficienza}: Un algoritmo si dice \textit{efficiente} se la sua complessità asintotica è di ordine polinomiale ($\mathcal{O}(n^k), \ k \in \mathbb{N}$)\\[2ex]
-\textbf{Ottimalità}: Un algoritmo di complessità $f(n)$ si dice \textit{ottimo} se ogni altro algoritmo che risolve lo stesso problema ha complessità pari \textit{almeno} a $f(n)$
-\end{frame}
-
-%------------------------------------------------
-
-
-\section{Algoritmi Paralleli}
-\begin{frame}
-\frametitle{Algoritmi Paralleli}
-\textbf{Calcolo Parallelo}: Insieme delle procedure in cui parte delle istruzioni vengono eseguite su più processori contemporaneamente\\[2ex]
-\textbf{Scopo della Parallelizzazione}: Ottenere un compromesso conveniente tra prestazioni e costo delle risorse aggiunte
-\end{frame}
-
-%------------------------------------------------
-
-\begin{frame}[fragile]
-Come si presenta generico algoritmo parallelo:\\[2ex]
-\begin{verbatim}
-    for (i from 1 to NumProcessori) do
-             operazioneParallela
-\end{verbatim}
-\end{frame}
-
-%------------------------------------------------
-
-\begin{frame}
-\frametitle{Analisi degli Algoritmi Paralleli}
-Chiamiamo $\mathrm{T}_{A}(n, p)$ il tempo di esecuzione di un algoritmo parallelo $A$ in funzione della dimensione dell'input $n$ e del numero di processori $p$\\[2ex]
-\begin{itemize}
-\item{Speedup}: $\displaystyle \mathrm{S}_{A}(n, p) = \frac{\mathrm{T}_{A}(n, 1)}{\mathrm{T}_{A}(n, p)}$\\[2ex]
-\item{Efficienza}: $\displaystyle \mathrm{E}_{A}(n, p) = \frac{\mathrm{S}_{A}(p)}{p} = \frac{\mathrm{T}_{A}(n, 1)}{p\mathrm{T}_{A}(n, p)}$
-\end{itemize}
-\end{frame}
-
-%------------------------------------------------
-
-\begin{frame}
-\frametitle{Legge di Amdahl}
+\frametitle{Legge di Amdahl - Limiti della Parallelizzazione}
 \textit{"Il miglioramento che si può ottenere su una certa parte del sistema è limitato dalla frazione di tempo in cui tale attività ha luogo"}\\[2ex]
-Analogamente il guadagno prestazionale ottenuto dal parallelismo è limitato dalla sua componente sequenziale
+Analogamente il guadagno prestazionale ottenuto dal parallelismo è limitato dalla sua componente sequenziale intrinseca.
 \end{frame}
 
-%------------------------------------------------
-
-\begin{frame}
-Se chiamiamo $\alpha$ la componente sequenziale del tempo di esecuzione otteniamo che:
-\begin{center}
-$\displaystyle S_{A}(n,p) = \frac{1}{\displaystyle \alpha + \frac{1-\alpha}{p}}$\\[2ex]
-\end{center}
-
-\begin{center}
-$\displaystyle S_A(n,p) = \frac{1}{\alpha} \ se \ p \rightarrow \infty$
-\end{center}
-
-\end{frame}
 
 \section{Haskell}
 \begin{frame}
-\frametitle{Haskell}
-Caratteristiche di Haskell:
+\frametitle{Haskell: Caratteristiche} 
 \begin{itemize}
 \item Linguaggio funzionale
-\item Tipizzazione forte e statica
-\item Lazy Evaluation
-\item Alto livello di astrazioni
-\item Funzioni Higher-Order
-\item Pienamente avviato verso la programmazione parallela
+\item Tipizzazione statica
+\item Lazy evaluation
+\item Trasparenza referenziale
+ \item Particolarmente indicato per la parallelizzazione
+  \begin{itemize}
+  \item \textbf{GpH}: Glasgow parallel Haskell
+  \end{itemize}
+
 \end{itemize}
 \end{frame}
 
-%------------------------------------------------
-
-\begin{frame}[fragile]
-\frametitle{Premesse nel parallelismo in Haskell}
-Haskell definisce i threads (o sparks) parallelizzabili in fase di compilazione
-\begin{verbatim}
-    ghc -threaded foo.hs
-\end{verbatim}
-In fase di esecuzione è inoltre possibile specificare il numero di processori da utilizzare mediante l'opzione \texttt{-N}
-\begin{verbatim}
-    ./foo +RTS -N2
-\end{verbatim}
-\end{frame}
-
-
-%------------------------------------------------
-
-\section{Haskell in Parallelo}
-
-%\begin{frame}
-%\frametitle{Parallel Haskell}
-%Distinguiamo le seguenti metodologie di programmazione:
-%\begin{itemize}
-%\item \textit{par} e \textit{pseq} $\rightarrow$ parallelismo esplicito
-%\item \textit{Strategies} $\rightarrow$ parallelismo semi-esplicito
-%\end{itemize}
-%\end{frame}
-
-%------------------------------------------------
-
 
 \begin{frame}
-\frametitle{Control.Paralell: par e pseq}
-Generiamo parallelismo a livello di codice mediante due funzioni del pacchetto Control.Paralell:
+\frametitle{Le sfide della Programmazione Parallela}
+Implementare un programma parallelo richiede di specificare:
 \begin{itemize}
-\item \textit{par}: definisce il parallelismo in modo esplicito; prende in ingresso due funzioni e definisce la prima come "parallelizzabile", ovvero eseguibile su un altro processore
-\item \textit{pseq}: permette un controllo mirato sull'esecuzione delle varie funzioni che definiscono il programma
+\item \textbf{computazione}: creare un algoritmo  efficiente e corretto
+\item \textbf{coordinamento}: gestire l'esecuzione per ottenere un "buon" livello di parallelismo
+\end{itemize}
+In Parallel Haskell \textbf{computazione} e \textbf{coordinamento} sono strettamente separate.
+\end{frame}
+
+\begin{frame}
+\frametitle{Aspetti di coordinazione}
+Coordinare l'andamento parallelo dell'esecuzione prevede, tra le altre cose:
+\begin{itemize}
+\item partizionamento: quali threads creare e la quantità di lavoro che devono svolgere
+\item sincronizzazione tra i threads
+\item load-store management
+\item comunicazione 
 \end{itemize}
 \end{frame}
 
-%------------------------------------------------
-
-\begin{frame}[fragile]
-\frametitle{Perché controllare l'esecuzione?}
-Sia "\texttt{fib n}" la funzione che calcola l'elemento \textit{n-esimo} della serie di Fibonacci. Eseguiamo il seguente programma:
-\begin{verbatim}
-pairFib = f1 + f2 where
-    		f1 = fib 36
-    		f2 = fib 36
-    
-pairFibPar = f1 `par` (f1 + f2) where
-    			f1 = fib 36
-    			f2 = fib 36
-\end{verbatim}
-\end{frame}
-
-%------------------------------------------------
-
 
 \begin{frame}
-Tempo di esecuzione \texttt{pairFib} = 6.92 sec\\[2ex]
-Tempo di esecuzione \texttt{pairFibPar} = 6.92 sec\\[2ex]
-Abbiamo vainificato gli sforzi per il Parallelismo\\[2ex]
+\frametitle{Glasgow Parallel Haskell}
+\begin{itemize}
+\item GpH è un'estensione \textbf{conservativa} di Haskell che permette di
+  realizzare parallelismo \textbf{semi-esplicito} basato su threads.
+
+\item Solo alcuni aspetti chiave devono essere specificati dal programmatore 
+\item 
+  Fornisce una sola primitiva per creare un thread, ma una volta creati essi sono gestiti autonomamente da un sofisticato sistema runtime.\\ [2ex]
+\end{itemize}
+% Inoltre le Strategies uniscono le primitive per la creazione dei thread con funzioni higher-order, consentendo astrazioni di coordinazione di alto livello.
 \end{frame}
 
-%------------------------------------------------
+\begin{frame}
+\frametitle{Parallelismo in GpH}
+GpH mette a disposizione varie metodologie di programmazione parallela:
+\begin{itemize}
+\item Parallelismo semi-esplicito: funzioni \textit{par} e \textit{pseq}
+\item Monade Eval e Strategie di valutazione
+\item Dataflow Parallelism: Monade Par
+\end{itemize}
+Nella tesi abbiamo utilizzato le prime due, e in questa presentazione presentiamo solo la prima.
+\end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Soluzione: pseq}
+\frametitle{par e pseq}
+Le due funzioni hanno la seguente segnature: 
 \begin{verbatim}
-pairFibPar2 =
-    f1 `par` (f2 `pseq` (f1 + f2)) where
-        f1 = fib 36
-        f2 = fib 36
+par   :: a -> b -> b
+pseq  :: a -> b -> b
 \end{verbatim}
-Tempo di esecuzione \texttt{pairFibPar2} = 3.48 sec\\[2ex]
+\begin{itemize}
+\item La funzione
+\textit{par} segnala il   primo argomento come un thread
+"parallelizzabile" (spark), ovvero che la sua valutazione in parallelo
+potrebbe essere conveniente
+\item Tuttavia, poiché la \emph{lazy evaluation} di Haskell non impone
+  un ordine di valutazione \textbf{stretto}, abbiamo bisogno anche di
+  \textit{pseq}, che assicura che il primo argomento venga valutato
+  prima del secondo.
+\end{itemize}
+
 \end{frame}
 
-%------------------------------------------------
 
 \begin{frame}[fragile]
-\frametitle{Control.Paralell.Strategies: strategie}
-Scopo = dividiamo l'algoritmo dalla componente parallela\\[2ex]
-Prendiamo un algoritmo "sequenziale" e vi applichiamo una strategia di calcolo che definisce implicitamente come deve essere parallelizzato \\[2ex]
-Possiamo sfruttare strategie già esistenti o crearne altre ex-novo adatte al nostro scopo
-\end{frame}
-
-%------------------------------------------------
-
-\begin{frame}[fragile]
-\frametitle{Esempio: Map mediante Strategies}
+\frametitle{Un esempio in Parallel Haskell \hfill 1/2}
+Fattoriale \emph{divide et impera}: Caso Sequenziale
+\small 
 \begin{verbatim}
--- Funzione Map sequenziale
-map f [] = []
-map f (x:xs) = (f x):(map f xs)
+fact n = fact' 1 n
 
--- Funzione Map in parallelo
-strat = parList rseq
-parMap f xs = map f xs `using` strat
+fact' :: Integer -> Integer -> Integer
+fact' m n
+  | m == n    = m
+  | otherwise = left * right
+      where 
+          mid   = (m + n) `div` 2
+          left  = fact' m mid
+          right = fact' (mid+1) n
 \end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Un esempio in Parallel Haskell \hfill 2/2}
+Fattoriale: Caso Parallelo
+\small 
+\begin{verbatim}
+pfact n = pfact' 1 n
+
+pfact' :: Integer -> Integer -> Integer
+pfact' m n
+  | m == n    = m
+  | otherwise = left `par` right `pseq` (left * right)
+      where 
+          mid   = (m + n) `div` 2
+          left  = pfact' m mid
+          right = pfact' (mid+1) n
+\end{verbatim}
+\end{frame}
+
+\begin{frame}
+\frametitle{Coordinamento\hfill 1/2}
+Sfruttando le due funzioni otteniamo il parallelismo desiderato.\\[2ex]
+\texttt{left `par` right `pseq` (left * right)}
+\begin{figure}
+    \centering
+    \includegraphics[width=6 cm]{./desired_par}
+  \end{figure}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Coordinamento\hfill 2/2}
+% Come abbiamo detto specificare le componenti parallele del programma non è sufficiente: dobbiamo controllare l'ordine della valutazione.
+Se avessimo scritto la funzione come segue:
+\begin{verbatim}
+  | otherwise = left `par` (left * right)
+\end{verbatim}
+la somma avrebbe potuto valutare \textit{left} sul core principale, prima che qualsiasi altro avesse la possibilità di calcolarlo.
+\begin{figure}
+    \centering
+    \includegraphics[width=8 cm]{./not_desired_par}
+  \end{figure}
+
+
+La \textit{`pseq`} assicura che \textit{left} e \textit{right} siano calcolate in parallelo prima di moltiplicarle.
+\end{frame}
+
+% \begin{frame}
+% La mancata coordinazione sfocia in eventi di questo tipo.\\[2ex]
+% \texttt{left `par` (left * right)}
+% \begin{figure}
+%     \centering
+%     \includegraphics[width=8 cm]{./not_desired_par}
+%   \end{figure}
+% \end{frame}
+
+\begin{frame}
+\frametitle{Problemi Implementati e Risolti nel Tirocinio}
+\begin{itemize}
+\item Sorting: 
+		\begin{itemize}
+			\item quicksort
+			\item mergesort
+		\end{itemize}
+\item Algebra Lineare:
+		\begin{itemize}
+			\item Somma, prodotto, potenza di Matrici
+			\item Calcolo del determinante
+			\item Inversione di una matrice
+		\end{itemize}
+\item Grafi:
+		\begin{itemize}
+			\item Connettività
+		\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Conclusioni e Sviluppi Futuri}
+Haskell offre un ampio numero di implementazioni per la programmazione parallela mediante una semantica di comodo utilizzo.\\[2pt]
+Possibili sviluppi:
+\begin{itemize}
+\item Valutazione empirica del tempo di esecuzione degli esempi implementati.
+\item Confronto delle varie metodologie di programmazione.
+\item Analisi delle altre tecniche di parallelizzazione non affrontate
+  nel tirocinio.
+\end{itemize}
 \end{frame}
 
 \begin{frame}
 \Huge{\centerline{Grazie per l'attenzione!}}
 \end{frame}
 
-%----------------------------------------------------------------------------------------
-
-\end{document} 
+\end{document}
